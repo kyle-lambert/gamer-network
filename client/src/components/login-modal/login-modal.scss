@@ -1,0 +1,47 @@
+@import "../../scss/partials/variables";
+
+.login-modal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  &__top {
+    padding: 30px;
+    flex: 1;
+  }
+
+  &__header {
+    text-align: center;
+  }
+
+  &__display {
+    display: block;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  &__bottom {
+    padding: 30px;
+    text-align: center;
+    border-top: 1px solid $border;
+  }
+
+  &__text {
+    display: inline-block;
+    color: $dark;
+    margin: 0 5px;
+    text-align: center;
+  }
+
+  &__link {
+    display: inline-block;
+    border-bottom: 1px solid transparent;
+    color: $primary;
+    margin: 0 5px;
+
+    &:hover {
+      border-color: $primary;
+    }
+  }
+}

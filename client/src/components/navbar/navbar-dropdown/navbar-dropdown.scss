@@ -3,15 +3,15 @@
 .navbar-dropdown {
   position: absolute;
   top: calc(100% + 10px);
-  left: 20px;
-  right: 20px;
+  left: 30px;
+  right: 30px;
   padding: 7px;
   background-color: $white;
   border: 1px solid $border;
   border-radius: 12px;
 
   @media (min-width: $mobile) {
-    width: 250px;
+    width: 275px;
     right: unset;
   }
 
@@ -31,7 +31,6 @@
     display: inline-block;
     width: 100%;
     padding: 7px 10px;
-    font-size: 14px;
     border-radius: 8px;
 
     &:hover {
@@ -44,7 +43,7 @@
     display: inline-block;
     width: 100%;
     padding: 7px 10px;
-    font-size: 14px;
+    font-size: inherit;
     font-weight: 600;
     color: $primary;
     background-color: $white;

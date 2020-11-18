@@ -1,18 +1,21 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import "./app.scss";
 
 import Home from "../../pages/home/home";
 import Games from "../../pages/games/games";
 import Error from "../../pages/error/error";
 
 import Navbar from "../../components/navbar/navbar";
+import LoginModal from "../../components/login-modal/login-modal";
+import SignupModal from "../../components/signup-modal/signup-modal";
 
 function App(props) {
   return (
-    <div className="app">
+    <div>
       <Navbar />
-      {/* <main className="app__main">
+      <LoginModal />
+      {/* <SignupModal /> */}
+      <main>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/games" component={Games} />
@@ -21,7 +24,7 @@ function App(props) {
             <Redirect to="/error" />
           </Route>
         </Switch>
-      </main> */}
+      </main>
     </div>
   );
 }

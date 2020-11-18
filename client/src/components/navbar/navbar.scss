@@ -8,7 +8,7 @@
   width: 100%;
   height: 75px;
   z-index: 199;
-  padding: 15px 20px;
+  padding: 15px 30px;
   background-color: $white;
   border-bottom: 1px solid $border;
   display: flex;
@@ -92,7 +92,6 @@
 
     &-link {
       padding: 5px 0;
-      font-size: 14px;
 
       &:hover {
         color: $dark;

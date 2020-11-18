@@ -21,31 +21,29 @@ select {
 h1 {
   font-weight: 700;
   font-size: 30px;
+  color: $dark;
 }
 
 h2 {
   font-weight: 700;
   font-size: 22px;
+  color: $dark;
 }
 
 h3 {
   font-weight: 700;
   font-size: 16px;
-}
-
-h4 {
-  font-weight: 700;
-  font-size: 14px;
+  color: $dark;
 }
 
 span {
   font-weight: 400;
-  font-size: 14px;
+  font-size: inherit;
 }
 
 p {
   font-weight: 400;
-  font-size: 14px;
+  font-size: inherit;
 }
 
 label {
@@ -55,5 +53,6 @@ label {
 }
 
 a {
+  font-size: inherit;
   color: inherit;
 }
