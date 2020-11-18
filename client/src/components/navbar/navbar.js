@@ -3,15 +3,22 @@ import { Link } from "react-router-dom";
 import "./navbar.scss";
 
 import NavbarAuth from "./navbar-auth/navbar-auth";
+import NavbarDropdown from "./navbar-dropdown/navbar-dropdown";
 
 import { ReactComponent as GlitchLogo } from "../../assets/icons/glitch-logo.svg";
 import { ReactComponent as Hamburger } from "../../assets/icons/hamburger.svg";
 
 function Navbar(props) {
+  const [dropdown, setDropdown] = React.useState(false);
+
+  const handleClick = () => {
+    setDropdown((prev) => !prev);
+  };
+
   return (
     <header className="navbar">
       <div className="navbar__hamburger">
-        <button className="navbar__hamburger-btn">
+        <button onClick={handleClick} className="navbar__hamburger-btn">
           <Hamburger />
         </button>
       </div>
@@ -34,40 +41,9 @@ function Navbar(props) {
       </nav>
 
       <NavbarAuth />
+      {dropdown && <NavbarDropdown setDropdown={setDropdown} />}
     </header>
   );
 }
 
 export default Navbar;
-
-/* <button className="navbar__hamburger">
-        <Hamburger />
-      </button>
-      <Link className="navbar__brand-link">
-        <GlitchLogo />
-      </Link>
-      <nav className="navbar__nav">
-        <ul className="navbar__nav-list">
-          <li className="navbar__nav-item">
-            <Link className="navbar__nav-link">Explore</Link>
-          </li>
-          <li className="navbar__nav-item">
-            <Link className="navbar__nav-link">Games</Link>
-          </li>
-          z
-        </ul>
-      </nav>
-      <nav className="navbar__auth">
-        <ul className="navbar__auth-list">
-          <li className="navbar__auth-item">
-            <Link className="navbar__auth-link navbar__auth-link--login">
-              Log in
-            </Link>
-          </li>
-          <li className="navbar__auth-item navbar__auth-item--hidden">
-            <Link className="navbar__auth-link navbar__auth-link--signup">
-              Sign up
-            </Link>
-          </li>
-        </ul>
-      </nav> */

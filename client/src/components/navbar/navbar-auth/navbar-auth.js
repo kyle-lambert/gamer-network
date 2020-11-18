@@ -5,7 +5,7 @@ import Button from "../../button/button";
 
 function NavbarAuth(props) {
   return (
-    <div className="navbar-auth">
+    <nav className="navbar-auth">
       <ul className="navbar-auth__list">
         <li className="navbar-auth__item">
           <Button>Log in</Button>
@@ -16,7 +16,7 @@ function NavbarAuth(props) {
       </ul>
 
       <div className="navbar-auth__account"></div>
-    </div>
+    </nav>
   );
 }
 

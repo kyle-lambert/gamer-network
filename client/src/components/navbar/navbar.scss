@@ -1,9 +1,15 @@
 @import "../../scss/partials/variables";
 
 .navbar {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 75px;
+  z-index: 199;
   padding: 15px 20px;
-  height: 70px;
+  background-color: $white;
   border-bottom: 1px solid $border;
   display: flex;
   justify-content: space-between;

@@ -1,0 +1,59 @@
+@import "../../../scss/partials/variables";
+
+.navbar-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 20px;
+  right: 20px;
+  padding: 7px;
+  background-color: $white;
+  border: 1px solid $border;
+  border-radius: 12px;
+
+  @media (min-width: $mobile) {
+    width: 250px;
+    right: unset;
+  }
+
+  @media (min-width: $tablet) {
+    display: none;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid $border;
+  }
+
+  &__link {
+    display: inline-block;
+    width: 100%;
+    padding: 7px 10px;
+    font-size: 14px;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: $light-grey;
+      color: $dark;
+    }
+  }
+
+  &__btn {
+    display: inline-block;
+    width: 100%;
+    padding: 7px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: $primary;
+    background-color: $white;
+    border: 1px solid $primary;
+    border-radius: 8px;
+
+    &:hover {
+      color: $white;
+      background-color: $primary;
+    }
+  }
+}

@@ -12,7 +12,7 @@ function App(props) {
   return (
     <div className="app">
       <Navbar />
-      <main className="app__main">
+      {/* <main className="app__main">
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/games" component={Games} />
@@ -21,7 +21,7 @@ function App(props) {
             <Redirect to="/error" />
           </Route>
         </Switch>
-      </main>
+      </main> */}
     </div>
   );
 }
