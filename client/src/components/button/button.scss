@@ -1,0 +1,27 @@
+@import "../../scss/partials/variables";
+
+.button {
+  display: inline-block;
+  background-color: $white;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid $border;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: $dark;
+
+  &:hover {
+    border-color: $border-hover;
+  }
+
+  &[data-type="primary"] {
+    color: $primary;
+    border-color: $primary;
+
+    &:hover {
+      color: $white;
+      background-color: $primary;
+    }
+  }
+}
