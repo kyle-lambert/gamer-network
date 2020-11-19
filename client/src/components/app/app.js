@@ -19,7 +19,7 @@ function App(props) {
       <Navbar />
       {state.loginModalOpen && <LoginModal />}
       {state.signupModalOpen && <SignupModal />}
-      <main>
+      {/* <main>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/games" component={Games} />
@@ -28,7 +28,7 @@ function App(props) {
             <Redirect to="/error" />
           </Route>
         </Switch>
-      </main>
+      </main> */}
     </div>
   );
 }

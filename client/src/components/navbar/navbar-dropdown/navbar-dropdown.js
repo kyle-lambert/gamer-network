@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./navbar-dropdown.scss";
 
 import { useModalContext } from "../../../contexts/modal-context";
@@ -7,28 +7,39 @@ import { useModalContext } from "../../../contexts/modal-context";
 function NavbarDropdown({ setDropdown }) {
   const { setSignupModal } = useModalContext();
 
-  const handleClick = () => {
-    setDropdown((prev) => !prev);
+  const handleLinkClick = () => {
+    setDropdown(false);
+  };
+
+  const handleSignupClick = () => {
+    setDropdown(false);
+    setSignupModal(true);
   };
 
   return (
     <nav className="navbar-dropdown">
       <ul className="navbar-dropdown__list">
         <li className="navbar-dropdown__item">
-          <Link onClick={handleClick} className="navbar-dropdown__link">
+          <NavLink
+            to="/explore"
+            onClick={handleLinkClick}
+            className="navbar-dropdown__link"
+            activeClassName="navbar-dropdown__link--active">
             Explore
-          </Link>
+          </NavLink>
         </li>
         <li className="navbar-dropdown__item">
-          <Link onClick={handleClick} className="navbar-dropdown__link">
+          <NavLink
+            to="/games"
+            onClick={handleLinkClick}
+            className="navbar-dropdown__link"
+            activeClassName="navbar-dropdown__link--active">
             Games
-          </Link>
+          </NavLink>
         </li>
       </ul>
       <div className="navbar-dropdown__auth">
-        <button
-          onClick={() => setSignupModal(true)}
-          className="navbar-dropdown__btn">
+        <button onClick={handleSignupClick} className="navbar-dropdown__btn">
           Sign up
         </button>
       </div>

@@ -8,7 +8,7 @@ import { useModalContext } from "../../contexts/modal-context";
 
 function LoginModal(props) {
   const emailRef = React.useRef(null);
-  const { setLoginModal } = useModalContext();
+  const { setLoginModal, setSignupModal } = useModalContext();
 
   React.useEffect(() => {
     emailRef.current.focus();
@@ -19,8 +19,17 @@ function LoginModal(props) {
     console.log("submitted");
   };
 
+  const handleSignupClick = () => {
+    setLoginModal(false);
+    setSignupModal(true);
+  };
+
+  const closeModal = () => {
+    setLoginModal(false);
+  };
+
   return (
-    <Modal closeModal={() => setLoginModal(false)}>
+    <Modal closeModal={closeModal}>
       <div className="login-modal">
         <div className="login-modal__top">
           <h1 className="login-modal__header">Hello!</h1>
@@ -47,7 +56,9 @@ function LoginModal(props) {
         </div>
         <div className="login-modal__bottom">
           <span className="login-modal__text">Don't have an account?</span>
-          <button className="login-modal__btn">Sign up</button>
+          <button onClick={handleSignupClick} className="login-modal__btn">
+            Sign up
+          </button>
         </div>
       </div>
     </Modal>

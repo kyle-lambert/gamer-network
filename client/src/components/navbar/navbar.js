@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./navbar.scss";
 
 import NavbarAuth from "./navbar-auth/navbar-auth";
@@ -24,7 +24,7 @@ function Navbar(props) {
       </div>
 
       <div className="navbar__brand">
-        <Link className="navbar__brand-link">
+        <Link to="/" className="navbar__brand-link">
           <GlitchLogo />
         </Link>
       </div>
@@ -32,10 +32,20 @@ function Navbar(props) {
       <nav className="navbar__nav">
         <ul className="navbar__nav-list">
           <li className="navbar__nav-item">
-            <Link className="navbar__nav-link">Explore</Link>
+            <NavLink
+              to="/explore"
+              className="navbar__nav-link"
+              activeClassName="navbar__nav-link--active">
+              Explore
+            </NavLink>
           </li>
           <li className="navbar__nav-item">
-            <Link className="navbar__nav-link">Games</Link>
+            <NavLink
+              to="/games"
+              className="navbar__nav-link"
+              activeClassName="navbar__nav-link--active">
+              Games
+            </NavLink>
           </li>
         </ul>
       </nav>

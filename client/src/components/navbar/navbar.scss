@@ -93,6 +93,10 @@
     &-link {
       padding: 5px 0;
 
+      &--active {
+        color: $primary;
+      }
+
       &:hover {
         color: $dark;
       }
