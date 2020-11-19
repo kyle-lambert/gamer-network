@@ -33,9 +33,9 @@ function SignupModal(props) {
       <div className="signup-modal">
         <div className="signup-modal__top">
           <h1 className="signup-modal__header">Join Glitch</h1>
-          <span className="signup-modal__display">
+          <div className="signup-modal__subheader">
             Sign up to save your favorite games.
-          </span>
+          </div>
           <form onSubmit={handleSubmit} className="signup-modal__form">
             <div className="signup-modal__form-line">
               <FormInput

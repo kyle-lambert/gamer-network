@@ -16,12 +16,13 @@
   }
 
   &[data-type="primary"] {
-    color: $primary;
+    color: $white;
     border-color: $primary;
+    background-color: $primary;
 
     &:hover {
-      color: $white;
-      background-color: $primary;
+      border-color: $primary-hover;
+      background-color: $primary-hover;
     }
   }
 }

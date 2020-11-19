@@ -21,11 +21,11 @@ function NavbarDropdown({ setDropdown }) {
       <ul className="navbar-dropdown__list">
         <li className="navbar-dropdown__item">
           <NavLink
-            to="/explore"
+            to="/account"
             onClick={handleLinkClick}
             className="navbar-dropdown__link"
             activeClassName="navbar-dropdown__link--active">
-            Explore
+            Account
           </NavLink>
         </li>
         <li className="navbar-dropdown__item">

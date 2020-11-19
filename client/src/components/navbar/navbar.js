@@ -33,10 +33,10 @@ function Navbar(props) {
         <ul className="navbar__nav-list">
           <li className="navbar__nav-item">
             <NavLink
-              to="/explore"
+              to="/account"
               className="navbar__nav-link"
               activeClassName="navbar__nav-link--active">
-              Explore
+              Account
             </NavLink>
           </li>
           <li className="navbar__nav-item">

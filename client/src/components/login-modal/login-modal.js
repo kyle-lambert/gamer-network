@@ -33,9 +33,9 @@ function LoginModal(props) {
       <div className="login-modal">
         <div className="login-modal__top">
           <h1 className="login-modal__header">Hello!</h1>
-          <span className="login-modal__display">
+          <div className="login-modal__subheader">
             Sign into your account here.
-          </span>
+          </div>
           <form onSubmit={handleSubmit} className="login-modal__form">
             <div className="login-modal__form-line">
               <FormInput

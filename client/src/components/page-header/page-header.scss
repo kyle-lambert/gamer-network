@@ -1,0 +1,15 @@
+@import "../../scss/partials/variables";
+
+.page-header {
+  margin: 80px auto;
+  text-align: center;
+
+  &__header {
+    font-size: 50px;
+  }
+
+  &__subheader {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+}

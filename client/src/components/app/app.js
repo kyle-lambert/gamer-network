@@ -1,9 +1,11 @@
 import React from "react";
-// import { Switch, Route, Redirect } from "react-router-dom";
+import "./app.scss";
+import { Switch, Route, Redirect } from "react-router-dom";
 
-// import Home from "../../pages/home/home";
-// import Games from "../../pages/games/games";
-// import Error from "../../pages/error/error";
+import Home from "../../pages/home/home";
+import Games from "../../pages/games/games";
+import Account from "../../pages/account/account";
+import Error from "../../pages/error/error";
 
 import Navbar from "../../components/navbar/navbar";
 import LoginModal from "../../components/login-modal/login-modal";
@@ -15,20 +17,21 @@ function App(props) {
   const { state } = useModalContext();
 
   return (
-    <div>
+    <div className="app">
       <Navbar />
       {state.loginModalOpen && <LoginModal />}
       {state.signupModalOpen && <SignupModal />}
-      {/* <main>
+      <main className="app__main">
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/games" component={Games} />
           <Route exact path="/error" component={Error} />
+          <Route path="/account" component={Account} />
           <Route>
             <Redirect to="/error" />
           </Route>
         </Switch>
-      </main> */}
+      </main>
     </div>
   );
 }
