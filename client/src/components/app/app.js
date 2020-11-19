@@ -13,8 +13,8 @@ function App(props) {
   return (
     <div>
       <Navbar />
-      <LoginModal />
-      {/* <SignupModal /> */}
+      {/* <LoginModal /> */}
+      <SignupModal />
       <main>
         <Switch>
           <Route exact path="/" component={Home} />

@@ -1,0 +1,30 @@
+@import "../../scss/partials/variables";
+
+.form-input__label {
+  display: block;
+  color: $grey;
+  margin-bottom: 7px;
+}
+
+.form-input__input {
+  padding: 12px 14px;
+  width: 100%;
+  font-size: inherit;
+  color: $dark;
+  border: 1px solid $border;
+  border-radius: 12px;
+
+  &::placeholder {
+    color: $placeholder;
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  &:hover {
+    border-color: $border-hover;
+  }
+
+  &:focus {
+    border-color: $primary;
+  }
+}
