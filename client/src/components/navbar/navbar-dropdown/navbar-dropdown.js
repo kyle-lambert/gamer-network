@@ -2,7 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar-dropdown.scss";
 
+import { useModalContext } from "../../../contexts/modal-context";
+
 function NavbarDropdown({ setDropdown }) {
+  const { setSignupModal } = useModalContext();
+
   const handleClick = () => {
     setDropdown((prev) => !prev);
   };
@@ -22,7 +26,11 @@ function NavbarDropdown({ setDropdown }) {
         </li>
       </ul>
       <div className="navbar-dropdown__auth">
-        <button className="navbar-dropdown__btn">Sign up</button>
+        <button
+          onClick={() => setSignupModal(true)}
+          className="navbar-dropdown__btn">
+          Sign up
+        </button>
       </div>
     </nav>
   );

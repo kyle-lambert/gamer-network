@@ -9,12 +9,16 @@ import Navbar from "../../components/navbar/navbar";
 import LoginModal from "../../components/login-modal/login-modal";
 import SignupModal from "../../components/signup-modal/signup-modal";
 
+import { useModalContext } from "../../contexts/modal-context";
+
 function App(props) {
+  const { state } = useModalContext();
+
   return (
     <div>
       <Navbar />
-      {/* <LoginModal /> */}
-      <SignupModal />
+      {state.loginModalOpen && <LoginModal />}
+      {state.signupModalOpen && <SignupModal />}
       <main>
         <Switch>
           <Route exact path="/" component={Home} />

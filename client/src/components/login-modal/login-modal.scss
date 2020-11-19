@@ -35,15 +35,11 @@
     text-align: center;
   }
 
-  &__link {
+  &__btn {
     display: inline-block;
-    border-bottom: 1px solid transparent;
+    background-color: transparent;
     color: $primary;
     margin: 0 5px;
-
-    &:hover {
-      border-color: $primary;
-    }
   }
 
   &__form {

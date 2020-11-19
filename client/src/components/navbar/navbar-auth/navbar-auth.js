@@ -3,15 +3,21 @@ import "./navbar-auth.scss";
 
 import Button from "../../button/button";
 
+import { useModalContext } from "../../../contexts/modal-context";
+
 function NavbarAuth(props) {
+  const { setLoginModal, setSignupModal } = useModalContext();
+
   return (
     <nav className="navbar-auth">
       <ul className="navbar-auth__list">
         <li className="navbar-auth__item">
-          <Button>Log in</Button>
+          <Button onClick={() => setLoginModal(true)}>Log in</Button>
         </li>
         <li className="navbar-auth__item">
-          <Button type="primary">Sign up</Button>
+          <Button onClick={() => setSignupModal(true)} type="primary">
+            Sign up
+          </Button>
         </li>
       </ul>
 

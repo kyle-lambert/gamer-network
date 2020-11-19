@@ -5,22 +5,30 @@ import "./signup-modal.scss";
 import Modal from "../../layout/modal/modal";
 import FormInput from "../form-input/form-input";
 
+import { useModalContext } from "../../contexts/modal-context";
+
 function SignupModal(props) {
   const inputRef = React.useRef(null);
+  const { setSignupModal } = useModalContext();
 
   React.useEffect(() => {
     inputRef.current.focus();
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitted");
+  };
+
   return (
-    <Modal>
+    <Modal closeModal={() => setSignupModal(false)}>
       <div className="signup-modal">
         <div className="signup-modal__top">
           <h1 className="signup-modal__header">Join Glitch</h1>
           <span className="signup-modal__display">
             Sign up to save your favorite games.
           </span>
-          <form className="signup-modal__form">
+          <form onSubmit={handleSubmit} className="signup-modal__form">
             <div className="signup-modal__form-line">
               <FormInput
                 ref={inputRef}
@@ -35,7 +43,7 @@ function SignupModal(props) {
               <FormInput label="Password" />
             </div>
             <div className="signup-modal__form-line">
-              <button className="login-modal__form-submit">
+              <button type="submit" className="login-modal__form-submit">
                 Create account
               </button>
             </div>
@@ -43,7 +51,7 @@ function SignupModal(props) {
         </div>
         <div className="signup-modal__bottom">
           <span className="signup-modal__text">Already registerd?</span>
-          <Link className="signup-modal__link">Log in</Link>
+          <button className="signup-modal__btn">Log in</button>
         </div>
       </div>
     </Modal>
