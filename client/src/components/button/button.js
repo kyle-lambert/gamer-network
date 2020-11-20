@@ -1,9 +1,20 @@
 import React from "react";
 import "./button.scss";
 
-function Button({ children, type, ...rest }) {
+function Button({
+  children,
+  style = "secondary",
+  size = "sm",
+  width,
+  ...rest
+}) {
   return (
-    <button {...rest} data-type={type} className="button">
+    <button
+      {...rest}
+      data-style={style}
+      data-size={size}
+      data-width={width}
+      className="button">
       {children}
     </button>
   );

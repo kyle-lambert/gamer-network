@@ -2,20 +2,12 @@
 
 .button {
   display: inline-block;
-  background-color: $white;
-  padding: 8px 12px;
   border-radius: 12px;
-  border: 1px solid $border;
-
   font-size: inherit;
   font-weight: 600;
-  color: $dark;
+  border: 1px solid $border;
 
-  &:hover {
-    border-color: $border-hover;
-  }
-
-  &[data-type="primary"] {
+  &[data-style="primary"] {
     color: $white;
     border-color: $primary;
     background-color: $primary;
@@ -24,5 +16,28 @@
       border-color: $primary-hover;
       background-color: $primary-hover;
     }
+  }
+
+  &[data-style="secondary"] {
+    color: $dark;
+    background-color: $white;
+
+    &:hover {
+      border-color: $border-hover;
+    }
+  }
+
+  &[data-size="sm"] {
+    height: 45px;
+    padding: 0 14px;
+  }
+
+  &[data-size="lg"] {
+    height: 50px;
+    padding: 0 16px;
+  }
+
+  &[data-width="full"] {
+    width: 100%;
   }
 }
