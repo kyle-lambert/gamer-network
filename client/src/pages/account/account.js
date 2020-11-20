@@ -7,6 +7,7 @@ import AccountNav from "../../components/account-nav/account-nav";
 
 import AccountGeneral from "./account-general/account-general";
 import AccountProfile from "./account-profile/account-profile";
+import AccountDelete from "./account-delete/account-delete";
 
 function Account(props) {
   return (
@@ -19,6 +20,7 @@ function Account(props) {
         <Switch>
           <Route exact path="/account" component={AccountGeneral} />
           <Route exact path="/account/profile" component={AccountProfile} />
+          <Route exact path="/account/delete" component={AccountDelete} />
           <Route>
             <Redirect to="/error" />
           </Route>

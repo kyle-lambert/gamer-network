@@ -14,7 +14,7 @@
       row-gap: 25px;
       column-gap: 20px;
       grid-template-areas:
-        "username"
+        "fullname"
         "location"
         "description"
         "gamertag"
@@ -22,14 +22,14 @@
 
       @media (min-width: $laptop) {
         grid-template-areas:
-          "username location"
+          "fullname location"
           "description description"
           "gamertag platform";
         margin-bottom: 40px;
       }
 
-      &--username {
-        grid-area: username;
+      &--fullname {
+        grid-area: fullname;
       }
       &--location {
         grid-area: location;

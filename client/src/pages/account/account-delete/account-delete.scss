@@ -1,0 +1,21 @@
+@import "../../../scss/partials/variables";
+
+.account-delete {
+  &__form {
+    margin-top: 30px;
+
+    @media (min-width: $laptop) {
+      margin-top: 40px;
+    }
+
+    &-group {
+      margin-bottom: 30px;
+      row-gap: 25px;
+      column-gap: 20px;
+
+      @media (min-width: $laptop) {
+        margin-bottom: 40px;
+      }
+    }
+  }
+}

@@ -27,6 +27,17 @@
     }
   }
 
+  &[data-style="error"] {
+    color: $white;
+    border-color: $error;
+    background-color: $error;
+
+    &:hover {
+      border-color: $error-hover;
+      background-color: $error-hover;
+    }
+  }
+
   &[data-size="sm"] {
     height: 45px;
     padding: 0 14px;

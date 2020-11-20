@@ -28,7 +28,7 @@ function AccountNav({ children }) {
           <li className="account-nav__item">
             <NavLink
               exact
-              to="/account/delete-account"
+              to="/account/delete"
               className="account-nav__link"
               activeClassName="account-nav__link--active">
               Delete

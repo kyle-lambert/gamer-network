@@ -10,12 +10,12 @@ function AccountProfile(props) {
     <div className="account-profile">
       <SectionHeader
         header="About you"
-        text="Information or your profile is public and available to all other users"
+        text="Information or your profile is public and available to all other users."
       />
       <form className="account-profile__form">
         <div className="account-profile__form-grid">
-          <div className="account-profile__form-grid--username">
-            <FormInput label="username" placeholder="kyle-lambert" />
+          <div className="account-profile__form-grid--fullname">
+            <FormInput label="Full name" placeholder="Steve Jobs" />
           </div>
           <div className="account-profile__form-grid--location">
             <FormInput label="Location" placeholder="Australia" />
