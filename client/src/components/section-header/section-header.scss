@@ -1,0 +1,11 @@
+@import "../../scss/partials/variables";
+
+.section-header {
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid $border;
+
+  &__text {
+    margin-top: 10px;
+  }
+}

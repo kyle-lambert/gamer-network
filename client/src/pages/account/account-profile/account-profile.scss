@@ -1,0 +1,48 @@
+@import "../../../scss/partials/variables";
+
+.account-profile {
+  &__form {
+    margin-top: 30px;
+
+    @media (min-width: $laptop) {
+      margin-top: 40px;
+    }
+
+    &-grid {
+      display: grid;
+      margin-bottom: 30px;
+      row-gap: 25px;
+      column-gap: 20px;
+      grid-template-areas:
+        "username"
+        "location"
+        "description"
+        "gamertag"
+        "platform";
+
+      @media (min-width: $laptop) {
+        grid-template-areas:
+          "username location"
+          "description description"
+          "gamertag platform";
+        margin-bottom: 40px;
+      }
+
+      &--username {
+        grid-area: username;
+      }
+      &--location {
+        grid-area: location;
+      }
+      &--description {
+        grid-area: description;
+      }
+      &--gamertag {
+        grid-area: gamertag;
+      }
+      &--platform {
+        grid-area: platform;
+      }
+    }
+  }
+}
