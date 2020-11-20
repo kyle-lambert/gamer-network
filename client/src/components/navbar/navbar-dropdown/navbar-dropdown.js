@@ -2,10 +2,15 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar-dropdown.scss";
 
+import useOutsideClick from "../../../hooks/use-outside-click";
 import { useModalContext } from "../../../contexts/modal-context";
 
 function NavbarDropdown({ setDropdown }) {
   const { setSignupModal } = useModalContext();
+  const dropdownRef = React.useRef(null);
+  useOutsideClick(dropdownRef, () => {
+    setDropdown(false);
+  });
 
   const handleLinkClick = () => {
     setDropdown(false);
@@ -17,7 +22,7 @@ function NavbarDropdown({ setDropdown }) {
   };
 
   return (
-    <nav className="navbar-dropdown">
+    <nav ref={dropdownRef} className="navbar-dropdown">
       <ul className="navbar-dropdown__list">
         <li className="navbar-dropdown__item">
           <NavLink
