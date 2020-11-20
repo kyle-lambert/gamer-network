@@ -50,7 +50,7 @@ function SignupModal(props) {
             <div className="signup-modal__form-line">
               <FormInput
                 label="Email address"
-                placeholder="stevejobsg@gmail.com"
+                placeholder="stevejobs@gmail.com"
               />
             </div>
             <div className="signup-modal__form-line">
