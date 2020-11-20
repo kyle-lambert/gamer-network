@@ -3,6 +3,7 @@ import "./login-modal.scss";
 
 import Modal from "../../layout/modal/modal";
 import FormInput from "../form-input/form-input";
+import Button from "../button/button";
 
 import { useModalContext } from "../../contexts/modal-context";
 
@@ -48,9 +49,9 @@ function LoginModal(props) {
               <FormInput label="Password" />
             </div>
             <div className="login-modal__form-line">
-              <button type="submit" className="login-modal__form-submit">
+              <Button style="primary" size="lg" width="full">
                 Sign in
-              </button>
+              </Button>
             </div>
           </form>
         </div>

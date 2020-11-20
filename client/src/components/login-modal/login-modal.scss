@@ -53,19 +53,5 @@
         margin-bottom: unset;
       }
     }
-
-    &-submit {
-      background-color: $primary;
-      padding: 12px 14px;
-      font-weight: 600;
-      font-size: inherit;
-      color: $white;
-      border-radius: 12px;
-      width: 100%;
-
-      &:hover {
-        background-color: $primary-hover;
-      }
-    }
   }
 }

@@ -15,7 +15,7 @@ function NavbarAuth(props) {
           <Button onClick={() => setLoginModal(true)}>Log in</Button>
         </li>
         <li className="navbar-auth__item">
-          <Button onClick={() => setSignupModal(true)} type="primary">
+          <Button onClick={() => setSignupModal(true)} style="primary">
             Sign up
           </Button>
         </li>
