@@ -6,6 +6,14 @@ import FormInput from "../../../components/form-input/form-input";
 import Button from "../../../components/button/button";
 
 function AccountProfile(props) {
+  const fullNameRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (fullNameRef.current) {
+      fullNameRef.current.focus();
+    }
+  }, []);
+
   return (
     <div className="account-profile">
       <SectionHeader
@@ -15,7 +23,11 @@ function AccountProfile(props) {
       <form className="account-profile__form">
         <div className="account-profile__form-grid">
           <div className="account-profile__form-grid--fullname">
-            <FormInput label="Full name" placeholder="Steve Jobs" />
+            <FormInput
+              ref={fullNameRef}
+              label="Full name"
+              placeholder="Steve Jobs"
+            />
           </div>
           <div className="account-profile__form-grid--location">
             <FormInput label="Location" placeholder="Australia" />
@@ -34,7 +46,7 @@ function AccountProfile(props) {
           </div>
         </div>
         <div className="account-profile__form-submit">
-          <Button style="primary" size="lg">
+          <Button buttonType="primary" buttonSize="large">
             Save changes
           </Button>
         </div>

@@ -8,11 +8,13 @@ import Button from "../button/button";
 import { useModalContext } from "../../contexts/modal-context";
 
 function SignupModal(props) {
-  const inputRef = React.useRef(null);
+  const usernameRef = React.useRef(null);
   const { setLoginModal, setSignupModal } = useModalContext();
 
   React.useEffect(() => {
-    inputRef.current.focus();
+    if (usernameRef.current) {
+      usernameRef.current.focus();
+    }
   }, []);
 
   const handleSubmit = (e) => {
@@ -40,19 +42,25 @@ function SignupModal(props) {
           <form onSubmit={handleSubmit} className="signup-modal__form">
             <div className="signup-modal__form-line">
               <FormInput
-                ref={inputRef}
-                label="Full name"
-                placeholder="Mark Zuckerburg"
+                ref={usernameRef}
+                label="Username"
+                placeholder="steve_jobs"
               />
             </div>
             <div className="signup-modal__form-line">
-              <FormInput label="Email" placeholder="markzuckerburg@gmail.com" />
+              <FormInput
+                label="Email address"
+                placeholder="stevejobsg@gmail.com"
+              />
             </div>
             <div className="signup-modal__form-line">
               <FormInput label="Password" />
             </div>
             <div className="signup-modal__form-line">
-              <Button style="primary" size="lg" width="full">
+              <Button
+                buttonType="primary"
+                buttonSize="large"
+                buttonLayout="full">
                 Create account
               </Button>
             </div>

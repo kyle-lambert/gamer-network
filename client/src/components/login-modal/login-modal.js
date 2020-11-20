@@ -12,7 +12,9 @@ function LoginModal(props) {
   const { setLoginModal, setSignupModal } = useModalContext();
 
   React.useEffect(() => {
-    emailRef.current.focus();
+    if (emailRef.current) {
+      emailRef.current.focus();
+    }
   }, []);
 
   const handleSubmit = (e) => {
@@ -41,15 +43,18 @@ function LoginModal(props) {
             <div className="login-modal__form-line">
               <FormInput
                 ref={emailRef}
-                label="Email"
-                placeholder="markzuckerburg@gmail.com"
+                label="Email address"
+                placeholder="stevejobs@gmail.com"
               />
             </div>
             <div className="login-modal__form-line">
               <FormInput label="Password" />
             </div>
             <div className="login-modal__form-line">
-              <Button style="primary" size="lg" width="full">
+              <Button
+                buttonType="primary"
+                buttonSize="large"
+                buttonLayout="full">
                 Sign in
               </Button>
             </div>

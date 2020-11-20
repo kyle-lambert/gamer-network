@@ -6,6 +6,14 @@ import FormInput from "../../../components/form-input/form-input";
 import Button from "../../../components/button/button";
 
 function AccountDelete(props) {
+  const passwordRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (passwordRef.current) {
+      passwordRef.current.focus();
+    }
+  }, []);
+
   return (
     <div className="account-delete">
       <SectionHeader
@@ -14,10 +22,10 @@ function AccountDelete(props) {
       />
       <form className="account-delete__form">
         <div className="account-delete__form-group">
-          <FormInput label="Password" />
+          <FormInput ref={passwordRef} label="Password" />
         </div>
         <div className="account-delete__form-submit">
-          <Button style="error" size="lg">
+          <Button buttonType="error" buttonSize="large">
             Delete account
           </Button>
         </div>
