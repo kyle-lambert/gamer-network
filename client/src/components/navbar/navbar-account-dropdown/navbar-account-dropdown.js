@@ -3,14 +3,21 @@ import { NavLink } from "react-router-dom";
 import "./navbar-account-dropdown.scss";
 
 import useOutsideClick from "../../../hooks/use-outside-click";
+import { useAuthContext } from "../../../contexts/auth-context";
 
 function NavbarAccountDropdown({ setAccountNavigation }) {
+  const { logoutUser } = useAuthContext();
   const accountDropdownRef = React.useRef(null);
   useOutsideClick(accountDropdownRef, () => {
     setAccountNavigation(false);
   });
 
   const closeAccountNavigation = () => setAccountNavigation(false);
+
+  const handleAccountLogout = () => {
+    closeAccountNavigation();
+    logoutUser();
+  };
 
   return (
     <nav ref={accountDropdownRef} className="navbar-account-dropdown">
@@ -36,7 +43,7 @@ function NavbarAccountDropdown({ setAccountNavigation }) {
       </ul>
       <div className="navbar-account-dropdown__auth">
         <button
-          onClick={closeAccountNavigation}
+          onClick={handleAccountLogout}
           className="navbar-account-dropdown__btn">
           Logout
         </button>

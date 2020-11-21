@@ -22,7 +22,7 @@ function LoginModal(props) {
     console.log("submitted");
   };
 
-  const handleSignupClick = () => {
+  const handleSignup = () => {
     setLoginModal(false);
     setSignupModal(true);
   };
@@ -62,7 +62,7 @@ function LoginModal(props) {
         </div>
         <div className="login-modal__bottom">
           <span className="login-modal__text">Don't have an account?</span>
-          <button onClick={handleSignupClick} className="login-modal__btn">
+          <button onClick={handleSignup} className="login-modal__btn">
             Sign up
           </button>
         </div>

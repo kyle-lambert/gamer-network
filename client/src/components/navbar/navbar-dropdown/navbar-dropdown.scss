@@ -22,9 +22,6 @@
   &__list {
     display: flex;
     flex-direction: column;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid $border;
   }
 
   &__link {
@@ -57,5 +54,11 @@
     &:hover {
       background-color: $primary-hover;
     }
+  }
+
+  &__auth {
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid $border;
   }
 }

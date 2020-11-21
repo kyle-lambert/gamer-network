@@ -4,11 +4,21 @@ const AuthStateContext = React.createContext();
 const AuthDispatchContext = React.createContext();
 
 const initState = {
-  userLoggedIn: false,
+  userLoggedIn: true,
+};
+
+const types = {
+  LOGOUT_USER: "LOGOUT_USER",
 };
 
 function authReducer(state, action) {
   switch (action.type) {
+    case types.LOGOUT_USER: {
+      return {
+        ...state,
+        userLoggedIn: false,
+      };
+    }
     default: {
       return state;
     }
@@ -31,8 +41,11 @@ function useAuthContext() {
   const state = React.useContext(AuthStateContext);
   const dispatch = React.useContext(AuthDispatchContext);
 
+  const logoutUser = () => dispatch({ type: types.LOGOUT_USER });
+
   return {
     userLoggedIn: state.userLoggedIn,
+    logoutUser,
   };
 }
 

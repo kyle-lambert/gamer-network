@@ -4,9 +4,11 @@ import "./navbar-dropdown.scss";
 
 import useOutsideClick from "../../../hooks/use-outside-click";
 import { useModalContext } from "../../../contexts/modal-context";
+import { useAuthContext } from "../../../contexts/auth-context";
 
 function NavbarDropdown({ setNavigation }) {
   const { setSignupModal } = useModalContext();
+  const { userLoggedIn } = useAuthContext();
   const dropdownRef = React.useRef(null);
   useOutsideClick(dropdownRef, () => {
     setNavigation(false);
@@ -14,7 +16,7 @@ function NavbarDropdown({ setNavigation }) {
 
   const closeNavigation = () => setNavigation(false);
 
-  const handleSignupClick = () => {
+  const handleSignup = () => {
     setNavigation(false);
     setSignupModal(true);
   };
@@ -41,11 +43,13 @@ function NavbarDropdown({ setNavigation }) {
           </NavLink>
         </li>
       </ul>
-      <div className="navbar-dropdown__auth">
-        <button onClick={handleSignupClick} className="navbar-dropdown__btn">
-          Sign up
-        </button>
-      </div>
+      {!userLoggedIn && (
+        <div className="navbar-dropdown__auth">
+          <button onClick={handleSignup} className="navbar-dropdown__btn">
+            Sign up
+          </button>
+        </div>
+      )}
     </nav>
   );
 }
