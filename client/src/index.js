@@ -5,13 +5,16 @@ import "./scss/main.scss";
 
 import App from "./components/app/app";
 
+import { AuthContextProvider } from "./contexts/auth-context";
 import { ModalContextProvider } from "./contexts/modal-context";
 
 ReactDOM.render(
   <BrowserRouter>
-    <ModalContextProvider>
-      <App />
-    </ModalContextProvider>
+    <AuthContextProvider>
+      <ModalContextProvider>
+        <App />
+      </ModalContextProvider>
+    </AuthContextProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );

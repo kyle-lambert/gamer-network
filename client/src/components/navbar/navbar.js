@@ -8,6 +8,7 @@ import NavbarDropdown from "./navbar-dropdown/navbar-dropdown";
 import NavbarAccountDropdown from "./navbar-account-dropdown/navbar-account-dropdown";
 
 import { useModalContext } from "../../contexts/modal-context";
+import { useAuthContext } from "../../contexts/auth-context";
 
 import { ReactComponent as GlitchLogo } from "../../assets/icons/glitch-logo.svg";
 import { ReactComponent as Hamburger } from "../../assets/icons/hamburger.svg";
@@ -15,6 +16,7 @@ import { ReactComponent as Hamburger } from "../../assets/icons/hamburger.svg";
 function Navbar(props) {
   const [navigationOpen, setNavigation] = React.useState(false);
   const [accountNavigationOpen, setAccountNavigation] = React.useState(false);
+  const { userLoggedIn } = useAuthContext();
   const { setLoginModal, setSignupModal } = useModalContext();
 
   const toggleNavigation = () => {
@@ -66,24 +68,26 @@ function Navbar(props) {
       </nav>
 
       <div className="navbar__cta">
-        {/* <ul className="navbar__cta-list">
-          <li className="navbar__cta-item">
-            <Button onClick={openLoginModal}>Log in</Button>
-          </li>
-          <li className="navbar__cta-item">
-            <Button onClick={openSignupModal} buttonType="primary">
-              Sign up
-            </Button>
-          </li>
-        </ul> */}
-
-        <div className="navbar__account">
-          <button
-            onClick={toggleAccountNavigation}
-            className="navbar__account-btn">
-            <Avatar />
-          </button>
-        </div>
+        {userLoggedIn ? (
+          <div className="navbar__account">
+            <button
+              onClick={toggleAccountNavigation}
+              className="navbar__account-btn">
+              <Avatar />
+            </button>
+          </div>
+        ) : (
+          <ul className="navbar__cta-list">
+            <li className="navbar__cta-item">
+              <Button onClick={openLoginModal}>Log in</Button>
+            </li>
+            <li className="navbar__cta-item">
+              <Button onClick={openSignupModal} buttonType="primary">
+                Sign up
+              </Button>
+            </li>
+          </ul>
+        )}
       </div>
 
       {navigationOpen && <NavbarDropdown setNavigation={setNavigation} />}

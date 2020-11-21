@@ -47,11 +47,11 @@
     font-size: inherit;
     font-weight: 600;
     color: $white;
-    background-color: $primary;
+    background-color: $error;
     border-radius: 8px;
 
     &:hover {
-      background-color: $primary-hover;
+      background-color: $error-hover;
     }
   }
 }
