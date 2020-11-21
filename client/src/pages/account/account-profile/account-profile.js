@@ -33,7 +33,7 @@ function AccountProfile(props) {
   };
 
   return (
-    <div className="account-profile">
+    <section className="account-profile">
       <SectionHeader
         header="About you"
         text="Information or your profile is public and available to all other users."
@@ -93,7 +93,7 @@ function AccountProfile(props) {
           </Button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }
 

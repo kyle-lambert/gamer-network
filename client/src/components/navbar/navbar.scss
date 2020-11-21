@@ -24,7 +24,6 @@
       display: flex;
       align-items: center;
       padding: 5px;
-      background-color: transparent;
 
       svg {
         fill: $dark;
@@ -94,6 +93,29 @@
 
       &--active {
         color: $primary;
+      }
+    }
+  }
+
+  &__cta {
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+
+    &-list {
+      display: flex;
+      align-items: center;
+    }
+
+    &-item {
+      margin: 0 5px;
+
+      &:last-child {
+        display: none;
+
+        @media (min-width: $tablet) {
+          display: initial;
+        }
       }
     }
   }

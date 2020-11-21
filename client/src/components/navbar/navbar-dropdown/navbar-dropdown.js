@@ -5,19 +5,17 @@ import "./navbar-dropdown.scss";
 import useOutsideClick from "../../../hooks/use-outside-click";
 import { useModalContext } from "../../../contexts/modal-context";
 
-function NavbarDropdown({ setDropdown }) {
+function NavbarDropdown({ setNavigation }) {
   const { setSignupModal } = useModalContext();
   const dropdownRef = React.useRef(null);
   useOutsideClick(dropdownRef, () => {
-    setDropdown(false);
+    setNavigation(false);
   });
 
-  const handleLinkClick = () => {
-    setDropdown(false);
-  };
+  const closeNavigation = () => setNavigation(false);
 
   const handleSignupClick = () => {
-    setDropdown(false);
+    setNavigation(false);
     setSignupModal(true);
   };
 
@@ -27,7 +25,7 @@ function NavbarDropdown({ setDropdown }) {
         <li className="navbar-dropdown__item">
           <NavLink
             to="/account"
-            onClick={handleLinkClick}
+            onClick={closeNavigation}
             className="navbar-dropdown__link"
             activeClassName="navbar-dropdown__link--active">
             Account
@@ -36,7 +34,7 @@ function NavbarDropdown({ setDropdown }) {
         <li className="navbar-dropdown__item">
           <NavLink
             to="/games"
-            onClick={handleLinkClick}
+            onClick={closeNavigation}
             className="navbar-dropdown__link"
             activeClassName="navbar-dropdown__link--active">
             Games

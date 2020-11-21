@@ -20,7 +20,7 @@ function AccountDelete(props) {
   };
 
   return (
-    <div className="account-delete">
+    <section className="account-delete">
       <SectionHeader
         header="Delete account"
         text="This action is irreversible and will permanently delete your account."
@@ -41,7 +41,7 @@ function AccountDelete(props) {
           </Button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }
 
