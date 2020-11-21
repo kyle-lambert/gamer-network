@@ -7,7 +7,13 @@ import Button from "../button/button";
 
 import { useModalContext } from "../../contexts/modal-context";
 
+const initialState = {
+  email: "",
+  password: "",
+};
+
 function LoginModal(props) {
+  const [state, setState] = React.useState(initialState);
   const emailRef = React.useRef(null);
   const { setLoginModal, setSignupModal } = useModalContext();
 
@@ -22,7 +28,16 @@ function LoginModal(props) {
     console.log("submitted");
   };
 
-  const handleSignup = () => {
+  const handleChange = (e) => {
+    setState((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  const switchToSignupModal = () => {
     setLoginModal(false);
     setSignupModal(true);
   };
@@ -44,11 +59,19 @@ function LoginModal(props) {
               <FormInput
                 ref={emailRef}
                 label="Email address"
+                name="email"
+                value={state.email}
+                onChange={handleChange}
                 placeholder="stevejobs@gmail.com"
               />
             </div>
             <div className="login-modal__form-line">
-              <FormInput label="Password" />
+              <FormInput
+                label="Password"
+                name="password"
+                value={state.password}
+                onChange={handleChange}
+              />
             </div>
             <div className="login-modal__form-line">
               <Button
@@ -62,7 +85,7 @@ function LoginModal(props) {
         </div>
         <div className="login-modal__bottom">
           <span className="login-modal__text">Don't have an account?</span>
-          <button onClick={handleSignup} className="login-modal__btn">
+          <button onClick={switchToSignupModal} className="login-modal__btn">
             Sign up
           </button>
         </div>

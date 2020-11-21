@@ -7,7 +7,14 @@ import Button from "../button/button";
 
 import { useModalContext } from "../../contexts/modal-context";
 
+const initialState = {
+  username: "",
+  email: "",
+  password: "",
+};
+
 function SignupModal(props) {
+  const [state, setState] = React.useState(initialState);
   const usernameRef = React.useRef(null);
   const { setLoginModal, setSignupModal } = useModalContext();
 
@@ -22,7 +29,16 @@ function SignupModal(props) {
     console.log("submitted");
   };
 
-  const handleSignupClick = () => {
+  const handleChange = (e) => {
+    setState((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  const switchToLoginModal = () => {
     setSignupModal(false);
     setLoginModal(true);
   };
@@ -44,17 +60,28 @@ function SignupModal(props) {
               <FormInput
                 ref={usernameRef}
                 label="Username"
+                name="username"
+                value={state.username}
+                onChange={handleChange}
                 placeholder="steve_jobs"
               />
             </div>
             <div className="signup-modal__form-line">
               <FormInput
                 label="Email address"
+                name="email"
+                value={state.email}
+                onChange={handleChange}
                 placeholder="stevejobs@gmail.com"
               />
             </div>
             <div className="signup-modal__form-line">
-              <FormInput label="Password" />
+              <FormInput
+                label="Password"
+                name="password"
+                value={state.password}
+                onChange={handleChange}
+              />
             </div>
             <div className="signup-modal__form-line">
               <Button
@@ -68,7 +95,7 @@ function SignupModal(props) {
         </div>
         <div className="signup-modal__bottom">
           <span className="signup-modal__text">Already registerd?</span>
-          <button onClick={handleSignupClick} className="signup-modal__btn">
+          <button onClick={switchToLoginModal} className="signup-modal__btn">
             Log in
           </button>
         </div>

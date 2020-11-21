@@ -10,6 +10,7 @@ import Error from "../../pages/error/error";
 import Navbar from "../../components/navbar/navbar";
 import LoginModal from "../../components/login-modal/login-modal";
 import SignupModal from "../../components/signup-modal/signup-modal";
+import PrivateRoute from "../../hoc/private-route";
 
 import { useModalContext } from "../../contexts/modal-context";
 
@@ -26,7 +27,7 @@ function App(props) {
           <Route exact path="/" component={Home} />
           <Route exact path="/games" component={Games} />
           <Route exact path="/error" component={Error} />
-          <Route path="/account" component={Account} />
+          <PrivateRoute path="/account" component={Account} />
           <Route>
             <Redirect to="/error" />
           </Route>
