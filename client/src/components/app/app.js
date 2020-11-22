@@ -28,7 +28,7 @@ function App(props) {
           <Route exact path="/" component={Home} />
           <Route exact path="/games" component={Games} />
           <Route exact path="/error" component={Error} />
-          <Route path="/profile/:username" component={Profile} />
+          <Route path="/profile/:id" component={Profile} />
           <PrivateRoute path="/account" component={Account} />
           <Route>
             <Redirect to="/error" />

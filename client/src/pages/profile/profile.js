@@ -13,17 +13,9 @@ function Profile(props) {
     <div className="profile">
       <ProfileNav>
         <Switch>
-          <Route exact path="/profile/:username" component={ProfileOverview} />
-          <Route
-            exact
-            path="/profile/:username/games"
-            component={ProfileGames}
-          />
-          <Route
-            exact
-            path="/profile/:username/friends"
-            component={ProfileFriends}
-          />
+          <Route exact path="/profile/:id" component={ProfileOverview} />
+          <Route exact path="/profile/:id/games" component={ProfileGames} />
+          <Route exact path="/profile/:id/friends" component={ProfileFriends} />
           <Route>
             <Redirect to="/error" />
           </Route>

@@ -24,7 +24,7 @@ function NavbarAccountDropdown({ setAccountNavigation }) {
       <ul className="navbar-account-dropdown__list">
         <li className="navbar-account-dropdown__item">
           <NavLink
-            to="/profile"
+            to="/profile/123456789"
             onClick={closeAccountNavigation}
             className="navbar-account-dropdown__link"
             activeClassName="navbar-account-dropdown__link--active">

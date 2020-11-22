@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 
 function ProfileNav({ children }) {
-  const { username } = useParams();
+  const { id } = useParams();
 
   return (
     <div className="profile-nav">
@@ -11,7 +11,7 @@ function ProfileNav({ children }) {
           <li className="profile-nav__item">
             <NavLink
               exact
-              to={`/profile/${username}`}
+              to={`/profile/${id}`}
               className="profile-nav__link"
               activeClassName="profile-nav__link--active">
               Overview
@@ -20,7 +20,7 @@ function ProfileNav({ children }) {
           <li className="profile-nav__item">
             <NavLink
               exact
-              to={`/profile/${username}/games`}
+              to={`/profile/${id}/games`}
               className="profile-nav__link"
               activeClassName="profile-nav__link--active">
               Games
@@ -29,7 +29,7 @@ function ProfileNav({ children }) {
           <li className="profile-nav__item">
             <NavLink
               exact
-              to={`/profile/${username}/friends`}
+              to={`/profile/${id}/friends`}
               className="profile-nav__link"
               activeClassName="profile-nav__link--active">
               Friends

@@ -1,5 +1,3 @@
-const { stringify } = require("uuid");
-
 import React from "react";
 
 function ProfileFriends(props) {
