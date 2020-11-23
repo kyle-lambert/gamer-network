@@ -9,6 +9,7 @@ import Error from "../../pages/error/error";
 import Profile from "../../pages/profile/profile";
 
 import Navbar from "../../components/navbar/navbar";
+import Footer from "../../components/footer/footer";
 import LoginModal from "../../components/login-modal/login-modal";
 import SignupModal from "../../components/signup-modal/signup-modal";
 import PrivateRoute from "../../hoc/private-route";
@@ -35,6 +36,7 @@ function App(props) {
           </Route>
         </Switch>
       </main>
+      <Footer />
     </div>
   );
 }

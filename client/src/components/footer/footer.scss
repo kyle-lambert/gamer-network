@@ -1,0 +1,49 @@
+@import "../../scss/partials/variables";
+
+.footer {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $light-grey;
+  border-top: 1px solid $border;
+
+  @media (min-width: $tablet) {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0 30px;
+    height: 80px;
+  }
+
+  &__brand {
+    margin-bottom: 10px;
+
+    @media (min-width: $tablet) {
+      margin-bottom: unset;
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
+
+      svg {
+        width: auto;
+        height: 37px;
+      }
+    }
+  }
+
+  &__credits {
+    display: flex;
+    align-items: center;
+
+    @media (min-width: $tablet) {
+      margin-left: 35px;
+    }
+
+    &-text {
+      font-size: 14px;
+    }
+  }
+}
