@@ -1,7 +1,8 @@
 import React from "react";
+import "./error.scss";
 
 function Error(props) {
-  return <div>error</div>;
+  return <div className="error">error</div>;
 }
 
 export default Error;

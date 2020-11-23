@@ -5,13 +5,9 @@
   display: flex;
   justify-content: space-between;
   padding: 0 30px;
-  height: 75px;
+  height: 80px;
   background-color: $white;
   border-bottom: 1px solid $border;
-
-  @media (min-width: $tablet) {
-    height: 80px;
-  }
 
   &__hamburger {
     display: flex;
@@ -57,11 +53,7 @@
 
       svg {
         width: auto;
-        height: 35px;
-
-        @media (min-width: $tablet) {
-          height: 40px;
-        }
+        height: 37px;
       }
     }
   }
@@ -119,5 +111,11 @@
         }
       }
     }
+  }
+
+  &__account {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
   }
 }

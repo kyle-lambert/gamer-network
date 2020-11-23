@@ -2,6 +2,49 @@
 
 .profile {
   margin: 0 auto;
-  padding: 0 30px;
-  max-width: 1100px;
+  padding: 80px 30px;
+  max-width: 1270px;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__name {
+    margin-top: 20px;
+    font-size: 50px;
+  }
+
+  &__icon-list {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__icon-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 0 25px;
+  }
+
+  &__icon-text {
+    margin-left: 15px;
+    color: $dark;
+    font-weight: 600;
+  }
+
+  &__description {
+    margin-top: 25px;
+
+    @media (min-width: $tablet) {
+      width: 80%;
+    }
+    @media (min-width: $laptop) {
+      width: 70%;
+    }
+  }
 }

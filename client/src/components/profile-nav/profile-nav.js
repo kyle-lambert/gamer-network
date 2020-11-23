@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, useParams } from "react-router-dom";
+import "./profile-nav.scss";
 
 function ProfileNav({ children }) {
   const { id } = useParams();
@@ -29,10 +30,10 @@ function ProfileNav({ children }) {
           <li className="profile-nav__item">
             <NavLink
               exact
-              to={`/profile/${id}/friends`}
+              to={`/profile/${id}/reviews`}
               className="profile-nav__link"
               activeClassName="profile-nav__link--active">
-              Friends
+              Reviews
             </NavLink>
           </li>
         </ul>

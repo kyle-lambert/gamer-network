@@ -1,0 +1,13 @@
+@import "../../scss/partials/variables";
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    height: 24px;
+    width: auto;
+    fill: $secondary;
+  }
+}
