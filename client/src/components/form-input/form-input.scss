@@ -2,7 +2,7 @@
 
 .form-input__label {
   display: block;
-  color: $grey;
+  color: $text-secondary;
   margin-bottom: 7px;
 }
 
@@ -10,21 +10,14 @@
   padding: 12px 14px;
   width: 100%;
   font-size: inherit;
-  color: $dark;
-  border: 1px solid $border;
+  font-weight: inherit;
+  color: $text-primary;
+  background-color: $background-tertiary;
   border-radius: 12px;
 
   &::placeholder {
-    color: $placeholder;
+    color: rgba(255, 255, 255, 0.1);
     font-style: italic;
-    font-size: 14px;
-  }
-
-  &:hover {
-    border-color: $border-hover;
-  }
-
-  &:focus {
-    border-color: $primary;
+    font-weight: inherit;
   }
 }

@@ -6,6 +6,10 @@
   max-width: 1270px;
   min-height: 100vh;
 
+  @media (min-width: $tablet) {
+    padding: 80px 40px;
+  }
+
   &__header {
     display: flex;
     flex-direction: column;
@@ -34,12 +38,13 @@
 
   &__icon-text {
     margin-left: 15px;
-    color: $dark;
+    color: $text-primary;
     font-weight: 600;
   }
 
   &__description {
     margin-top: 25px;
+    color: $text-secondary;
 
     @media (min-width: $tablet) {
       width: 80%;

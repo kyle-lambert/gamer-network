@@ -6,8 +6,7 @@
   left: 30px;
   right: 30px;
   padding: 7px;
-  background-color: $white;
-  border: 1px solid $border;
+  background-color: $background-secondary;
   border-radius: 12px;
 
   @media (min-width: $mobile) {
@@ -24,19 +23,28 @@
     flex-direction: column;
   }
 
+  &__item {
+    margin-bottom: 7px;
+
+    &:last-child {
+      margin-bottom: unset;
+    }
+  }
+
   &__link {
     display: inline-block;
     width: 100%;
     padding: 7px 10px;
     border-radius: 8px;
+    color: $text-secondary;
 
     &--active {
-      color: $primary;
+      color: $text-primary;
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
-    &:hover {
-      background-color: $light-grey;
-      color: $dark;
+    &:hover:not(&--active) {
+      color: $text-primary;
     }
   }
 
@@ -47,12 +55,13 @@
     padding: 0 14px;
     font-size: inherit;
     font-weight: 600;
-    color: $white;
-    background-color: $primary;
+    color: $text-dark;
+    background-color: $brand-primary;
     border-radius: 8px;
+    transition: background-color 150ms ease;
 
     &:hover {
-      background-color: $primary-hover;
+      background-color: $brand-secondary;
     }
   }
 

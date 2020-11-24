@@ -50,7 +50,17 @@ function Navbar(props) {
         <ul className="navbar__nav-list">
           <li className="navbar__nav-item">
             <NavLink
+              to="/"
+              exact
+              className="navbar__nav-link"
+              activeClassName="navbar__nav-link--active">
+              Home
+            </NavLink>
+          </li>
+          <li className="navbar__nav-item">
+            <NavLink
               to="/account"
+              exact
               className="navbar__nav-link"
               activeClassName="navbar__nav-link--active">
               Account
@@ -59,6 +69,7 @@ function Navbar(props) {
           <li className="navbar__nav-item">
             <NavLink
               to="/games"
+              exact
               className="navbar__nav-link"
               activeClassName="navbar__nav-link--active">
               Games

@@ -26,7 +26,18 @@ function NavbarDropdown({ setNavigation }) {
       <ul className="navbar-dropdown__list">
         <li className="navbar-dropdown__item">
           <NavLink
+            to="/"
+            exact
+            onClick={closeNavigation}
+            className="navbar-dropdown__link"
+            activeClassName="navbar-dropdown__link--active">
+            Home
+          </NavLink>
+        </li>
+        <li className="navbar-dropdown__item">
+          <NavLink
             to="/account"
+            exact
             onClick={closeNavigation}
             className="navbar-dropdown__link"
             activeClassName="navbar-dropdown__link--active">
@@ -36,6 +47,7 @@ function NavbarDropdown({ setNavigation }) {
         <li className="navbar-dropdown__item">
           <NavLink
             to="/games"
+            exact
             onClick={closeNavigation}
             className="navbar-dropdown__link"
             activeClassName="navbar-dropdown__link--active">

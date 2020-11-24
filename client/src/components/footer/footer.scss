@@ -6,8 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: $light-grey;
-  border-top: 1px solid $border;
+  background-color: $background-secondary;
 
   @media (min-width: $tablet) {
     flex-direction: row;
@@ -43,7 +42,8 @@
     }
 
     &-text {
-      font-size: 14px;
+      font-size: 15px;
+      color: $text-secondary;
     }
   }
 }

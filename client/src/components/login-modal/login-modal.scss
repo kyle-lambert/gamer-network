@@ -18,27 +18,27 @@
 
   &__subheader {
     text-align: center;
+    color: $text-secondary;
     margin-top: 5px;
-    font-size: 18px;
+    font-size: 20px;
   }
 
   &__bottom {
-    padding: 30px;
+    padding: 20px 30px;
     text-align: center;
-    border-top: 1px solid $border;
+    background-color: $background-secondary;
   }
 
   &__text {
     display: inline-block;
-    color: $dark;
+    color: $text-secondary;
     margin: 0 5px;
     text-align: center;
   }
 
   &__btn {
     display: inline-block;
-
-    color: $primary;
+    text-decoration: underline;
     margin: 0 5px;
   }
 

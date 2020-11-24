@@ -9,6 +9,7 @@ function Button(props) {
 
     if (buttonType === "primary") classNames.push("button--primary");
     if (buttonType === "error") classNames.push("button--error");
+    if (buttonType === "success") classNames.push("button--success");
     if (buttonSize === "large") classNames.push("button--large");
     if (buttonLayout === "full") classNames.push("button--full");
 
