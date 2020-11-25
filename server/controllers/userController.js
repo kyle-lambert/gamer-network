@@ -91,7 +91,7 @@ async function deleteUser(req, res) {
       return res.status(404).json({ errors: [{ msg: "User does not exist" }] });
     }
 
-    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
       return res.status(400).json({ errors: [{ msg: "Invalid credentials" }] });
