@@ -96,7 +96,7 @@ function SignupModal(props) {
         <div className="signup-modal__bottom">
           <span className="signup-modal__text">Already registered?</span>
           <button onClick={switchToLoginModal} className="signup-modal__btn">
-            Log in
+            Login
           </button>
         </div>
       </div>

@@ -10,25 +10,7 @@ import GameCard from "../../components/game-card/game-card";
 import useGames from "../../hooks/use-games";
 
 function Games(props) {
-  const { state, getGamesByPage } = useGames();
-  const debouncedGetGamesByPage = debounce(getGamesByPage, 1000);
-
-  React.useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-
-    getGamesByPage(state.firstPage, source);
-
-    return () => {
-      source.cancel();
-    };
-  }, [getGamesByPage, state.firstPage]);
-
-  // const handleNextPage = () => {
-  //   if (state.nextPage) {
-  //     debouncedGetGamesByPage(state.nextPage);
-  //   }
-  // };
+  const { state } = useGames();
 
   return (
     <div className="games">
@@ -37,7 +19,7 @@ function Games(props) {
         subheader="Browse trending video games and save them to your collection."
       />
       <section className="games__card-container">
-        {state.results.map((game) => {
+        {state.games.map((game) => {
           return (
             <div key={game.id} className="games__card-item">
               <GameCard game={game} />
@@ -45,7 +27,6 @@ function Games(props) {
           );
         })}
       </section>
-      {/* <button onClick={handleNextPage}>next page</button> */}
     </div>
   );
 }

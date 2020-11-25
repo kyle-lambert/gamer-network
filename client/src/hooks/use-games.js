@@ -1,52 +1,55 @@
 import React from "react";
+import axios from "axios";
 
-import rawgInstance from "../api/rawgInstance";
+const RAWG_API_KEY = process.env.REACT_APP_RAWG_API_KEY;
 
 const types = {
+  GET_GAMES_REQUEST: "GET_GAMES_REQUEST",
   GET_GAMES_SUCCESS: "GET_GAMES_SUCCESS",
-  GET_GAMES_LOADING: "GET_GAMES_LOADING",
-  GET_GAMES_ERROR: "GET_GAMES_ERROR",
-  SET_NEXT_PAGE: "SET_NEXT_PAGE",
+  GET_GAMES_FAILURE: "GET_GAMES_FAILURE",
+  CHANGE_PLATFORM_FILTER: "CHANGE_PLATFORM_FILTER",
 };
 
 const initialState = {
-  results: [],
-  resultsLoading: false,
-  resultsError: false,
-  firstPage: 1,
-  nextPage: null,
+  games: [],
+  gamesLoading: false,
+  gamesError: false,
+  page: 1,
+  hasNextPage: true,
 };
 
 function gamesReducer(state, action) {
   switch (action.type) {
+    case types.GET_GAMES_REQUEST: {
+      return {
+        ...state,
+        gamesLoading: true,
+      };
+    }
     case types.GET_GAMES_SUCCESS: {
-      const { results, nextPage, resultsLoading } = action.payload;
+      const { results, hasNextPage } = action.payload;
 
-      return {
-        ...state,
-        results: state.results.concat(results),
-        resultsLoading,
-        nextPage,
-      };
+      if (state.page !== 1) {
+        return {
+          ...state,
+          games: state.games.concat(results),
+          hasNextPage: hasNextPage,
+          gamesLoading: false,
+        };
+      } else {
+        return {
+          ...state,
+          games: [...results],
+          hasNextPage: hasNextPage,
+          gamesLoading: false,
+        };
+      }
     }
-    case types.GET_GAMES_LOADING: {
+    case types.GET_GAMES_FAILURE: {
       return {
         ...state,
-        resultsLoading: action.payload,
-      };
-    }
-    case types.GET_GAMES_ERROR: {
-      const { resultsLoading, resultsError } = action.payload;
-      return {
-        ...state,
-        resultsLoading,
-        resultsError,
-      };
-    }
-    case types.SET_NEXT_PAGE: {
-      return {
-        ...state,
-        nextPage: action.payload,
+        gamesLoading: false,
+        gamesError: true,
       };
     }
     default: {
@@ -58,53 +61,51 @@ function gamesReducer(state, action) {
 function useGames() {
   const [state, dispatch] = React.useReducer(gamesReducer, initialState);
 
-  const getGamesByPage = React.useCallback(
-    (page, source) => {
-      dispatch({ type: types.GET_GAMES_LOADING, payload: true });
-      rawgInstance({
-        method: "get",
-        cancelToken: source ? source.cancelToken : null,
-        params: {
-          page: page,
-          page_size: 20,
-        },
-      })
-        .then((res) => {
-          if (res.data && Array.isArray(res.data.results)) {
-            dispatch({
-              type: types.GET_GAMES_SUCCESS,
-              payload: {
-                results: res.data.results,
-                resultsLoading: false,
-                nextPage: res.data.next ? page + 1 : null,
-              },
-            });
-          } else {
-            dispatch({
-              type: types.GET_GAMES_ERROR,
-              payload: {
-                resultsLoading: false,
-                resultsError: true,
-              },
-            });
-          }
-        })
-        .catch(() => {
-          dispatch({
-            type: types.GET_GAMES_ERROR,
-            payload: {
-              resultsLoading: false,
-              resultsError: true,
-            },
-          });
-        });
-    },
-    [dispatch]
-  );
+  React.useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
+    const config = {
+      method: "get",
+      baseURL: `https://api.rawg.io/api/games`,
+      cancelToken: source.token,
+      params: {
+        key: RAWG_API_KEY,
+        page: state.page,
+        page_size: 20,
+      },
+    };
+
+    const fetchGames = async () => {
+      dispatch({ type: types.GET_GAMES_REQUEST });
+      try {
+        const res = await axios(config);
+        if (res.data && Array.isArray(res.data.results)) {
+          const payload = {
+            results: res.data.results,
+            hasNextPage: res.data.next ? true : false,
+          };
+          dispatch({ type: types.GET_GAMES_SUCCESS, payload });
+        } else {
+          console.log("fetchGames error.");
+        }
+      } catch (error) {
+        dispatch({ type: types.GET_GAMES_ERROR });
+      }
+    };
+
+    if (state.hasNextPage) {
+      console.log("fetch games called");
+      fetchGames();
+    }
+
+    return () => {
+      source.cancel("fetchGames request was cancelled.");
+    };
+  }, [state.page, state.hasNextPage]);
 
   return {
     state,
-    getGamesByPage,
   };
 }
 
