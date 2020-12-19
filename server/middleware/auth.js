@@ -4,9 +4,7 @@ async function auth(req, res, next) {
   const token = req.header("x-auth-token");
 
   if (!token) {
-    return res
-      .status(404)
-      .json({ errors: [{ msg: "Authorisation denied, no token provided" }] });
+    return res.status(404).json({ errors: [{ msg: "Authorisation denied, no token provided" }] });
   }
 
   try {

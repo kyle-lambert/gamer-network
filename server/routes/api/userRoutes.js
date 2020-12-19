@@ -30,11 +30,7 @@ router.post(
 // @route    PUT api/users/email
 // @desc     Update users email
 // @access   Private
-router.put(
-  "/email",
-  [auth, body("email", "Email is invalid").isEmail(), validator],
-  updateEmail
-);
+router.put("/email", [auth, body("email", "Email is invalid").isEmail(), validator], updateEmail);
 
 // @route    PUT api/users/password
 // @desc     Update users password

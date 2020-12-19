@@ -10,9 +10,7 @@ async function registerUser(req, res) {
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      return res
-        .status(400)
-        .json({ errors: [{ msg: "Email is already taken" }] });
+      return res.status(400).json({ errors: [{ msg: "Email is already taken" }] });
     }
 
     const user = new User({
@@ -101,7 +99,7 @@ async function deleteUser(req, res) {
     await Profile.findOneAndDelete({ user: req.user._id });
     await Review.findOneAndDelete({ author: req.user._id });
 
-    res.status(200).json({ msg: "User account, profile and review deleted" });
+    res.status(200).json({ msg: "User account, profile and reviews deleted" });
   } catch (error) {
     res.status(500).json({ errors: [{ msg: "Server error" }] });
   }

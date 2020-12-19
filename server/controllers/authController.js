@@ -22,9 +22,7 @@ async function authenticateUser(req, res) {
 
     jwt.sign(payload, process.env.JWT_SECRET, (error, token) => {
       if (error) {
-        return res
-          .status(500)
-          .json({ errors: [{ msg: "Unable to generate token" }] });
+        return res.status(500).json({ errors: [{ msg: "Unable to generate token" }] });
       }
 
       res.status(200).json({
