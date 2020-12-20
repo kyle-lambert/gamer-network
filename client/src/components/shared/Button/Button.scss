@@ -1,0 +1,59 @@
+@import "../../../scss/partials/variables";
+
+.Button {
+  display: inline-block;
+  padding: 10px 14px;
+  font-size: inherit;
+  font-weight: 600;
+  color: $text-primary;
+  background-color: transparent;
+  border: 1px solid $background-white;
+  border-radius: 8px;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+
+  &:hover {
+    background-color: $background-white;
+    color: $text-dark;
+  }
+
+  &--primary {
+    color: $text-dark;
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+
+    &:hover {
+      background-color: $brand-secondary;
+      border-color: $brand-secondary;
+    }
+  }
+
+  &--success {
+    border-color: $success;
+    background-color: $success;
+
+    &:hover {
+      color: $text-primary;
+      border-color: $success-dark;
+      background-color: $success-dark;
+    }
+  }
+
+  &--error {
+    border-color: $error;
+    background-color: $error;
+
+    &:hover {
+      color: $text-primary;
+      border-color: $error-dark;
+      background-color: $error-dark;
+    }
+  }
+
+  &--large {
+    padding: 12px 18px;
+  }
+
+  &--full {
+    width: 100%;
+  }
+}

@@ -1,0 +1,115 @@
+@import "../../../scss/partials/variables";
+
+.Navbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background-color: $background-tertiary;
+
+  &__hamburger {
+    display: flex;
+    align-items: center;
+
+    @media (min-width: $tablet) {
+      display: none;
+    }
+
+    &-btn {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+    }
+  }
+
+  &__brand {
+    display: none;
+
+    @media (min-width: $mobile) {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @media (min-width: $tablet) {
+      position: initial;
+      left: initial;
+      top: initial;
+      transform: initial;
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
+
+      svg {
+        width: auto;
+        height: 37px;
+      }
+    }
+  }
+
+  &__nav {
+    display: none;
+
+    @media (min-width: $tablet) {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    &-list {
+      display: flex;
+      align-items: center;
+    }
+
+    &-item {
+      margin: 0 15px;
+    }
+
+    &-link {
+      padding: 5px 0;
+      color: $text-secondary;
+
+      &:hover:not(&--active) {
+        color: $text-primary;
+      }
+
+      &--active {
+        color: $text-primary;
+      }
+    }
+  }
+
+  &__cta {
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+
+    &-list {
+      display: flex;
+      align-items: center;
+    }
+
+    &-item {
+      margin: 0 5px;
+
+      &:last-child {
+        display: none;
+
+        @media (min-width: $tablet) {
+          display: initial;
+        }
+      }
+    }
+  }
+
+  &__account {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+  }
+}

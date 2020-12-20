@@ -1,0 +1,49 @@
+@import "../../../scss/partials/variables";
+
+.AccountMenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 30px;
+  right: 30px;
+  padding: 7px;
+  background-color: $background-secondary;
+  border-radius: 12px;
+
+  @media (min-width: $mobile) {
+    width: 275px;
+    left: unset;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &__item {
+    margin-bottom: 7px;
+
+    &:last-child {
+      margin-bottom: unset;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    width: 100%;
+    padding: 7px 10px;
+    border-radius: 8px;
+    color: $text-secondary;
+
+    &--active {
+      color: $text-primary;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:hover {
+      color: $text-primary;
+    }
+  }
+}

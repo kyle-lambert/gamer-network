@@ -1,0 +1,56 @@
+@import "../../../scss/partials/variables";
+
+.HamburgerMenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 30px;
+  right: 30px;
+  padding: 7px;
+  background-color: $background-secondary;
+  border-radius: 12px;
+
+  @media (min-width: $mobile) {
+    width: 275px;
+    right: unset;
+  }
+
+  @media (min-width: $tablet) {
+    display: none;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    margin-bottom: 7px;
+
+    &:last-child {
+      margin-bottom: unset;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    width: 100%;
+    padding: 7px 10px;
+    border-radius: 8px;
+    color: $text-secondary;
+
+    &--active {
+      color: $text-primary;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:hover:not(&--active) {
+      color: $text-primary;
+    }
+  }
+
+  &__auth {
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid $border;
+  }
+}
