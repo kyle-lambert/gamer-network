@@ -1,0 +1,22 @@
+@import "../../../scss/partials/variables";
+
+.Modal {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  width: 100%;
+  background-color: $background-primary;
+  overflow: hidden;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+
+  @media (min-width: $tablet) {
+    top: 50%;
+    left: 50%;
+    bottom: unset;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: auto;
+    border-radius: 12px;
+  }
+}

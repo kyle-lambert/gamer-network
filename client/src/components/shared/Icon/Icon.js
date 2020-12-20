@@ -5,8 +5,8 @@ function Icon({ children, primary, secondary }) {
   const getClassNames = () => {
     const output = ["Icon"];
 
-    if (primary) classNames.push("Icon--primary");
-    if (secondary) classNames.push("Icon--secondary");
+    if (primary) output.push("Icon--primary");
+    if (secondary) output.push("Icon--secondary");
 
     return output.join(" ");
   };

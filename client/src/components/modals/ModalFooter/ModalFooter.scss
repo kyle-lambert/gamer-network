@@ -1,0 +1,28 @@
+@import "../../../scss/partials/variables";
+
+.ModalFooter {
+  padding: 20px 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-secondary;
+
+  &__copy {
+    color: $text-secondary;
+    text-align: center;
+  }
+
+  &__button {
+    display: inline-block;
+    margin-left: 15px;
+    font-size: inherit;
+    font-weight: 700;
+    color: $text-primary;
+    text-decoration: underline;
+
+    &:hover {
+      color: $brand-secondary;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import "../../../scss/partials/variables";
+
+.FormInputGroup {
+  &__label {
+    display: block;
+    color: $text-secondary;
+    margin-bottom: 7px;
+  }
+
+  &__input {
+    padding: 12px 14px;
+    width: 100%;
+    font-size: inherit;
+    font-weight: inherit;
+    color: $text-primary;
+    background-color: $background-tertiary;
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    &:focus {
+      border-color: $brand-secondary;
+    }
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.1);
+      font-style: italic;
+      font-weight: inherit;
+    }
+  }
+}
