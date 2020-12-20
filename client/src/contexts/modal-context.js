@@ -38,9 +38,7 @@ function ModalContextProvider({ children }) {
 
   return (
     <ModalStateContext.Provider value={state}>
-      <ModalDispatchContext.Provider value={dispatch}>
-        {children}
-      </ModalDispatchContext.Provider>
+      <ModalDispatchContext.Provider value={dispatch}>{children}</ModalDispatchContext.Provider>
     </ModalStateContext.Provider>
   );
 }
@@ -49,9 +47,12 @@ function useModalContext() {
   const state = React.useContext(ModalStateContext);
   const dispatch = React.useContext(ModalDispatchContext);
 
-  const setLoginModal = (bool) => {
-    dispatch({ type: types.SET_LOGIN_MODAL, payload: bool });
-  };
+  const setLoginModal = React.useCallback(
+    (bool) => {
+      dispatch({ type: types.SET_LOGIN_MODAL, payload: bool });
+    },
+    [dispatch]
+  );
 
   const setSignupModal = (bool) => {
     dispatch({ type: types.SET_SIGNUP_MODAL, payload: bool });
