@@ -1,18 +1,27 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./HamburgerMenu.scss";
 
 import Button from "../../shared/Button/Button";
 
-function HamburgerMenu(props) {
-  const hamburgerRef = React.useRef(null);
-  // useOutsideClick(dropdownRef, () => {
-  //   setNavigation(false);
-  // });
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
-  const handleSignup = () => {
-    // setNavigation(false);
-    // setSignupModal(true);
+function HamburgerMenu({ closeHamburgerMenu, openSignUpModal }) {
+  const hamburgerRef = React.useRef(null);
+  const { userLoggedIn } = useSelector((state) => state.auth);
+
+  useOutsideClick(hamburgerRef, () => {
+    closeHamburgerMenu();
+  });
+
+  const handleClick = () => {
+    closeHamburgerMenu();
+    openSignUpModal();
+  };
+
+  const handleNavClick = () => {
+    closeHamburgerMenu();
   };
 
   return (
@@ -22,6 +31,7 @@ function HamburgerMenu(props) {
           <NavLink
             to="/"
             exact
+            onClick={handleNavClick}
             className="HamburgerMenu__link"
             activeClassName="HamburgerMenu__link--active">
             Home
@@ -31,6 +41,7 @@ function HamburgerMenu(props) {
           <NavLink
             to="/account"
             exact
+            onClick={handleNavClick}
             className="HamburgerMenu__link"
             activeClassName="HamburgerMenu__link--active">
             Account
@@ -40,15 +51,16 @@ function HamburgerMenu(props) {
           <NavLink
             to="/games"
             exact
+            onClick={handleNavClick}
             className="HamburgerMenu__link"
             activeClassName="HamburgerMenu__link--active">
             Games
           </NavLink>
         </li>
       </ul>
-      {true && (
+      {!userLoggedIn && (
         <div className="HamburgerMenu__auth">
-          <Button primary full>
+          <Button onClick={handleClick} primary full>
             Sign up
           </Button>
         </div>

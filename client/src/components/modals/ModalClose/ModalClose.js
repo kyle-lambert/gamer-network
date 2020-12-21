@@ -4,9 +4,9 @@ import "./ModalClose.scss";
 import { ReactComponent as CloseIcon } from "../../../assets/icons/close.svg";
 import Icon from "../../shared/Icon/Icon";
 
-function ModalClose(props) {
+function ModalClose({ closeModal }) {
   return (
-    <button className="ModalClose">
+    <button onClick={closeModal} className="ModalClose">
       <Icon>
         <CloseIcon />
       </Icon>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import "./SignUpModal.scss";
 
 import Modal from "../Modal/Modal";
@@ -9,8 +10,18 @@ import ModalFooter from "../ModalFooter/ModalFooter";
 import FormInputGroup from "../../forms/FormInputGroup/FormInputGroup";
 import Button from "../../shared/Button/Button";
 
+import { setSignUpModalAction } from "../../../store/actions/modalActions";
+import useOutsideClick from "../../../hooks/useOutsideClick";
+
 function SignUpModal(props) {
   const usernameRef = React.useRef(null);
+  const modalRef = React.useRef(null);
+  const dispatch = useDispatch();
+
+  useOutsideClick(modalRef, () => {
+    dispatch(setSignUpModalAction(false));
+  });
+
   const [state, setState] = React.useState({
     username: "",
     lastName: "",
@@ -34,8 +45,8 @@ function SignUpModal(props) {
   };
 
   return (
-    <Modal>
-      <ModalClose />
+    <Modal ref={modalRef}>
+      <ModalClose closeModal={() => dispatch(setSignUpModalAction(false))} />
       <ModalContent>
         <ModalHeader heading="Join Glitch!" subheading="Create an account here" />
         <form className="SignUpModal__form">

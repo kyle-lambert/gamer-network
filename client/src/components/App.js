@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./App.scss";
 
 import Navbar from "../components/navigation/Navbar/Navbar";
@@ -15,11 +16,12 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRoute from "../hoc/PrivateRoute";
 
 function App(props) {
+  const { loginModalOpen, signUpModalOpen } = useSelector((state) => state.modal);
   return (
     <div className="App">
       <Navbar />
-      {true && <LoginModal />}
-      {false && <SignUpModal />}
+      {loginModalOpen && <LoginModal />}
+      {signUpModalOpen && <SignUpModal />}
       <main>
         <Switch>
           <Route exact path="/" component={LandingPage} />

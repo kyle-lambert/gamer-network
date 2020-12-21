@@ -4,8 +4,18 @@ import "./AccountMenu.scss";
 
 import Button from "../../shared/Button/Button";
 
-function AccountMenu(props) {
+import useOutsideClick from "../../../hooks/useOutsideClick";
+
+function AccountMenu({ closeAccountMenu }) {
   const accountRef = React.useRef(null);
+
+  useOutsideClick(accountRef, () => {
+    closeAccountMenu();
+  });
+
+  const handleNavClick = () => {
+    closeAccountMenu();
+  };
 
   return (
     <nav ref={accountRef} className="AccountMenu">
@@ -13,6 +23,8 @@ function AccountMenu(props) {
         <li className="AccountMenu__item">
           <NavLink
             to="/profile/123456789"
+            exact
+            onClick={handleNavClick}
             className="AccountMenu__link"
             activeClassName="AccountMenu__link--active">
             Kyle Lambert
@@ -21,6 +33,8 @@ function AccountMenu(props) {
         <li className="AccountMenu__item">
           <NavLink
             to="/account"
+            exact
+            onClick={handleNavClick}
             className="AccountMenu__link"
             activeClassName="AccountMenu__link--active">
             Account

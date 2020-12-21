@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import "./LoginModal.scss";
 
 import Modal from "../Modal/Modal";
@@ -9,8 +10,18 @@ import ModalFooter from "../ModalFooter/ModalFooter";
 import FormInputGroup from "../../forms/FormInputGroup/FormInputGroup";
 import Button from "../../shared/Button/Button";
 
+import { setLoginModalAction } from "../../../store/actions/modalActions";
+import useOutsideClick from "../../../hooks/useOutsideClick";
+
 function LoginModal(props) {
   const emailRef = React.useRef(null);
+  const modalRef = React.useRef(null);
+  const dispatch = useDispatch();
+
+  useOutsideClick(modalRef, () => {
+    dispatch(setLoginModalAction(false));
+  });
+
   const [state, setState] = React.useState({
     email: "",
     password: "",
@@ -32,8 +43,8 @@ function LoginModal(props) {
   };
 
   return (
-    <Modal>
-      <ModalClose />
+    <Modal ref={modalRef}>
+      <ModalClose closeModal={() => dispatch(setLoginModalAction(false))} />
       <ModalContent>
         <ModalHeader heading="Hello!" subheading="Sign into your account here" />
         <form className="LoginModal__form">

@@ -1,7 +1,10 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { NavLink, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import "./Navbar.scss";
+
+import { setLoginModalAction, setSignUpModalAction } from "../../../store/actions/modalActions";
 
 import { ReactComponent as Hamburger } from "../../../assets/icons/hamburger.svg";
 import { ReactComponent as GlitchLogo } from "../../../assets/icons/glitch-logo.svg";
@@ -21,10 +24,16 @@ export const routes = [
 ];
 
 function Navbar(props) {
+  const dispatch = useDispatch();
+  const [hamburgerMenuOpen, setHamburgerMenuOpen] = React.useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = React.useState(false);
+
   return (
     <div className="Navbar">
       <div className="Navbar__hamburger">
-        <button className="Navbar__hamburger-btn">
+        <button
+          onClick={() => setHamburgerMenuOpen((state) => !state)}
+          className="Navbar__hamburger-btn">
           <Icon>
             <Hamburger />
           </Icon>
@@ -55,26 +64,37 @@ function Navbar(props) {
         </ul>
       </nav>
       <div className="Navbar__cta">
-        {false ? (
+        {true ? (
           <div className="Navbar__account">
-            <button className="Navbar__account-btn"></button>
+            <button
+              onClick={() => setAccountMenuOpen((state) => !state)}
+              className="Navbar__account-btn">
+              click
+            </button>
           </div>
         ) : (
           <ul className="Navbar__cta-list">
             <li className="Navbar__cta-item">
-              <Button>Log in</Button>
+              <Button onClick={() => dispatch(setLoginModalAction(true))}>Log in</Button>
             </li>
             <li className="Navbar__cta-item">
-              <Button primary>Sign up</Button>
+              <Button onClick={() => dispatch(setSignUpModalAction(true))} primary>
+                Sign up
+              </Button>
             </li>
           </ul>
         )}
       </div>
 
-      {false && <HamburgerMenu />}
-      {false && <AccountMenu />}
+      {hamburgerMenuOpen && (
+        <HamburgerMenu
+          closeHamburgerMenu={() => setHamburgerMenuOpen(false)}
+          openSignUpModal={() => dispatch(setSignUpModalAction(true))}
+        />
+      )}
+      {accountMenuOpen && <AccountMenu closeAccountMenu={() => setAccountMenuOpen(false)} />}
     </div>
   );
 }
 
-export default Navbar;
+export default React.memo(Navbar);

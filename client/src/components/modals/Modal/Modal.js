@@ -3,16 +3,14 @@ import "./Modal.scss";
 
 import ModalLayout from "../ModalLayout/ModalLayout";
 
-function Modal({ children }) {
-  const modalRef = React.useRef(null);
-
+function Modal({ children }, ref) {
   return (
     <ModalLayout>
-      <div ref={modalRef} className="Modal">
+      <div ref={ref} className="Modal">
         {children}
       </div>
     </ModalLayout>
   );
 }
 
-export default Modal;
+export default React.forwardRef(Modal);
