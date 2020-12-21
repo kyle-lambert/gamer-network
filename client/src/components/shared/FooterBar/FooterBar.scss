@@ -1,7 +1,7 @@
-@import "../../scss/partials/variables";
+@import "../../../scss/partials/variables";
 
-.footer {
-  padding: 30px;
+.FooterBar {
+  padding: 20px 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,6 +44,7 @@
     &-text {
       font-size: 15px;
       color: $text-secondary;
+      text-align: center;
     }
   }
 }

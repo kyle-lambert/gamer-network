@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import { NavLink, Link } from "react-router-dom";
 import "./Navbar.scss";
 
@@ -11,9 +12,17 @@ import Button from "../../shared/Button/Button";
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import AccountMenu from "../AccountMenu/AccountMenu";
 
+export const routes = [
+  {
+    id: uuidv4(),
+    name: "Games",
+    path: "/games",
+  },
+];
+
 function Navbar(props) {
   return (
-    <header className="Navbar">
+    <div className="Navbar">
       <div className="Navbar__hamburger">
         <button className="Navbar__hamburger-btn">
           <Icon>
@@ -30,40 +39,25 @@ function Navbar(props) {
 
       <nav className="Navbar__nav">
         <ul className="Navbar__nav-list">
-          <li className="Navbar__nav-item">
-            <NavLink
-              to="/"
-              exact
-              className="Navbar__nav-link"
-              activeClassName="Navbar__nav-link--active">
-              Home
-            </NavLink>
-          </li>
-          <li className="Navbar__nav-item">
-            <NavLink
-              to="/account"
-              exact
-              className="Navbar__nav-link"
-              activeClassName="Navbar__nav-link--active">
-              Account
-            </NavLink>
-          </li>
-          <li className="Navbar__nav-item">
-            <NavLink
-              to="/games"
-              exact
-              className="Navbar__nav-link"
-              activeClassName="Navbar__nav-link--active">
-              Games
-            </NavLink>
-          </li>
+          {routes.map((route) => {
+            return (
+              <li key={route.id} className="Navbar__nav-item">
+                <NavLink
+                  to={route.path}
+                  exact
+                  className="Navbar__nav-link"
+                  activeClassName="Navbar__nav-link--active">
+                  {route.name}
+                </NavLink>
+              </li>
+            );
+          })}
         </ul>
       </nav>
-
       <div className="Navbar__cta">
         {false ? (
           <div className="Navbar__account">
-            <button className="Navbar__account-btn">{/* <Avatar /> */}</button>
+            <button className="Navbar__account-btn"></button>
           </div>
         ) : (
           <ul className="Navbar__cta-list">
@@ -77,9 +71,9 @@ function Navbar(props) {
         )}
       </div>
 
-      {/* {true && <HamburgerMenu />} */}
-      {/* {true && <AccountMenu />} */}
-    </header>
+      {false && <HamburgerMenu />}
+      {false && <AccountMenu />}
+    </div>
   );
 }
 
