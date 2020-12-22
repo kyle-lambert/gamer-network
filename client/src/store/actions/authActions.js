@@ -1,5 +1,9 @@
 import { authTypes } from "../types";
+import { setAlertAction } from "./alertActions";
 
-export const logoutUser = () => ({
-  type: authTypes.LOGOUT_USER,
-});
+export const logoutUserAction = () => {
+  return (dispatch) => {
+    dispatch({ type: authTypes.LOGOUT_USER });
+    dispatch(setAlertAction("User logged out"));
+  };
+};

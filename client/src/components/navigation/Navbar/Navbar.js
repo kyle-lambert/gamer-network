@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.scss";
 
 import { setLoginModalAction, setSignUpModalAction } from "../../../store/actions/modalActions";
-import { logoutUser } from "../../../store/actions/authActions";
+import { logoutUserAction } from "../../../store/actions/authActions";
 
 import { ReactComponent as Hamburger } from "../../../assets/icons/hamburger.svg";
 import { ReactComponent as GlitchLogo } from "../../../assets/icons/glitch-logo.svg";
@@ -47,6 +47,11 @@ function Navbar(props) {
   const toggleAccountMenu = () => setAccountMenuOpen((state) => !state);
   const closeHamburgerMenu = () => setHamburgerMenuOpen(false);
   const closeAccountMenu = () => setAccountMenuOpen(false);
+
+  const logoutUser = () => {
+    closeAccountMenu();
+    dispatch(logoutUserAction());
+  };
 
   return (
     <div className="Navbar">
