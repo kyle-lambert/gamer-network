@@ -1,11 +1,34 @@
 .SignUpModal {
   &__form {
+    display: grid;
+    row-gap: 15px;
+    column-gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "first last"
+      "email email"
+      "password password"
+      "submit submit";
+
     &-line {
-      margin-bottom: 15px;
+      &--first {
+        grid-area: first;
+      }
+      &--last {
+        grid-area: last;
+      }
+      &--email {
+        grid-area: email;
+      }
+      &--password {
+        grid-area: password;
+      }
+      &--submit {
+        grid-area: submit;
+      }
 
       &:last-child {
-        margin-top: 30px;
-        margin-bottom: unset;
+        margin-top: 15px;
       }
     }
   }

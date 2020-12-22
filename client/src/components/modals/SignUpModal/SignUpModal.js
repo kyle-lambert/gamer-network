@@ -14,7 +14,7 @@ import { setSignUpModalAction, setLoginModalAction } from "../../../store/action
 import useOutsideClick from "../../../hooks/useOutsideClick";
 
 function SignUpModal(props) {
-  const usernameRef = React.useRef(null);
+  const firstNameRef = React.useRef(null);
   const modalRef = React.useRef(null);
   const dispatch = useDispatch();
 
@@ -23,15 +23,15 @@ function SignUpModal(props) {
   });
 
   const [state, setState] = React.useState({
-    username: "",
+    firstName: "",
     lastName: "",
     email: "",
     password: "",
   });
 
   React.useEffect(() => {
-    if (usernameRef.current) {
-      usernameRef.current.focus();
+    if (firstNameRef.current) {
+      firstNameRef.current.focus();
     }
   }, []);
 
@@ -57,17 +57,26 @@ function SignUpModal(props) {
       <ModalContent>
         <ModalHeader heading="Join Glitch!" subheading="Create an account here" />
         <form className="SignUpModal__form">
-          <div className="SignUpModal__form-line">
+          <div className="SignUpModal__form-line SignUpModal__form-line--first">
             <FormInputGroup
-              ref={usernameRef}
-              label="Username"
-              name="username"
-              value={state.username}
+              ref={firstNameRef}
+              label="First name"
+              name="firstName"
+              value={state.firstName}
               onChange={handleChange}
-              placeholder="SteveJobs123"
+              placeholder="Steve"
             />
           </div>
-          <div className="SignUpModal__form-line">
+          <div className="SignUpModal__form-line SignUpModal__form-line--last">
+            <FormInputGroup
+              label="Last name"
+              name="lastName"
+              value={state.lastName}
+              onChange={handleChange}
+              placeholder="Jobs"
+            />
+          </div>
+          <div className="SignUpModal__form-line SignUpModal__form-line--email">
             <FormInputGroup
               label="Email address"
               name="email"
@@ -76,7 +85,7 @@ function SignUpModal(props) {
               placeholder="stevejobs@gmail.com"
             />
           </div>
-          <div className="SignUpModal__form-line">
+          <div className="SignUpModal__form-line SignUpModal__form-line--password">
             <FormInputGroup
               label="Password"
               name="password"
@@ -84,7 +93,7 @@ function SignUpModal(props) {
               onChange={handleChange}
             />
           </div>
-          <div className="SignUpModal__form-line">
+          <div className="SignUpModal__form-line SignUpModal__form-line--submit">
             <Button primary full>
               Create Account
             </Button>
