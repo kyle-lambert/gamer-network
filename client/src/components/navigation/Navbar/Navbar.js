@@ -1,10 +1,11 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { NavLink, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.scss";
 
 import { setLoginModalAction, setSignUpModalAction } from "../../../store/actions/modalActions";
+import { logoutUser } from "../../../store/actions/authActions";
 
 import { ReactComponent as Hamburger } from "../../../assets/icons/hamburger.svg";
 import { ReactComponent as GlitchLogo } from "../../../assets/icons/glitch-logo.svg";
@@ -14,6 +15,9 @@ import Button from "../../shared/Button/Button";
 
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import AccountMenu from "../AccountMenu/AccountMenu";
+import Avatar from "../../shared/Avatar/Avatar";
+
+import avatar from "../../../assets/avatar.jpg";
 
 export const routes = [
   {
@@ -23,17 +27,31 @@ export const routes = [
   },
 ];
 
+const user = {
+  id: 12345,
+  firstName: "Troy",
+  lastName: "Lambert",
+  hexColor: "#3498DB",
+  avatar: avatar,
+};
+
 function Navbar(props) {
   const dispatch = useDispatch();
+  const { userLoggedIn } = useSelector((state) => state.auth);
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = React.useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = React.useState(false);
+
+  const openLoginModal = () => dispatch(setLoginModalAction(true));
+  const openSignUpModal = () => dispatch(setSignUpModalAction(true));
+  const toggleHamburgerMenu = () => setHamburgerMenuOpen((state) => !state);
+  const toggleAccountMenu = () => setAccountMenuOpen((state) => !state);
+  const closeHamburgerMenu = () => setHamburgerMenuOpen(false);
+  const closeAccountMenu = () => setAccountMenuOpen(false);
 
   return (
     <div className="Navbar">
       <div className="Navbar__hamburger">
-        <button
-          onClick={() => setHamburgerMenuOpen((state) => !state)}
-          className="Navbar__hamburger-btn">
+        <button onClick={toggleHamburgerMenu} className="Navbar__hamburger-btn">
           <Icon>
             <Hamburger />
           </Icon>
@@ -63,36 +81,32 @@ function Navbar(props) {
           })}
         </ul>
       </nav>
-      <div className="Navbar__cta">
-        {true ? (
-          <div className="Navbar__account">
-            <button
-              onClick={() => setAccountMenuOpen((state) => !state)}
-              className="Navbar__account-btn">
-              click
-            </button>
-          </div>
-        ) : (
-          <ul className="Navbar__cta-list">
-            <li className="Navbar__cta-item">
-              <Button onClick={() => dispatch(setLoginModalAction(true))}>Log in</Button>
-            </li>
-            <li className="Navbar__cta-item">
-              <Button onClick={() => dispatch(setSignUpModalAction(true))} primary>
-                Sign up
-              </Button>
-            </li>
-          </ul>
-        )}
-      </div>
+
+      {userLoggedIn ? (
+        <div className="Navbar__avatar">
+          <button onClick={toggleAccountMenu} className="Navbar__avatar-btn">
+            <Avatar user={user} />
+          </button>
+        </div>
+      ) : (
+        <ul className="Navbar__cta">
+          <li className="Navbar__cta-item">
+            <Button onClick={openLoginModal}>Login</Button>
+          </li>
+          <li className="Navbar__cta-item">
+            <Button onClick={openSignUpModal} primary>
+              Sign Up
+            </Button>
+          </li>
+        </ul>
+      )}
 
       {hamburgerMenuOpen && (
-        <HamburgerMenu
-          closeHamburgerMenu={() => setHamburgerMenuOpen(false)}
-          openSignUpModal={() => dispatch(setSignUpModalAction(true))}
-        />
+        <HamburgerMenu closeHamburgerMenu={closeHamburgerMenu} openSignUpModal={openSignUpModal} />
       )}
-      {accountMenuOpen && <AccountMenu closeAccountMenu={() => setAccountMenuOpen(false)} />}
+      {accountMenuOpen && (
+        <AccountMenu closeAccountMenu={closeAccountMenu} user={user} logoutUser={logoutUser} />
+      )}
     </div>
   );
 }

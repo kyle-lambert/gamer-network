@@ -6,7 +6,9 @@ import Button from "../../shared/Button/Button";
 
 import useOutsideClick from "../../../hooks/useOutsideClick";
 
-function AccountMenu({ closeAccountMenu }) {
+import { getFullName } from "../../../utils/helpers";
+
+function AccountMenu({ closeAccountMenu, logoutUser, user }) {
   const accountRef = React.useRef(null);
 
   useOutsideClick(accountRef, () => {
@@ -22,12 +24,12 @@ function AccountMenu({ closeAccountMenu }) {
       <ul className="AccountMenu__list">
         <li className="AccountMenu__item">
           <NavLink
-            to="/profile/123456789"
+            to={`/profile/${user.id}`}
             exact
             onClick={handleNavClick}
             className="AccountMenu__link"
             activeClassName="AccountMenu__link--active">
-            Kyle Lambert
+            {getFullName(user.firstName, user.lastName)}
           </NavLink>
         </li>
         <li className="AccountMenu__item">
@@ -42,7 +44,7 @@ function AccountMenu({ closeAccountMenu }) {
         </li>
       </ul>
       <div className="AccountMenu__auth">
-        <Button error full>
+        <Button onClick={logoutUser} error full>
           Logout
         </Button>
       </div>

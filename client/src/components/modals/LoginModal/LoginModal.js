@@ -10,7 +10,7 @@ import ModalFooter from "../ModalFooter/ModalFooter";
 import FormInputGroup from "../../forms/FormInputGroup/FormInputGroup";
 import Button from "../../shared/Button/Button";
 
-import { setLoginModalAction } from "../../../store/actions/modalActions";
+import { setLoginModalAction, setSignUpModalAction } from "../../../store/actions/modalActions";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 
 function LoginModal(props) {
@@ -42,6 +42,11 @@ function LoginModal(props) {
     });
   };
 
+  const switchToSignUpModal = () => {
+    dispatch(setLoginModalAction(false));
+    dispatch(setSignUpModalAction(true));
+  };
+
   return (
     <Modal ref={modalRef}>
       <ModalClose closeModal={() => dispatch(setLoginModalAction(false))} />
@@ -68,12 +73,16 @@ function LoginModal(props) {
           </div>
           <div className="LoginModal__form-line">
             <Button primary full>
-              Sign in
+              Login
             </Button>
           </div>
         </form>
       </ModalContent>
-      <ModalFooter displayCopy="Don't have an account?" buttonLabel="Sign Up" />
+      <ModalFooter
+        displayCopy="Don't have an account?"
+        buttonLabel="Sign Up"
+        switchAuthModal={switchToSignUpModal}
+      />
     </Modal>
   );
 }

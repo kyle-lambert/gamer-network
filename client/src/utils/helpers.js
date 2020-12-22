@@ -7,3 +7,9 @@ export const debounce = (callback, delay) => {
     }, delay);
   };
 };
+
+export const getInitials = (firstName, lastName) => {
+  return `${firstName[0].toUpperCase()}${lastName[0].toUpperCase()}`;
+};
+
+export const getFullName = (firstName, lastName) => `${firstName} ${lastName}`;

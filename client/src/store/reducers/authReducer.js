@@ -1,9 +1,17 @@
+import { authTypes } from "../types";
+
 const initState = {
-  userLoggedIn: false,
+  userLoggedIn: true,
 };
 
 function authReducer(state = initState, action) {
   switch (action.type) {
+    case authTypes.LOGOUT_USER: {
+      return {
+        ...state,
+        userLoggedIn: false,
+      };
+    }
     default: {
       return state;
     }

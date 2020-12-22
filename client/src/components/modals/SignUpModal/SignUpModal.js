@@ -10,7 +10,7 @@ import ModalFooter from "../ModalFooter/ModalFooter";
 import FormInputGroup from "../../forms/FormInputGroup/FormInputGroup";
 import Button from "../../shared/Button/Button";
 
-import { setSignUpModalAction } from "../../../store/actions/modalActions";
+import { setSignUpModalAction, setLoginModalAction } from "../../../store/actions/modalActions";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 
 function SignUpModal(props) {
@@ -44,9 +44,16 @@ function SignUpModal(props) {
     });
   };
 
+  const switchToLoginModal = () => {
+    dispatch(setSignUpModalAction(false));
+    dispatch(setLoginModalAction(true));
+  };
+
+  const closeSignUpModal = () => dispatch(setSignUpModalAction(false));
+
   return (
     <Modal ref={modalRef}>
-      <ModalClose closeModal={() => dispatch(setSignUpModalAction(false))} />
+      <ModalClose closeModal={closeSignUpModal} />
       <ModalContent>
         <ModalHeader heading="Join Glitch!" subheading="Create an account here" />
         <form className="SignUpModal__form">
@@ -79,12 +86,16 @@ function SignUpModal(props) {
           </div>
           <div className="SignUpModal__form-line">
             <Button primary full>
-              Sign in
+              Create Account
             </Button>
           </div>
         </form>
       </ModalContent>
-      <ModalFooter displayCopy="Already have an account?" buttonLabel="Login" />
+      <ModalFooter
+        displayCopy="Already have an account?"
+        buttonLabel="Login"
+        switchAuthModal={switchToLoginModal}
+      />
     </Modal>
   );
 }

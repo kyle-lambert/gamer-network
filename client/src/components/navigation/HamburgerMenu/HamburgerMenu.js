@@ -39,16 +39,6 @@ function HamburgerMenu({ closeHamburgerMenu, openSignUpModal }) {
         </li>
         <li className="HamburgerMenu__item">
           <NavLink
-            to="/account"
-            exact
-            onClick={handleNavClick}
-            className="HamburgerMenu__link"
-            activeClassName="HamburgerMenu__link--active">
-            Account
-          </NavLink>
-        </li>
-        <li className="HamburgerMenu__item">
-          <NavLink
             to="/games"
             exact
             onClick={handleNavClick}

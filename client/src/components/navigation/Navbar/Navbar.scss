@@ -4,12 +4,14 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  padding: 15px 30px;
+  padding: 0 30px;
+  height: 80px;
   background-color: $background-tertiary;
 
   &__hamburger {
     display: flex;
     align-items: center;
+    margin-right: 25px;
 
     @media (min-width: $tablet) {
       display: none;
@@ -87,15 +89,13 @@
   &__cta {
     display: flex;
     align-items: center;
-    padding-left: 25px;
-
-    &-list {
-      display: flex;
-      align-items: center;
-    }
 
     &-item {
-      margin: 0 5px;
+      margin-left: 15px;
+
+      &:first-child {
+        margin-left: 25px;
+      }
 
       &:last-child {
         display: none;
@@ -107,9 +107,20 @@
     }
   }
 
-  &__account {
-    display: flex;
+  &__avatar {
+    display: inline-flex;
     align-items: center;
-    margin-left: 5px;
+    margin-left: 25px;
+
+    &-btn {
+      display: inline-block;
+      height: 45px;
+      width: 45px;
+      transition: transform 150ms ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
   }
 }

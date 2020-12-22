@@ -21,4 +21,4 @@ function FooterBar(props) {
   );
 }
 
-export default FooterBar;
+export default React.memo(FooterBar);
