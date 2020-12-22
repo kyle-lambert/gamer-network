@@ -1,0 +1,58 @@
+@import "../../../scss/partials/variables";
+
+.Alert {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  z-index: 899;
+
+  &__bar {
+    height: 60px;
+    padding: 15px;
+    margin: 5px;
+    min-width: 220px;
+    display: flex;
+    background-color: $brand-secondary;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 1px 1px 10px rgba(30, 31, 32, 0.1);
+    overflow: hidden;
+  }
+
+  &__msg {
+    text-align: center;
+    color: $text-dark;
+    font-weight: 700;
+  }
+
+  &--success {
+  }
+
+  &--error {
+  }
+}
+
+// Success state styles => primary color
+.alert__bar[data-success="true"] {
+  border-color: $primary;
+}
+.alert__bar[data-success="true"]::after {
+  background-color: $primary;
+}
+.alert__bar[data-success="true"] .alert__msg {
+  color: $primary;
+}
+
+// Error state styles => secondary color
+.alert__bar[data-error="true"] {
+  border-color: $secondary;
+}
+.alert__bar[data-error="true"]::after {
+  background-color: $secondary;
+}
+.alert__bar[data-error="true"] .alert__msg {
+  color: $secondary;
+}
