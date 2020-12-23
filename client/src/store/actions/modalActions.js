@@ -1,15 +1,13 @@
 import { modalTypes } from "../types";
 
-export const setLoginModalAction = (bool) => {
-  return {
-    type: modalTypes.SET_LOGIN_MODAL,
-    payload: bool,
-  };
+export const showLoginModalAction = () => {
+  return { type: modalTypes.SHOW_MODAL, payload: "LOGIN_MODAL" };
 };
 
-export const setSignUpModalAction = (bool) => {
-  return {
-    type: modalTypes.SET_SIGN_UP_MODAL,
-    payload: bool,
-  };
+export const showSignUpModalAction = () => {
+  return { type: modalTypes.SHOW_MODAL, payload: "SIGN_UP_MODAL" };
+};
+
+export const hideCurrentModalAction = () => {
+  return { type: modalTypes.HIDE_MODAL };
 };

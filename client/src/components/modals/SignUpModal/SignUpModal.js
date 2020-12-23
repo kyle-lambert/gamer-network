@@ -10,18 +10,12 @@ import ModalFooter from "../ModalFooter/ModalFooter";
 import FormInputGroup from "../../forms/FormInputGroup/FormInputGroup";
 import Button from "../../shared/Button/Button";
 
-import { setSignUpModalAction, setLoginModalAction } from "../../../store/actions/modalActions";
+import { showLoginModalAction, hideCurrentModalAction } from "../../../store/actions/modalActions";
 import { registerUserAction } from "../../../store/actions/authActions";
-import useOutsideClick from "../../../hooks/useOutsideClick";
 
 function SignUpModal(props) {
   const firstNameRef = React.useRef(null);
-  const modalRef = React.useRef(null);
   const dispatch = useDispatch();
-
-  useOutsideClick(modalRef, () => {
-    dispatch(setSignUpModalAction(false));
-  });
 
   const [state, setState] = React.useState({
     firstName: "",
@@ -53,15 +47,11 @@ function SignUpModal(props) {
     }
   };
 
-  const switchToLoginModal = () => {
-    dispatch(setSignUpModalAction(false));
-    dispatch(setLoginModalAction(true));
-  };
-
-  const closeSignUpModal = () => dispatch(setSignUpModalAction(false));
+  const openLoginModal = () => dispatch(showLoginModalAction());
+  const closeSignUpModal = () => dispatch(hideCurrentModalAction());
 
   return (
-    <Modal ref={modalRef}>
+    <Modal>
       <ModalClose closeModal={closeSignUpModal} />
       <ModalContent>
         <ModalHeader heading="Join Glitch!" subheading="Create an account here" />
@@ -112,7 +102,7 @@ function SignUpModal(props) {
       <ModalFooter
         displayCopy="Already have an account?"
         buttonLabel="Login"
-        switchAuthModal={switchToLoginModal}
+        openModal={openLoginModal}
       />
     </Modal>
   );

@@ -1,11 +1,11 @@
 import React from "react";
 import "./ModalFooter.scss";
 
-function ModalFooter({ displayCopy, buttonLabel, switchAuthModal }) {
+function ModalFooter({ displayCopy, buttonLabel, openModal }) {
   return (
     <footer className="ModalFooter">
       <span className="ModalFooter__copy">{displayCopy}</span>
-      <button onClick={switchAuthModal} className="ModalFooter__button">
+      <button onClick={openModal} className="ModalFooter__button">
         {buttonLabel}
       </button>
     </footer>

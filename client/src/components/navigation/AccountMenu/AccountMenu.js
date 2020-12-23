@@ -24,7 +24,7 @@ function AccountMenu({ closeAccountMenu, logoutUser, user }) {
       <ul className="AccountMenu__list">
         <li className="AccountMenu__item">
           <NavLink
-            to={`/profile/${user.id}`}
+            to={`/profile/${user._id}`}
             exact
             onClick={handleNavClick}
             className="AccountMenu__link"

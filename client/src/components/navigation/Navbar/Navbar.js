@@ -4,7 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.scss";
 
-import { setLoginModalAction, setSignUpModalAction } from "../../../store/actions/modalActions";
+import { showLoginModalAction, showSignUpModalAction } from "../../../store/actions/modalActions";
 import { logoutUserAction } from "../../../store/actions/authActions";
 
 import { ReactComponent as Hamburger } from "../../../assets/icons/hamburger.svg";
@@ -31,8 +31,8 @@ function Navbar(props) {
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = React.useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = React.useState(false);
 
-  const openLoginModal = () => dispatch(setLoginModalAction(true));
-  const openSignUpModal = () => dispatch(setSignUpModalAction(true));
+  const openLoginModal = () => dispatch(showLoginModalAction());
+  const openSignUpModal = () => dispatch(showSignUpModalAction());
   const toggleHamburgerMenu = () => setHamburgerMenuOpen((state) => !state);
   const toggleAccountMenu = () => setAccountMenuOpen((state) => !state);
   const closeHamburgerMenu = () => setHamburgerMenuOpen(false);
@@ -77,7 +77,7 @@ function Navbar(props) {
         </ul>
       </nav>
 
-      {isAuthenticated ? (
+      {isAuthenticated && user ? (
         <div className="Navbar__avatar">
           <button onClick={toggleAccountMenu} className="Navbar__avatar-btn">
             <Avatar user={user} />

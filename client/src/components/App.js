@@ -17,12 +17,12 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRoute from "../hoc/PrivateRoute";
 
 function App(props) {
-  const { loginModalOpen, signUpModalOpen } = useSelector((state) => state.modal);
+  const { currentModal } = useSelector((state) => state.modal);
   return (
     <div className="App">
       <Navbar />
-      {loginModalOpen && <LoginModal />}
-      {signUpModalOpen && <SignUpModal />}
+      {currentModal === "LOGIN_MODAL" && <LoginModal />}
+      {currentModal === "SIGN_UP_MODAL" && <SignUpModal />}
       <Alerts />
       <main>
         <Switch>

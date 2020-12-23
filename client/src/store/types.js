@@ -1,6 +1,6 @@
 export const modalTypes = {
-  SET_LOGIN_MODAL: "SET_LOGIN_MODAL",
-  SET_SIGN_UP_MODAL: "SET_SIGN_UP_MODAL",
+  SHOW_MODAL: "SHOW_MODAL",
+  HIDE_MODAL: "HIDE_MODAL",
 };
 
 export const authTypes = {
@@ -14,6 +14,6 @@ export const authTypes = {
 };
 
 export const alertTypes = {
-  SET_ALERT: "SET_ALERT",
+  ADD_ALERT: "ADD_ALERT",
   REMOVE_ALERT: "REMOVE_ALERT",
 };

@@ -10,18 +10,12 @@ import ModalFooter from "../ModalFooter/ModalFooter";
 import FormInputGroup from "../../forms/FormInputGroup/FormInputGroup";
 import Button from "../../shared/Button/Button";
 
-import { setLoginModalAction, setSignUpModalAction } from "../../../store/actions/modalActions";
+import { showSignUpModalAction, hideCurrentModalAction } from "../../../store/actions/modalActions";
 import { authenticateUserAction } from "../../../store/actions/authActions";
-import useOutsideClick from "../../../hooks/useOutsideClick";
 
 function LoginModal(props) {
   const emailRef = React.useRef(null);
-  const modalRef = React.useRef(null);
   const dispatch = useDispatch();
-
-  useOutsideClick(modalRef, () => {
-    dispatch(setLoginModalAction(false));
-  });
 
   const [state, setState] = React.useState({
     email: "",
@@ -50,14 +44,12 @@ function LoginModal(props) {
     }
   };
 
-  const switchToSignUpModal = () => {
-    dispatch(setLoginModalAction(false));
-    dispatch(setSignUpModalAction(true));
-  };
+  const openSignUpModal = () => dispatch(showSignUpModalAction());
+  const closeLoginModal = () => dispatch(hideCurrentModalAction());
 
   return (
-    <Modal ref={modalRef}>
-      <ModalClose closeModal={() => dispatch(setLoginModalAction(false))} />
+    <Modal>
+      <ModalClose closeModal={closeLoginModal} />
       <ModalContent>
         <ModalHeader heading="Hello!" subheading="Sign into your account here" />
         <form onSubmit={handleSubmit} className="LoginModal__form">
@@ -89,7 +81,7 @@ function LoginModal(props) {
       <ModalFooter
         displayCopy="Don't have an account?"
         buttonLabel="Sign Up"
-        switchAuthModal={switchToSignUpModal}
+        openModal={openSignUpModal}
       />
     </Modal>
   );

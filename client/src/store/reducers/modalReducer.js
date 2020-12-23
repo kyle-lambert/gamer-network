@@ -1,23 +1,18 @@
 import { modalTypes } from "../types";
 
 const initState = {
-  loginModalOpen: false,
-  signUpModalOpen: false,
+  currentModal: null,
 };
 
 function modalReducer(state = initState, action) {
   switch (action.type) {
-    case modalTypes.SET_LOGIN_MODAL: {
+    case modalTypes.SHOW_MODAL: {
       return {
-        ...state,
-        loginModalOpen: action.payload,
+        currentModal: action.payload,
       };
     }
-    case modalTypes.SET_SIGN_UP_MODAL: {
-      return {
-        ...state,
-        signUpModalOpen: action.payload,
-      };
+    case modalTypes.HIDE_MODAL: {
+      return initState;
     }
     default: {
       return state;
