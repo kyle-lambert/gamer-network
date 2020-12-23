@@ -1,6 +1,6 @@
 import { alertTypes } from "../types";
 
-const initState = [{ msg: "Alert", type: "success", id: 12345 }];
+const initState = [];
 
 function alertReducer(state = initState, action) {
   switch (action.type) {

@@ -11,6 +11,7 @@ import FormInputGroup from "../../forms/FormInputGroup/FormInputGroup";
 import Button from "../../shared/Button/Button";
 
 import { setLoginModalAction, setSignUpModalAction } from "../../../store/actions/modalActions";
+import { loginUserAction } from "../../../store/actions/authActions";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 
 function LoginModal(props) {
@@ -42,6 +43,13 @@ function LoginModal(props) {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (state.email && state.password) {
+      dispatch(loginUserAction(state));
+    }
+  };
+
   const switchToSignUpModal = () => {
     dispatch(setLoginModalAction(false));
     dispatch(setSignUpModalAction(true));
@@ -52,7 +60,7 @@ function LoginModal(props) {
       <ModalClose closeModal={() => dispatch(setLoginModalAction(false))} />
       <ModalContent>
         <ModalHeader heading="Hello!" subheading="Sign into your account here" />
-        <form className="LoginModal__form">
+        <form onSubmit={handleSubmit} className="LoginModal__form">
           <div className="LoginModal__form-line">
             <FormInputGroup
               ref={emailRef}

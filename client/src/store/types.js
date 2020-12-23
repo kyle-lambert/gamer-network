@@ -4,7 +4,10 @@ export const modalTypes = {
 };
 
 export const authTypes = {
-  LOGOUT_USER: "LOGOUT_USER",
+  USER_LOGIN_SUCCESS: "USER_LOGIN_SUCCESS",
+  USER_LOGIN_LOADING: "USER_LOGIN_LOADING",
+  USER_LOGIN_FAILURE: "USER_LOGIN_FAILURE",
+  USER_LOGOUT: "USER_LOGOUT",
 };
 
 export const alertTypes = {

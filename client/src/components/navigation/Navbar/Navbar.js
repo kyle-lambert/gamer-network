@@ -17,8 +17,6 @@ import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import AccountMenu from "../AccountMenu/AccountMenu";
 import Avatar from "../../shared/Avatar/Avatar";
 
-import avatar from "../../../assets/avatar.jpg";
-
 export const routes = [
   {
     id: uuidv4(),
@@ -27,17 +25,9 @@ export const routes = [
   },
 ];
 
-const user = {
-  id: 12345,
-  firstName: "Troy",
-  lastName: "Lambert",
-  hexColor: "#3498DB",
-  avatar: avatar,
-};
-
 function Navbar(props) {
   const dispatch = useDispatch();
-  const { userLoggedIn } = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = React.useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = React.useState(false);
 
@@ -87,7 +77,7 @@ function Navbar(props) {
         </ul>
       </nav>
 
-      {userLoggedIn ? (
+      {isAuthenticated ? (
         <div className="Navbar__avatar">
           <button onClick={toggleAccountMenu} className="Navbar__avatar-btn">
             <Avatar user={user} />

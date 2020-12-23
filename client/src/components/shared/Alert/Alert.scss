@@ -20,6 +20,14 @@
     border-radius: 12px;
     box-shadow: 1px 1px 10px rgba(30, 31, 32, 0.1);
     overflow: hidden;
+
+    &--success {
+      background-color: $success;
+    }
+
+    &--error {
+      background-color: $error;
+    }
   }
 
   &__msg {
@@ -27,32 +35,4 @@
     color: $text-dark;
     font-weight: 700;
   }
-
-  &--success {
-  }
-
-  &--error {
-  }
-}
-
-// Success state styles => primary color
-.alert__bar[data-success="true"] {
-  border-color: $primary;
-}
-.alert__bar[data-success="true"]::after {
-  background-color: $primary;
-}
-.alert__bar[data-success="true"] .alert__msg {
-  color: $primary;
-}
-
-// Error state styles => secondary color
-.alert__bar[data-error="true"] {
-  border-color: $secondary;
-}
-.alert__bar[data-error="true"]::after {
-  background-color: $secondary;
-}
-.alert__bar[data-error="true"] .alert__msg {
-  color: $secondary;
 }
