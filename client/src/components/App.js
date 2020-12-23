@@ -7,7 +7,7 @@ import Navbar from "../components/navigation/Navbar/Navbar";
 import FooterBar from "../components/shared/FooterBar/FooterBar";
 import LoginModal from "../components/modals/LoginModal/LoginModal";
 import SignUpModal from "../components/modals/SignUpModal/SignUpModal";
-import Alert from "../components/shared/Alert/Alert";
+import Alerts from "../components/shared/Alerts/Alerts";
 
 import LandingPage from "../pages/LandingPage/LandingPage";
 import AccountPage from "../pages/AccountPage/AccountPage";
@@ -23,7 +23,7 @@ function App(props) {
       <Navbar />
       {loginModalOpen && <LoginModal />}
       {signUpModalOpen && <SignUpModal />}
-      <Alert />
+      <Alerts />
       <main>
         <Switch>
           <Route exact path="/" component={LandingPage} />

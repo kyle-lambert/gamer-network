@@ -1,25 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import "./Alert.scss";
+import "./Alerts.scss";
 
-function Alert(props) {
+function Alerts(props) {
   const alerts = useSelector((state) => state.alert);
 
   const generateClassNames = ({ type }) => {
-    const output = ["Alert__bar"];
+    const output = ["Alerts__bar"];
 
-    if (type === "success") output.push("Alert__bar--success");
-    if (type === "error") output.push("Alert__bar--error");
+    if (type === "success") output.push("Alerts__bar--success");
+    if (type === "error") output.push("Alerts__bar--error");
 
     return output.join(" ");
   };
 
   return (
-    <ul className="Alert">
+    <ul className="Alerts">
       {alerts.map((alert) => {
         return (
           <li key={alert.id} className={generateClassNames(alert)}>
-            <span className="Alert__msg">{alert.msg}</span>
+            <span className="Alerts__msg">{alert.msg}</span>
           </li>
         );
       })}
@@ -27,4 +27,4 @@ function Alert(props) {
   );
 }
 
-export default Alert;
+export default Alerts;

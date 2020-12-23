@@ -1,12 +1,12 @@
 @import "../../../scss/partials/variables";
 
-.Alert {
+.Alerts {
   position: fixed;
   bottom: 30px;
   right: 30px;
   display: flex;
   flex-direction: column;
-  z-index: 899;
+  z-index: 9999;
 
   &__bar {
     height: 60px;

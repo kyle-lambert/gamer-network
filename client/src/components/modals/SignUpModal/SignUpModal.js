@@ -11,6 +11,7 @@ import FormInputGroup from "../../forms/FormInputGroup/FormInputGroup";
 import Button from "../../shared/Button/Button";
 
 import { setSignUpModalAction, setLoginModalAction } from "../../../store/actions/modalActions";
+import { registerUserAction } from "../../../store/actions/authActions";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 
 function SignUpModal(props) {
@@ -44,6 +45,14 @@ function SignUpModal(props) {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (state.firstName && state.lastName && state.email && state.password) {
+      dispatch(registerUserAction(state));
+    }
+  };
+
   const switchToLoginModal = () => {
     dispatch(setSignUpModalAction(false));
     dispatch(setLoginModalAction(true));
@@ -56,7 +65,7 @@ function SignUpModal(props) {
       <ModalClose closeModal={closeSignUpModal} />
       <ModalContent>
         <ModalHeader heading="Join Glitch!" subheading="Create an account here" />
-        <form className="SignUpModal__form">
+        <form onSubmit={handleSubmit} className="SignUpModal__form">
           <div className="SignUpModal__form-line SignUpModal__form-line--first">
             <FormInputGroup
               ref={firstNameRef}

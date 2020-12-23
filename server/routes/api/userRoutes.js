@@ -19,8 +19,8 @@ router.post(
     body("firstName", "First name is required").notEmpty(),
     body("lastName", "Last name is required").notEmpty(),
     body("email", "Email is invalid").isEmail(),
-    body("password", "Password must be atleast 6 characters").isLength({
-      min: 6,
+    body("password", "Password must be atleast 3 characters").isLength({
+      min: 3,
     }),
     validator,
   ],

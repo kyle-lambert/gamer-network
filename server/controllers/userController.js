@@ -42,7 +42,7 @@ async function registerUser(req, res) {
 async function updateEmail(req, res) {
   const { email } = req.body;
   try {
-    const user = User.findByIdAndUpdate(req.user._id, { email }, { new: true });
+    const user = await User.findByIdAndUpdate(req.user._id, { email }, { new: true });
 
     res.status(200).json({ user });
   } catch (error) {

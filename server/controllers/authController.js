@@ -6,10 +6,10 @@ async function authenticateUser(req, res) {
   const { email, password } = req.body;
 
   try {
-    const user = User.findOne({ email });
+    const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(404).json({ errors: [{ msg: "User does not exist" }] });
+      return res.status(404).json({ errors: [{ msg: "User doesn't exist" }] });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -18,10 +18,18 @@ async function authenticateUser(req, res) {
       return res.status(400).json({ errors: [{ msg: "Invalid credentials" }] });
     }
 
-    const payload = user;
+    const payload = {
+      id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    };
+
+    console.log(payload);
 
     jwt.sign(payload, process.env.JWT_SECRET, (error, token) => {
       if (error) {
+        console.log(error);
         return res.status(500).json({ errors: [{ msg: "Unable to generate token" }] });
       }
 
