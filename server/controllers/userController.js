@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 const Profile = require("../models/profileModel");
 const Review = require("../models/reviewModel");
+const getRandomHexColor = require("../utils/colors");
 
 async function registerUser(req, res) {
   const { firstName, lastName, email, password } = req.body;
@@ -18,6 +19,7 @@ async function registerUser(req, res) {
       lastName,
       email,
       password,
+      hexColor: getRandomHexColor(),
     });
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
