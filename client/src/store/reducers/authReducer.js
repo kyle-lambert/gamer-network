@@ -1,22 +1,11 @@
 import { authTypes } from "../types";
-import avatar from "../../assets/avatar.jpg";
-
-const user = {
-  id: 12345,
-  firstName: "Troy",
-  lastName: "Lambert",
-  hexColor: "#3498DB",
-  avatar: avatar,
-};
 
 const initState = {
   token: null,
   user: null,
   isAuthenticated: false,
   authenticationLoading: false,
-  authenticationFailure: false,
   registerLoading: false,
-  registerFailure: false,
 };
 
 function authReducer(state = initState, action) {
@@ -37,7 +26,6 @@ function authReducer(state = initState, action) {
       return {
         ...state,
         registerLoading: false,
-        registerFailure: true,
       };
     }
     case authTypes.AUTHENTICATE_USER_REQUEST: {
@@ -60,17 +48,10 @@ function authReducer(state = initState, action) {
       return {
         ...state,
         authenticationLoading: false,
-        authenticationFailure: true,
       };
     }
     case authTypes.USER_LOGOUT: {
-      return {
-        token: null,
-        user: null,
-        isAuthenticated: false,
-        authenticationLoading: false,
-        authenticationFailure: false,
-      };
+      return initState;
     }
     default: {
       return state;

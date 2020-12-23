@@ -4,7 +4,7 @@ const initState = [];
 
 function alertReducer(state = initState, action) {
   switch (action.type) {
-    case alertTypes.SET_ALERT: {
+    case alertTypes.ADD_ALERT: {
       return [...state, action.payload];
     }
     case alertTypes.REMOVE_ALERT: {
