@@ -1,11 +1,12 @@
 import { authTypes } from "../types";
-import { setAlertAction } from "./alertActions";
+import { publishAlertAction } from "./alertActions";
+import { hideCurrentModalAction, showLoginModalAction } from "./modalActions";
 import api from "../../data/api";
 
 export const logoutUserAction = () => {
   return (dispatch) => {
     dispatch({ type: authTypes.USER_LOGOUT });
-    dispatch(setAlertAction("Logout Success"));
+    dispatch(publishAlertAction("Logout Success", "success"));
   };
 };
 
@@ -24,14 +25,15 @@ export const registerUserAction = (form) => {
       })
       .then((res) => {
         dispatch({ type: authTypes.REGISTER_USER_SUCCESS });
-        dispatch(setAlertAction("Register success", "success"));
+        dispatch(showLoginModalAction());
+        dispatch(publishAlertAction("Register success", "success"));
       })
       .catch((err) => {
         const errors = err.response.data.errors;
 
         if (errors) {
           errors.forEach((error) => {
-            dispatch(setAlertAction(error.msg, "error"));
+            dispatch(publishAlertAction(error.msg, "error"));
           });
         }
 
@@ -52,16 +54,16 @@ export const authenticateUserAction = (form) => {
         password,
       })
       .then((res) => {
-        console.log(res);
-        // dispatch({ type: authTypes.AUTHENTICATE_USER_SUCCESS });
-        dispatch(setAlertAction("Login success", "success"));
+        dispatch({ type: authTypes.AUTHENTICATE_USER_SUCCESS, payload: res.data });
+        dispatch(hideCurrentModalAction());
+        dispatch(publishAlertAction("Login success", "success"));
       })
       .catch((err) => {
         const errors = err.response.data.errors;
 
         if (errors && Array.isArray(errors)) {
           errors.forEach((error) => {
-            dispatch(setAlertAction(error.msg, "error"));
+            dispatch(publishAlertAction(error.msg, "error"));
           });
         }
 
