@@ -1,0 +1,12 @@
+@import "../../../scss/partials/variables";
+
+.PageLayout {
+  margin: 0 auto;
+  padding: 80px 30px;
+  max-width: 1440px;
+  min-height: calc(100vh - 80px);
+
+  @media (min-width: $mobile) {
+    padding: 80px 10%;
+  }
+}

@@ -1,0 +1,30 @@
+@import "../../scss/partials/variables";
+
+.AccountPage {
+  width: 100%;
+  display: grid;
+  column-gap: 30px;
+  row-gap: 30px;
+  overflow: hidden;
+
+  @media (min-width: $laptop) {
+    display: flex;
+    grid-template-columns: repeat(2, auto);
+  }
+
+  &__tabs {
+    width: 100%;
+
+    @media (min-width: $laptop) {
+      max-width: 300px;
+    }
+  }
+
+  &__main {
+    width: 100%;
+
+    @media (min-width: $laptop) {
+      padding: 10px 0;
+    }
+  }
+}

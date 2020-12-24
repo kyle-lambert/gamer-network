@@ -1,28 +1,14 @@
-@import "../../scss/partials/variables";
+@import "../../../scss/partials/variables";
 
-.account-nav {
-  width: 100%;
-  overflow: hidden;
-  margin: 80px 0;
-
-  @media (min-width: $tablet) {
-    display: flex;
-  }
-
-  &__sidebar {
-    background-color: $background-tertiary;
-    border-radius: 12px;
-
-    @media (min-width: $tablet) {
-      width: 250px;
-    }
-  }
+.AccountTabs {
+  background-color: $background-tertiary;
+  border-radius: 12px;
 
   &__list {
     display: flex;
     padding: 7px;
 
-    @media (min-width: $tablet) {
+    @media (min-width: $laptop) {
       flex-direction: column;
     }
   }
@@ -35,7 +21,7 @@
       margin-right: unset;
     }
 
-    @media (min-width: $tablet) {
+    @media (min-width: $laptop) {
       margin-right: unset;
       margin-bottom: 7px;
 
@@ -49,11 +35,11 @@
     display: inline-block;
     width: 100%;
     text-align: center;
-    padding: 7px 10px;
+    padding: 10px;
     border-radius: 8px;
     color: $text-secondary;
 
-    @media (min-width: $tablet) {
+    @media (min-width: $laptop) {
       text-align: left;
     }
 
@@ -64,17 +50,6 @@
     &--active {
       color: $text-primary;
       background-color: rgba(255, 255, 255, 0.1);
-    }
-  }
-
-  &__main {
-    margin: 30px 0;
-    padding: 0 10px;
-
-    @media (min-width: $tablet) {
-      margin: 0 40px;
-      padding: 20px 0;
-      flex: 1;
     }
   }
 }

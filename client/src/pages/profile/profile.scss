@@ -6,10 +6,6 @@
   max-width: 1270px;
   min-height: 100vh;
 
-  @media (min-width: $tablet) {
-    padding: 80px 40px;
-  }
-
   &__header {
     display: flex;
     flex-direction: column;

@@ -28,7 +28,7 @@ function App(props) {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/error" component={ErrorPage} />
-          <PrivateRoute exact path="/account" component={AccountPage} />
+          <PrivateRoute path="/account" component={AccountPage} />
           <Route exact path="/profile/:id" component={ProfilePage} />
           <Route>
             <Redirect to="/error" />

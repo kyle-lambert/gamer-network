@@ -1,0 +1,32 @@
+.AccountGeneral {
+  &__form {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "email email"
+      "current-password new-password"
+      "submit submit";
+    row-gap: 15px;
+    column-gap: 15px;
+  }
+
+  &__item {
+    &--email {
+      grid-area: email;
+    }
+    &--current-password {
+      grid-area: current-password;
+    }
+    &--new-password {
+      grid-area: new-password;
+    }
+    &--submit {
+      grid-area: submit;
+    }
+
+    &:last-child {
+      margin-top: 15px;
+    }
+  }
+}
