@@ -59,13 +59,18 @@ export const authenticateUserAction = (form) => {
         dispatch(publishAlertAction("Login success", "success"));
       })
       .catch((err) => {
-        const errors = err.response.data.errors;
-
-        if (errors && Array.isArray(errors)) {
-          errors.forEach((error) => {
-            dispatch(publishAlertAction(error.msg, "error"));
-          });
+        if (err.response) {
+          if (err.response) {
+            console.log(err.response);
+          }
+        } else {
+          dispatch(publishAlertAction("Unable to make request", "error"));
         }
+        // if (errors && Array.isArray(errors)) {
+        //   errors.forEach((error) => {
+        //     dispatch(publishAlertAction(error.msg, "error"));
+        //   });
+        // }
 
         dispatch({ type: authTypes.AUTHENTICATE_USER_FAILURE });
       });

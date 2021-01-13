@@ -25,8 +25,6 @@ async function authenticateUser(req, res) {
       email: user.email,
     };
 
-    console.log(payload);
-
     jwt.sign(payload, process.env.JWT_SECRET, (error, token) => {
       if (error) {
         console.log(error);
