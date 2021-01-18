@@ -1,0 +1,58 @@
+@import "../../../scss/partials/variables";
+
+.ProfileTabs {
+  margin-top: 60px;
+
+  &__nav {
+    background-color: $background-tertiary;
+    padding: 7px;
+    border-radius: 12px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $tablet) {
+      flex-direction: row;
+    }
+  }
+
+  &__item {
+    margin-bottom: 7px;
+    flex: 1;
+
+    &:last-child {
+      margin-bottom: unset;
+    }
+
+    @media (min-width: $tablet) {
+      margin: unset;
+      margin-right: 7px;
+
+      &:last-child {
+        margin-right: unset;
+      }
+    }
+  }
+
+  &__link {
+    display: flex;
+    height: 45px;
+    padding: 0 12px;
+    align-items: center;
+    justify-content: center;
+    color: $text-secondary;
+
+    &:hover:not(&--active) {
+      color: $text-primary;
+      border-radius: 8px;
+    }
+
+    &--active {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: $text-primary;
+    }
+  }
+}

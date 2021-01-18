@@ -1,0 +1,53 @@
+@import "../../../scss/partials/variables";
+
+.ProfileHeader {
+  margin-bottom: 60px;
+  text-align: center;
+
+  &__avatar {
+    display: inline-block;
+    width: 130px;
+    height: 130px;
+  }
+
+  &__heading {
+    margin-top: 20px;
+    font-size: 50px;
+  }
+
+  &__subheading {
+    font-size: 20px;
+    margin-top: 10px;
+    color: $text-secondary;
+  }
+
+  // &__name {
+  //   margin-top: 20px;
+  //   font-size: 50px;
+  // }
+
+  // &__icon-list {
+  //   margin-top: 20px;
+  //   display: flex;
+  //   justify-content: center;
+  //   flex-wrap: wrap;
+  // }
+
+  // &__icon-item {
+  //   display: flex;
+  //   align-items: center;
+  //   margin-bottom: 10px;
+  //   padding: 0 25px;
+  // }
+
+  // &__icon-text {
+  //   margin-left: 15px;
+  //   color: $text-primary;
+  //   font-weight: 600;
+  // }
+
+  &__copy {
+    margin-top: 10px;
+    color: $text-secondary;
+  }
+}
