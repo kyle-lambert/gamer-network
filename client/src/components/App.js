@@ -8,6 +8,7 @@ import FooterBar from "../components/shared/FooterBar/FooterBar";
 import LoginModal from "../components/modals/LoginModal/LoginModal";
 import SignUpModal from "../components/modals/SignUpModal/SignUpModal";
 import Alerts from "../components/shared/Alerts/Alerts";
+import PageLayout from "../components/shared/PageLayout/PageLayout";
 
 import LandingPage from "../pages/LandingPage/LandingPage";
 import AccountPage from "../pages/AccountPage/AccountPage";
@@ -21,19 +22,21 @@ function App(props) {
   return (
     <div className="App">
       <Navbar />
-      {currentModal === "LOGIN_MODAL" && <LoginModal />}
-      {currentModal === "SIGN_UP_MODAL" && <SignUpModal />}
-      <Alerts />
       <main>
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/error" component={ErrorPage} />
-          <PrivateRoute path="/account" component={AccountPage} />
-          <PrivateRoute path="/profile/:id" component={ProfilePage} />
-          <Route>
-            <Redirect to="/error" />
-          </Route>
-        </Switch>
+        <PageLayout>
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/error" component={ErrorPage} />
+            <PrivateRoute path="/account" component={AccountPage} />
+            <PrivateRoute path="/profile/:id" component={ProfilePage} />
+            <Route>
+              <Redirect to="/error" />
+            </Route>
+          </Switch>
+        </PageLayout>
+        <Alerts />
+        {currentModal === "LOGIN_MODAL" && <LoginModal />}
+        {currentModal === "SIGN_UP_MODAL" && <SignUpModal />}
       </main>
       <FooterBar />
     </div>

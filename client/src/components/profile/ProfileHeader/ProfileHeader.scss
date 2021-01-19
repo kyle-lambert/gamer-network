@@ -1,7 +1,6 @@
 @import "../../../scss/partials/variables";
 
 .ProfileHeader {
-  margin-bottom: 60px;
   text-align: center;
 
   &__avatar {
@@ -13,12 +12,6 @@
   &__heading {
     margin-top: 20px;
     font-size: 50px;
-  }
-
-  &__subheading {
-    font-size: 20px;
-    margin-top: 10px;
-    color: $text-secondary;
   }
 
   // &__name {

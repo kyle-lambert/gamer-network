@@ -6,19 +6,17 @@ import AccountGeneral from "./AccountGeneral/AccountGeneral";
 import AccountProfile from "./AccountProfile/AccountProfile";
 import AccountDelete from "./AccountDelete/AccountDelete";
 
-import PageLayout from "../../components/shared/PageLayout/PageLayout";
 import PageHeader from "../../components/shared/PageHeader/PageHeader";
-
 import AccountTabs from "../../components/account/AccountTabs/AccountTabs";
 
 function AccountPage(props) {
   return (
-    <PageLayout>
+    <div className="AccountPage">
       <PageHeader
         heading="Account"
         subheading="Update your profile and set your account preferences"
       />
-      <div className="AccountPage">
+      <div className="AccountPage__grid">
         <div className="AccountPage__tabs">
           <AccountTabs />
         </div>
@@ -33,7 +31,7 @@ function AccountPage(props) {
           </Switch>
         </div>
       </div>
-    </PageLayout>
+    </div>
   );
 }
 

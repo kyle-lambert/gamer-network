@@ -1,15 +1,17 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./ProfilePage.scss";
 
 import PageLayout from "../../components/shared/PageLayout/PageLayout";
+import LoadingSpinner from "../../components/shared/LoadingSpinner/LoadingSpinner";
+import FetchingError from "../../components/shared/FetchingError/FetchingError";
 
 import ProfileHeader from "../../components/profile/ProfileHeader/ProfileHeader";
 import ProfileTabs from "../../components/profile/ProfileTabs/ProfileTabs";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ProfilePosts from "./ProfilePosts/ProfilePosts";
-import ProfileFriends from "./ProfileInfo/ProfileFriends";
+import ProfileFriends from "./ProfileFriends/ProfileFriends";
 
 import Portrait from "../../assets/avatar.jpg";
 
@@ -21,18 +23,23 @@ const user = {
 };
 
 function ProfilePage(props) {
-  const state = useSelector((state) => state.profile);
+  const { profile, profileLoading, profileError } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
+  const params = useParams();
 
   React.useEffect(() => {
     // Fetch user profile
-    console.log(state);
+    console.log({ profile, profileLoading, profileError });
   }, []);
 
-  return (
-    <PageLayout>
-      <ProfileHeader user={user} />
+  if (profileLoading) {
+    return <LoadingSpinner />;
+  } else if (profileError) {
+    return <FetchingError />;
+  } else {
+    return (
       <div className="ProfilePage">
+        <ProfileHeader user={user} />
         <div className="ProfilePage__tabs">
           <ProfileTabs />
         </div>
@@ -47,8 +54,8 @@ function ProfilePage(props) {
           </Switch>
         </div>
       </div>
-    </PageLayout>
-  );
+    );
+  }
 }
 
 export default ProfilePage;

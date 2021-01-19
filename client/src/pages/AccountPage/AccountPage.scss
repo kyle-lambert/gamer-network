@@ -1,15 +1,17 @@
 @import "../../scss/partials/variables";
 
 .AccountPage {
-  width: 100%;
-  display: grid;
-  column-gap: 30px;
-  row-gap: 30px;
-  overflow: hidden;
+  &__grid {
+    width: 100%;
+    display: grid;
+    column-gap: 30px;
+    row-gap: 30px;
+    overflow: hidden;
 
-  @media (min-width: $laptop) {
-    display: flex;
-    grid-template-columns: repeat(2, auto);
+    @media (min-width: $laptop) {
+      display: flex;
+      grid-template-columns: repeat(2, auto);
+    }
   }
 
   &__tabs {
