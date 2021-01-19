@@ -2,6 +2,7 @@
 
 .LoadingSpinner {
   position: absolute;
+  padding: 7px;
   top: 50%;
   left: 50%;
   z-index: 2099;
@@ -9,14 +10,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: $background-secondary;
+  border-radius: 50%;
 
   &__circle {
     display: block;
     width: 40px;
     height: 40px;
-    border: 3px solid $border;
-    border-top-color: $dark;
-    border-right-color: $dark;
+    border: 3px solid $background-secondary;
+    border-top-color: $background-white;
+    border-right-color: $background-white;
     border-radius: 50%;
+    animation-name: infinite-spinning;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 500ms;
+  }
+}
+
+@keyframes infinite-spinning {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
