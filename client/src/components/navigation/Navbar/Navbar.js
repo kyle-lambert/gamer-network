@@ -44,7 +44,7 @@ function Navbar(props) {
   };
 
   return (
-    <div className="Navbar">
+    <header className="Navbar">
       <div className="Navbar__hamburger">
         <button onClick={toggleHamburgerMenu} className="Navbar__hamburger-btn">
           <Icon>
@@ -102,7 +102,7 @@ function Navbar(props) {
       {accountMenuOpen && (
         <AccountMenu closeAccountMenu={closeAccountMenu} user={user} logoutUser={logoutUser} />
       )}
-    </div>
+    </header>
   );
 }
 
