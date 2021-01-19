@@ -5,7 +5,6 @@ import "./ProfileTabs.scss";
 function ProfileTabs(props) {
   const params = useParams();
 
-  console.log(params);
   return (
     <nav className="ProfileTabs__nav">
       <ul className="ProfileTabs__list">
