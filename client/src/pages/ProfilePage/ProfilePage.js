@@ -1,9 +1,14 @@
 import React from "react";
+import axios from "axios";
 import { Switch, Route, Redirect, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./ProfilePage.scss";
 
-import PageLayout from "../../components/shared/PageLayout/PageLayout";
+import {
+  getProfileByIdAction,
+  resetProfileReducerAction,
+} from "../../store/actions/profileActions";
+
 import LoadingSpinner from "../../components/shared/LoadingSpinner/LoadingSpinner";
 import FetchingError from "../../components/shared/FetchingError/FetchingError";
 
@@ -25,19 +30,25 @@ const user = {
 function ProfilePage(props) {
   const { profile, profileLoading, profileError } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
-  const params = useParams();
+  const { id } = useParams();
 
   React.useEffect(() => {
-    // Fetch user profile
-    console.log({ profile, profileLoading, profileError });
-  }, []);
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+    dispatch(getProfileByIdAction(id, source.token));
+
+    return () => {
+      dispatch(resetProfileReducerAction());
+      source.cancel("Axios request canceled.");
+    };
+  }, [id]);
 
   if (profileLoading) {
     return <LoadingSpinner />;
   } else if (profileError) {
     return <FetchingError />;
   } else {
-    return (
+    return profile ? (
       <div className="ProfilePage">
         <ProfileHeader user={user} />
         <div className="ProfilePage__tabs">
@@ -54,7 +65,7 @@ function ProfilePage(props) {
           </Switch>
         </div>
       </div>
-    );
+    ) : null;
   }
 }
 
