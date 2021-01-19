@@ -6,18 +6,18 @@ const profileSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  fullName: {
-    type: String,
-    required: true,
-  },
   description: {
+    type: String,
+  },
+  gamertag: {
+    type: String,
+  },
+  platform: {
     type: String,
   },
   location: {
     type: String,
   },
-  games: [{ type: mongoose.Schema.Types.ObjectId, ref: "Game" }],
-  reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
 });
 
 module.exports = mongoose.model("Profile", profileSchema);
