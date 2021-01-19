@@ -6,14 +6,12 @@ const initState = {
   profileError: false,
 };
 
-// USER_PROFILE_REQUEST => Resets reducer to initial state on every request
 function profileReducer(state = initState, action) {
-  switch (action.payload) {
+  switch (action.type) {
     case profileTypes.USER_PROFILE_REQUEST: {
       return {
-        profile: null,
+        ...state,
         profileLoading: true,
-        profileError: false,
       };
     }
     case profileTypes.USER_PROFILE_SUCCESS: {
@@ -26,8 +24,15 @@ function profileReducer(state = initState, action) {
     case profileTypes.USER_PROFILE_FAILURE: {
       return {
         ...state,
+        profileLoading: false,
         profileError: true,
       };
+    }
+    case profileTypes.RESET_PROFILE_REDUCER: {
+      return initState;
+    }
+    default: {
+      return state;
     }
   }
 }

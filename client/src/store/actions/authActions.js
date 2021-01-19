@@ -60,9 +60,7 @@ export const authenticateUserAction = (form) => {
       })
       .catch((err) => {
         if (err.response) {
-          if (err.response) {
-            console.log(err.response);
-          }
+          console.log(err.response);
         } else {
           dispatch(publishAlertAction("Unable to make request", "error"));
         }
