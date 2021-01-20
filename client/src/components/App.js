@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./App.scss";
 
 import Navbar from "../components/navigation/Navbar/Navbar";
@@ -17,8 +17,18 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 import PrivateRoute from "../hoc/PrivateRoute";
 
+import { loadUserByToken } from "../store/actions/authActions";
+
 function App(props) {
   const { currentModal } = useSelector((state) => state.modal);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (localStorage.token) {
+      // dispatch(loadUserByToken(localStorage.token))
+    }
+  }, []);
+
   return (
     <div className="App">
       <Navbar />
