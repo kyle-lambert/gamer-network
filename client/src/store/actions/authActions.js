@@ -93,8 +93,6 @@ export const loadUserAction = () => {
     api
       .get("/auth")
       .then((res) => {
-        console.log(res);
-
         batch(() => {
           dispatch({ type: authTypes.LOAD_USER_SUCCESS, payload: res.data.user });
           dispatch(publishAlertAction("Login success", "success"));
