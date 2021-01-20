@@ -1,12 +1,16 @@
+import { batch } from "react-redux";
 import { authTypes } from "../types";
 import { publishAlertAction } from "./alertActions";
 import { hideCurrentModalAction, showLoginModalAction } from "./modalActions";
+import setAuthorisationToken from "../../utils/setAuthorisationToken";
 import api from "../../data/api";
 
 export const logoutUserAction = () => {
   return (dispatch) => {
-    dispatch({ type: authTypes.USER_LOGOUT });
-    dispatch(publishAlertAction("Logout Success", "success"));
+    batch(() => {
+      dispatch({ type: authTypes.USER_LOGOUT });
+      dispatch(publishAlertAction("Logout Success", "success"));
+    });
   };
 };
 
@@ -24,15 +28,19 @@ export const registerUserAction = (form) => {
         password,
       })
       .then((res) => {
-        dispatch({ type: authTypes.REGISTER_USER_SUCCESS });
-        dispatch(showLoginModalAction());
-        dispatch(publishAlertAction("Register success", "success"));
+        batch(() => {
+          dispatch({ type: authTypes.REGISTER_USER_SUCCESS });
+          dispatch(showLoginModalAction());
+          dispatch(publishAlertAction("Register success", "success"));
+        });
       })
       .catch((err) => {
-        const errors = err.response.data.errors;
+        if (!err.response) {
+          return dispatch(publishAlertAction("Unable to make request", "error"));
+        }
 
-        if (errors) {
-          errors.forEach((error) => {
+        if (Array.isArray(err?.response?.data?.errors)) {
+          err.response.data.errors.forEach((error) => {
             dispatch(publishAlertAction(error.msg, "error"));
           });
         }
@@ -54,23 +62,55 @@ export const authenticateUserAction = (form) => {
         password,
       })
       .then((res) => {
-        dispatch({ type: authTypes.AUTHENTICATE_USER_SUCCESS, payload: res.data });
-        dispatch(hideCurrentModalAction());
-        dispatch(publishAlertAction("Login success", "success"));
+        batch(() => {
+          dispatch({ type: authTypes.AUTHENTICATE_USER_SUCCESS, payload: res.data });
+          dispatch(hideCurrentModalAction());
+          dispatch(publishAlertAction("Login success", "success"));
+        });
+        setAuthorisationToken(res.data.token);
       })
       .catch((err) => {
-        if (err.response) {
-          console.log(err.response);
-        } else {
-          dispatch(publishAlertAction("Unable to make request", "error"));
+        if (!err.response) {
+          return dispatch(publishAlertAction("Unable to make request", "error"));
         }
-        // if (errors && Array.isArray(errors)) {
-        //   errors.forEach((error) => {
-        //     dispatch(publishAlertAction(error.msg, "error"));
-        //   });
-        // }
+
+        if (Array.isArray(err?.response?.data?.errors)) {
+          err.response.data.errors.forEach((error) => {
+            dispatch(publishAlertAction(error.msg, "error"));
+          });
+        }
 
         dispatch({ type: authTypes.AUTHENTICATE_USER_FAILURE });
       });
+  };
+};
+
+export const loadUserByToken = (token) => {
+  return (dispatch) => {
+    if (token) {
+      dispatch({ type: authTypes.LOAD_USER_REQUEST });
+
+      api
+        .get("/auth")
+        .then((res) => {
+          console.log(res);
+          // dispatch({ type: authTypes.AUTHENTICATE_USER_SUCCESS, payload: res.data });
+          // dispatch(hideCurrentModalAction());
+          // dispatch(publishAlertAction("Login success", "success"));
+        })
+        .catch((err) => {
+          if (!err.response) {
+            return dispatch(publishAlertAction("Unable to make request", "error"));
+          }
+
+          if (Array.isArray(err?.response?.data?.errors)) {
+            err.response.data.errors.forEach((error) => {
+              dispatch(publishAlertAction(error.msg, "error"));
+            });
+          }
+
+          dispatch({ type: authTypes.LOAD_USER_FAILURE });
+        });
+    }
   };
 };
