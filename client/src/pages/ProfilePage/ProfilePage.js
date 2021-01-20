@@ -41,7 +41,7 @@ function ProfilePage(props) {
       dispatch(resetProfileReducerAction());
       source.cancel("Axios request canceled.");
     };
-  }, [id]);
+  }, [dispatch, id]);
 
   if (profileLoading) {
     return <LoadingSpinner />;
