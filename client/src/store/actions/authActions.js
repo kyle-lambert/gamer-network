@@ -11,6 +11,7 @@ export const logoutUserAction = () => {
       dispatch({ type: authTypes.USER_LOGOUT });
       dispatch(publishAlertAction("Logout Success", "success"));
     });
+    window.localStorage.removeItem("token");
   };
 };
 
@@ -85,32 +86,32 @@ export const authenticateUserAction = (form) => {
   };
 };
 
-export const loadUserByToken = (token) => {
+export const loadUserAction = () => {
   return (dispatch) => {
-    if (token) {
-      dispatch({ type: authTypes.LOAD_USER_REQUEST });
+    dispatch({ type: authTypes.LOAD_USER_REQUEST });
 
-      api
-        .get("/auth")
-        .then((res) => {
-          console.log(res);
-          // dispatch({ type: authTypes.AUTHENTICATE_USER_SUCCESS, payload: res.data });
-          // dispatch(hideCurrentModalAction());
-          // dispatch(publishAlertAction("Login success", "success"));
-        })
-        .catch((err) => {
-          if (!err.response) {
-            return dispatch(publishAlertAction("Unable to make request", "error"));
-          }
+    api
+      .get("/auth")
+      .then((res) => {
+        console.log(res);
 
-          if (Array.isArray(err?.response?.data?.errors)) {
-            err.response.data.errors.forEach((error) => {
-              dispatch(publishAlertAction(error.msg, "error"));
-            });
-          }
-
-          dispatch({ type: authTypes.LOAD_USER_FAILURE });
+        batch(() => {
+          dispatch({ type: authTypes.LOAD_USER_SUCCESS, payload: res.data.user });
+          dispatch(publishAlertAction("Login success", "success"));
         });
-    }
+      })
+      .catch((err) => {
+        if (!err.response) {
+          return dispatch(publishAlertAction("Unable to make request", "error"));
+        }
+
+        if (Array.isArray(err?.response?.data?.errors)) {
+          err.response.data.errors.forEach((error) => {
+            dispatch(publishAlertAction(error.msg, "error"));
+          });
+        }
+
+        dispatch({ type: authTypes.LOAD_USER_FAILURE });
+      });
   };
 };

@@ -17,7 +17,9 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 import PrivateRoute from "../hoc/PrivateRoute";
 
-import { loadUserByToken } from "../store/actions/authActions";
+import { loadUserAction } from "../store/actions/authActions";
+import { logoutUserAction } from "../store/actions/authActions";
+import setAuthorisationToken from "../utils/setAuthorisationToken";
 
 function App(props) {
   const { currentModal } = useSelector((state) => state.modal);
@@ -25,9 +27,22 @@ function App(props) {
 
   React.useEffect(() => {
     if (localStorage.token) {
-      // dispatch(loadUserByToken(localStorage.token))
+      setAuthorisationToken(localStorage.token);
+      dispatch(loadUserAction());
     }
-  }, []);
+
+    const handleStorageChange = () => {
+      if (!localStorage.token) {
+        dispatch(logoutUserAction());
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, [dispatch]);
 
   return (
     <div className="App">
