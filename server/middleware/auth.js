@@ -9,7 +9,7 @@ async function auth(req, res, next) {
 
   try {
     const decodedPayload = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decodedPayload;
+    req.userId = decodedPayload.id;
 
     next();
   } catch (error) {

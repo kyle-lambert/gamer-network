@@ -2,6 +2,20 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 
+async function getUserByToken(req, res) {
+  try {
+    const user = await User.findById(res.userId).select(["-password", "-email"]);
+
+    if (!user) {
+      return res.status(404).json({ errors: [{ msg: "User doesn't exist" }] });
+    }
+
+    return res.status(200).json({ user });
+  } catch (error) {
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
+  }
+}
+
 async function authenticateUser(req, res) {
   const { email, password } = req.body;
 
@@ -20,9 +34,6 @@ async function authenticateUser(req, res) {
 
     const payload = {
       id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
     };
 
     jwt.sign(payload, process.env.JWT_SECRET, (error, token) => {
@@ -42,5 +53,6 @@ async function authenticateUser(req, res) {
 }
 
 module.exports = {
+  getUserByToken,
   authenticateUser,
 };
