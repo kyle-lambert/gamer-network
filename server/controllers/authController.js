@@ -4,7 +4,7 @@ const User = require("../models/userModel");
 
 async function getUserByToken(req, res) {
   try {
-    const user = await User.findById(res.userId).select(["-password", "-email"]);
+    const user = await User.findById(req.userId).select(["-password", "-email"]);
 
     if (!user) {
       return res.status(404).json({ errors: [{ msg: "User doesn't exist" }] });
