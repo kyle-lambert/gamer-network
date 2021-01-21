@@ -4,7 +4,9 @@ import "./LoadingSpinner.scss";
 function LoadingSpinner(props) {
   return (
     <div className="LoadingSpinner">
-      <span className="LoadingSpinner__circle"></span>
+      <div className="LoadingSpinner__outer">
+        <span className="LoadingSpinner__circle"></span>
+      </div>
     </div>
   );
 }
