@@ -86,7 +86,9 @@ function Navbar(props) {
       ) : (
         <ul className="Navbar__cta">
           <li className="Navbar__cta-item">
-            <Button onClick={openLoginModal}>Login</Button>
+            <Button onClick={openLoginModal} outline>
+              Login
+            </Button>
           </li>
           <li className="Navbar__cta-item">
             <Button onClick={openSignUpModal} primary>

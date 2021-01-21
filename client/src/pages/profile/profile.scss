@@ -34,13 +34,13 @@
 
   &__icon-text {
     margin-left: 15px;
-    color: $text-primary;
+    color: $white;
     font-weight: 600;
   }
 
   &__description {
     margin-top: 25px;
-    color: $text-secondary;
+    color: $medium-grey;
 
     @media (min-width: $tablet) {
       width: 80%;

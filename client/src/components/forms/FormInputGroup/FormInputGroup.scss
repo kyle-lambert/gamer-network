@@ -3,7 +3,7 @@
 .FormInputGroup {
   &__label {
     display: block;
-    color: $text-secondary;
+    color: $medium-grey;
     margin-bottom: 7px;
   }
 
@@ -12,13 +12,13 @@
     width: 100%;
     font-size: inherit;
     font-weight: inherit;
-    color: $text-primary;
+    color: $white;
     background-color: $background-tertiary;
     border: 1px solid transparent;
     border-radius: 8px;
 
     &:focus {
-      border-color: $brand-secondary;
+      border-color: $background-white;
     }
 
     &::placeholder {

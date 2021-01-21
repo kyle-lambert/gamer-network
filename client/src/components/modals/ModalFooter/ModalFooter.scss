@@ -9,7 +9,7 @@
   background-color: $background-secondary;
 
   &__copy {
-    color: $text-secondary;
+    color: $medium-grey;
     text-align: center;
   }
 
@@ -17,12 +17,13 @@
     display: inline-block;
     margin-left: 15px;
     font-size: inherit;
-    font-weight: 700;
-    color: $text-primary;
+    font-weight: 600;
+    color: $white;
     text-decoration: underline;
+    transition: color 150ms ease;
 
     &:hover {
-      color: $brand-secondary;
+      color: $orange;
     }
   }
 }

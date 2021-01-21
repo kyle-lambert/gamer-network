@@ -9,7 +9,7 @@ import useOutsideClick from "../../../hooks/useOutsideClick";
 
 function HamburgerMenu({ closeHamburgerMenu, openSignUpModal }) {
   const hamburgerRef = React.useRef(null);
-  const { userLoggedIn } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   useOutsideClick(hamburgerRef, () => {
     closeHamburgerMenu();
@@ -48,9 +48,9 @@ function HamburgerMenu({ closeHamburgerMenu, openSignUpModal }) {
           </NavLink>
         </li>
       </ul>
-      {!userLoggedIn && (
+      {!isAuthenticated && (
         <div className="HamburgerMenu__auth">
-          <Button onClick={handleClick} primary full>
+          <Button onClick={handleClick} secondary full>
             Sign up
           </Button>
         </div>

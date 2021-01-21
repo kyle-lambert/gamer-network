@@ -73,7 +73,7 @@ function AccountProfile(props) {
           />
         </div>
         <div className="AccountProfile__item AccountProfile__item--submit">
-          <Button error>Save changes</Button>
+          <Button primary>Save changes</Button>
         </div>
       </form>
     </section>
