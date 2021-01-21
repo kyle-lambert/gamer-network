@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./SignUpModal.scss";
 
 import Modal from "../Modal/Modal";
@@ -16,6 +16,7 @@ import { registerUserAction } from "../../../store/actions/authActions";
 function SignUpModal(props) {
   const firstNameRef = React.useRef(null);
   const dispatch = useDispatch();
+  const { registerLoading } = useSelector((state) => state.auth);
 
   const [state, setState] = React.useState({
     firstName: "",
@@ -93,7 +94,7 @@ function SignUpModal(props) {
             />
           </div>
           <div className="SignUpModal__form-line SignUpModal__form-line--submit">
-            <Button primary full>
+            <Button secondary full isLoading={registerLoading}>
               Create Account
             </Button>
           </div>

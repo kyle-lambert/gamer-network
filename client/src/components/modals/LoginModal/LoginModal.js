@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./LoginModal.scss";
 
 import Modal from "../Modal/Modal";
@@ -16,6 +16,7 @@ import { authenticateUserAction } from "../../../store/actions/authActions";
 function LoginModal(props) {
   const emailRef = React.useRef(null);
   const dispatch = useDispatch();
+  const { authenticationLoading } = useSelector((state) => state.auth);
 
   const [state, setState] = React.useState({
     email: "",
@@ -72,7 +73,7 @@ function LoginModal(props) {
             />
           </div>
           <div className="LoginModal__form-line">
-            <Button primary full>
+            <Button secondary full isLoading={authenticationLoading}>
               Login
             </Button>
           </div>
