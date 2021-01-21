@@ -6,6 +6,7 @@
 
   &__list {
     display: flex;
+    flex-direction: column;
     padding: 7px;
 
     @media (min-width: $laptop) {
@@ -15,19 +16,10 @@
 
   &__item {
     flex: 1;
-    margin-right: 7px;
+    margin-bottom: 7px;
 
     &:last-child {
-      margin-right: unset;
-    }
-
-    @media (min-width: $laptop) {
-      margin-right: unset;
-      margin-bottom: 7px;
-
-      &:last-child {
-        margin-bottom: unset;
-      }
+      margin-bottom: unset;
     }
   }
 
@@ -35,7 +27,7 @@
     display: inline-block;
     width: 100%;
     text-align: center;
-    padding: 10px;
+    padding: 7px;
     border-radius: 8px;
     color: $text-secondary;
 

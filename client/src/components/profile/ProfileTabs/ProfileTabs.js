@@ -6,7 +6,7 @@ function ProfileTabs(props) {
   const params = useParams();
 
   return (
-    <nav className="ProfileTabs__nav">
+    <nav className="ProfileTabs">
       <ul className="ProfileTabs__list">
         <li className="ProfileTabs__item">
           <NavLink
