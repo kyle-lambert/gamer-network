@@ -6,33 +6,37 @@
   right: 30px;
   display: flex;
   flex-direction: column;
-  z-index: 9999;
+  z-index: 999;
 
   &__bar {
-    height: 60px;
-    padding: 15px;
-    margin: 5px;
-    min-width: 220px;
+    padding: 12px 16px;
+    min-width: 200px;
     display: flex;
-    background-color: $brand-secondary;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
-    box-shadow: 1px 1px 10px rgba(30, 31, 32, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(30, 31, 32, 0.1);
     overflow: hidden;
+    border: 2px solid $grey-dark;
+    background-color: $grey-light;
+    color: $grey-dark;
 
     &--success {
-      background-color: $success;
+      border-color: $success-dark;
+      background-color: $success-light;
+      color: $success-dark;
     }
 
     &--error {
-      background-color: $error;
+      border-color: $error-dark;
+      background-color: $error-light;
+      color: $error-dark;
     }
   }
 
   &__msg {
     text-align: center;
-    color: $text-dark;
-    font-weight: 700;
+    color: inherit;
+    font-weight: 300;
   }
 }

@@ -1,7 +1,3 @@
-$border: rgba(132, 132, 132, 0.2);
-$placeholder: rgba(132, 132, 132, 0.2);
-$border-hover: rgba(132, 132, 132, 0.6);
-
 $mobile: 375px;
 $tablet: 768px;
 $laptop: 1026px;
@@ -11,7 +7,6 @@ $background-primary: #171717;
 $background-secondary: #242424;
 $background-tertiary: #141414;
 $background-white: #ffffff;
-$background-light-grey: #f7f7f8;
 
 $brand-primary: #ffa585;
 $brand-secondary: #ffeda0;
@@ -21,8 +16,10 @@ $text-secondary: #747474;
 $text-dark: #171717;
 
 $error: #eb5e55;
-$error-light: #f5afaa;
-$error-dark: #933b35;
+$error-light: #f7c3bf;
+$error-dark: #752f2b;
 $success: #2ac084;
-$success-light: #95e0c2;
-$success-dark: #1a7853;
+$success-light: #afe7d1;
+$success-dark: #156042;
+$grey-light: #f7f7f8;
+$grey-dark: #747474;
