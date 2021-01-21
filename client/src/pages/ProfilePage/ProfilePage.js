@@ -14,7 +14,7 @@ import FetchingError from "../../components/shared/FetchingError/FetchingError";
 
 import ProfileHeader from "../../components/profile/ProfileHeader/ProfileHeader";
 import ProfileTabs from "../../components/profile/ProfileTabs/ProfileTabs";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import ProfileAbout from "./ProfileAbout/ProfileAbout";
 import ProfilePosts from "./ProfilePosts/ProfilePosts";
 import ProfileFriends from "./ProfileFriends/ProfileFriends";
 
@@ -56,7 +56,7 @@ function ProfilePage(props) {
         </div>
         <div className="ProfilePage__main">
           <Switch>
-            <Route exact path="/profile/:id" component={ProfileInfo} />
+            <Route exact path="/profile/:id" component={ProfileAbout} />
             <Route exact path="/profile/:id/posts" component={ProfilePosts} />
             <Route exact path="/profile/:id/friends" component={ProfileFriends} />
             <Route>

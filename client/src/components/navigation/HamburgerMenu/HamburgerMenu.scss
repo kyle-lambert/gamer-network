@@ -34,7 +34,7 @@
   &__link {
     display: inline-block;
     width: 100%;
-    padding: 7px 10px;
+    padding: 7px;
     border-radius: 8px;
     color: $text-secondary;
 
@@ -49,8 +49,8 @@
   }
 
   &__auth {
-    padding-top: 10px;
-    margin-top: 10px;
+    padding-top: 7px;
+    margin-top: 7px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 }

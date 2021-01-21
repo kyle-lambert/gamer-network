@@ -14,7 +14,7 @@ function ProfileTabs(props) {
             to={`/profile/${params.id}`}
             className="ProfileTabs__link"
             activeClassName="ProfileTabs__link--active">
-            Info
+            About
           </NavLink>
         </li>
         <li className="ProfileTabs__item">
