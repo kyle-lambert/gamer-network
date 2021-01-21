@@ -26,7 +26,7 @@ export const getProfileByIdAction = (id, token) => {
           dispatch({ type: profileTypes.USER_PROFILE_FAILURE });
         });
     } else {
-      dispatch(publishAlertAction("No ID provided", "error"));
+      dispatch(publishAlertAction("Please provide user ID", "error"));
     }
   };
 };

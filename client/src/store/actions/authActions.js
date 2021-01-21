@@ -9,9 +9,9 @@ export const logoutUserAction = () => {
   return (dispatch) => {
     batch(() => {
       dispatch({ type: authTypes.USER_LOGOUT });
-      dispatch(publishAlertAction("Logout Success", "success"));
+      dispatch(publishAlertAction("User logged out successfully", "success"));
     });
-    window.localStorage.removeItem("token");
+    setAuthorisationToken(false);
   };
 };
 
@@ -32,7 +32,7 @@ export const registerUserAction = (form) => {
         batch(() => {
           dispatch({ type: authTypes.REGISTER_USER_SUCCESS });
           dispatch(showLoginModalAction());
-          dispatch(publishAlertAction("Register success", "success"));
+          dispatch(publishAlertAction("User registered successfully", "success"));
         });
       })
       .catch((err) => {
@@ -66,7 +66,7 @@ export const authenticateUserAction = (form) => {
         batch(() => {
           dispatch({ type: authTypes.AUTHENTICATE_USER_SUCCESS, payload: res.data });
           dispatch(hideCurrentModalAction());
-          dispatch(publishAlertAction("Login success", "success"));
+          dispatch(publishAlertAction("User logged in successfully", "success"));
         });
         setAuthorisationToken(res.data.token);
       })
@@ -95,7 +95,7 @@ export const loadUserAction = () => {
       .then((res) => {
         batch(() => {
           dispatch({ type: authTypes.LOAD_USER_SUCCESS, payload: res.data.user });
-          dispatch(publishAlertAction("Login success", "success"));
+          dispatch(publishAlertAction("User logged in successfully", "success"));
         });
       })
       .catch((err) => {

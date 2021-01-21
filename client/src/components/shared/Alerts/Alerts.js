@@ -16,16 +16,13 @@ function Alerts(props) {
 
   return (
     <ul className="Alerts">
-      <li className={generateClassNames({ type: "success" })}>
-        <span className="Alerts__msg">Alert message</span>
-      </li>
-      {/* {alerts.map((alert) => {
+      {alerts.map((alert) => {
         return (
           <li key={alert.id} className={generateClassNames(alert)}>
             <span className="Alerts__msg">{alert.msg}</span>
           </li>
         );
-      })} */}
+      })}
     </ul>
   );
 }
