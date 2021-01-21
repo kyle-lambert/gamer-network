@@ -1,24 +1,25 @@
 import React from "react";
 import "./Button.scss";
 
+import ButtonSpinner from "../ButtonSpinner/ButtonSpinner";
+
 function Button(props) {
-  const { children, primary, secondary, success, error, full, ...rest } = props;
+  const { children, primary, secondary, outline, full, isLoading, ...rest } = props;
 
   const getClassNames = () => {
     const output = ["Button"];
 
     if (primary) output.push("Button--primary");
     if (secondary) output.push("Button--secondary");
-    if (success) output.push("Button--success");
-    if (error) output.push("Button--error");
+    if (outline) output.push("Button--outline");
     if (full) output.push("Button--full");
 
     return output.join(" ");
   };
 
   return (
-    <button {...rest} className={getClassNames()}>
-      {children}
+    <button {...rest} disabled={isLoading} className={getClassNames()}>
+      {isLoading ? <ButtonSpinner /> : children}
     </button>
   );
 }

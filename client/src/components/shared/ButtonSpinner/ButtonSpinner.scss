@@ -1,0 +1,26 @@
+@import "../../../scss/partials/variables";
+
+.ButtonSpinner {
+  &__circle {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top-color: $white;
+    border-right-color: $white;
+    border-radius: 50%;
+    animation-name: infinite-spinning;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 400ms;
+  }
+}
+
+@keyframes infinite-spinning {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
