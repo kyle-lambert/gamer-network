@@ -17,18 +17,15 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(30, 31, 32, 0.1);
     overflow: hidden;
-    border: 2px solid $grey-dark;
     background-color: $grey-light;
     color: $grey-dark;
 
     &--success {
-      border-color: $success-dark;
       background-color: $success-light;
       color: $success-dark;
     }
 
     &--error {
-      border-color: $error-dark;
       background-color: $error-light;
       color: $error-dark;
     }
