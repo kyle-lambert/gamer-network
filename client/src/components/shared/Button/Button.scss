@@ -35,6 +35,15 @@
     }
   }
 
+  &--error {
+    background-color: $error;
+
+    &:hover,
+    :disabled {
+      background-color: $error-dark;
+    }
+  }
+
   &--outline {
     border: 1px solid $white;
 

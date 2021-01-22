@@ -44,7 +44,7 @@ function AccountMenu({ closeAccountMenu, logoutUser, user }) {
         </li>
       </ul>
       <div className="AccountMenu__auth">
-        <Button onClick={logoutUser} primary full>
+        <Button onClick={logoutUser} error full>
           Logout
         </Button>
       </div>
