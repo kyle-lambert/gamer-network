@@ -13,12 +13,12 @@
     font-size: inherit;
     font-weight: inherit;
     color: $white;
-    background-color: $background-tertiary;
+    background-color: $dark-black;
     border: 1px solid transparent;
     border-radius: 8px;
 
     &:focus {
-      border-color: $background-white;
+      border-color: $white;
     }
 
     &::placeholder {

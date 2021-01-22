@@ -14,7 +14,7 @@
   transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
 
   &:hover {
-    background-color: $background-white;
+    background-color: $white;
   }
 
   &--primary {
@@ -36,10 +36,10 @@
   }
 
   &--outline {
-    border: 1px solid $background-white;
+    border: 1px solid $white;
 
     &:hover {
-      background-color: $background-white;
+      background-color: $white;
       color: $black;
     }
   }

@@ -9,31 +9,30 @@
   z-index: 999;
 
   &__bar {
-    padding: 12px 16px;
+    display: inline-flex;
+    padding: 0 16px;
+    height: 50px;
+    text-align: center;
     min-width: 200px;
-    display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(30, 31, 32, 0.1);
     overflow: hidden;
-    background-color: $grey-light;
-    color: $grey-dark;
+    background-color: $grey;
 
     &--success {
-      background-color: $success-light;
-      color: $success-dark;
+      background-color: $success;
     }
 
     &--error {
-      background-color: $error-light;
-      color: $error-dark;
+      background-color: $error;
     }
   }
 
   &__msg {
     text-align: center;
-    color: inherit;
-    font-weight: 300;
+    color: $black;
+    font-weight: 500;
   }
 }

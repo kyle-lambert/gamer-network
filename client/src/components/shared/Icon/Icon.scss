@@ -8,18 +8,18 @@
   svg {
     height: 24px;
     width: auto;
-    fill: $background-white;
+    fill: $white;
   }
 
   &--primary {
     svg {
-      fill: $brand-primary;
+      fill: $purple;
     }
   }
 
   &--secondary {
     svg {
-      fill: $brand-secondary;
+      fill: $orange;
     }
   }
 }
