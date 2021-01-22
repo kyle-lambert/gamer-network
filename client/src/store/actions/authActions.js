@@ -37,7 +37,7 @@ export const registerUserAction = (form) => {
       })
       .catch((err) => {
         if (!err.response) {
-          return dispatch(publishAlertAction("Unable to make request", "error"));
+          dispatch(publishAlertAction("Unable to make request", "error"));
         }
 
         if (Array.isArray(err?.response?.data?.errors)) {
@@ -72,7 +72,7 @@ export const authenticateUserAction = (form) => {
       })
       .catch((err) => {
         if (!err.response) {
-          return dispatch(publishAlertAction("Unable to make request", "error"));
+          dispatch(publishAlertAction("Unable to make request", "error"));
         }
 
         if (Array.isArray(err?.response?.data?.errors)) {

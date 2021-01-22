@@ -45,6 +45,12 @@ function authReducer(state = initState, action) {
         token,
       };
     }
+    case authTypes.AUTHENTICATE_USER_FAILURE: {
+      return {
+        ...state,
+        authenticationLoading: false,
+      };
+    }
     case authTypes.LOAD_USER_REQUEST: {
       return {
         ...state,
@@ -63,12 +69,6 @@ function authReducer(state = initState, action) {
       return {
         ...state,
         loadUserLoading: false,
-      };
-    }
-    case authTypes.AUTHENTICATE_USER_FAILURE: {
-      return {
-        ...state,
-        authenticationLoading: false,
       };
     }
     case authTypes.USER_LOGOUT: {
