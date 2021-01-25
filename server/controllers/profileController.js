@@ -1,10 +1,8 @@
 const Profile = require("../models/profileModel");
 
 async function getProfileById(req, res) {
-  const { params } = req;
-
   try {
-    const profile = await Profile.findOne({ user: params.id }).populate({
+    const profile = await Profile.findOne({ user: req.params.id }).populate({
       path: "user",
       select: ["-email", "-password"],
     });

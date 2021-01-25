@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 const Profile = require("../models/profileModel");
-const Review = require("../models/reviewModel");
 const getRandomHexColor = require("../utils/colors");
 
 async function registerUser(req, res) {
@@ -14,7 +13,7 @@ async function registerUser(req, res) {
       return res.status(400).json({ errors: [{ msg: "Email is already taken" }] });
     }
 
-    const user = new User({
+    let user = new User({
       firstName,
       lastName,
       email,
@@ -26,17 +25,17 @@ async function registerUser(req, res) {
 
     user.password = hashedPassword;
 
-    const newUser = await user.save();
+    await user.save();
 
     const profile = new Profile({
-      user: newUser._id,
-      fullName: `${firstName} ${lastName}`,
+      user: user._id,
     });
 
-    const newProfile = await profile.save();
+    await profile.save();
 
-    res.status(200).json({ user: newUser, profile: newProfile });
+    res.status(200).json({ user });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ errors: [{ msg: "Server error" }] });
   }
 }
@@ -99,7 +98,6 @@ async function deleteUser(req, res) {
 
     await User.findByIdAndDelete(req.user._id);
     await Profile.findOneAndDelete({ user: req.user._id });
-    await Review.findOneAndDelete({ author: req.user._id });
 
     res.status(200).json({ msg: "User account, profile and reviews deleted" });
   } catch (error) {
