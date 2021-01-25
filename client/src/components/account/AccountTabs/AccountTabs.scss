@@ -1,7 +1,7 @@
 @import "../../../scss/partials/variables";
 
 .AccountTabs {
-  background-color: $dark-black;
+  background-color: $fill-lightest;
   border-radius: 12px;
 
   &__list {
@@ -26,22 +26,23 @@
   &__link {
     display: inline-block;
     width: 100%;
+    font-weight: 400;
     text-align: center;
     padding: 7px;
     border-radius: 8px;
-    color: $medium-grey;
 
     @media (min-width: $laptop) {
       text-align: left;
     }
 
     &:hover:not(&--active) {
-      color: $white;
+      color: $text-dark;
     }
 
     &--active {
-      color: $white;
-      background-color: rgba(255, 255, 255, 0.1);
+      font-weight: 500;
+      color: $action-fill-indigo;
+      background-color: $action-fill-indigo-light;
     }
   }
 }

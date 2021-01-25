@@ -52,7 +52,7 @@ function AccountDelete(props) {
           />
         </div>
         <div className="AccountDelete__item AccountDelete__item--submit">
-          <Button error>Delete account</Button>
+          <Button>Delete account</Button>
         </div>
       </form>
     </section>

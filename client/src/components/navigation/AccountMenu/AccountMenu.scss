@@ -6,7 +6,7 @@
   left: 30px;
   right: 30px;
   padding: 7px;
-  background-color: $light-black;
+  background-color: $fill-lightest;
   border-radius: 12px;
 
   @media (min-width: $mobile) {
@@ -17,9 +17,7 @@
   &__list {
     display: flex;
     flex-direction: column;
-    padding-bottom: 7px;
     margin-bottom: 7px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   &__item {
@@ -32,18 +30,19 @@
 
   &__link {
     display: inline-block;
+    font-weight: 400;
     width: 100%;
     padding: 7px;
     border-radius: 8px;
-    color: $medium-grey;
 
     &--active {
-      color: $white;
-      background-color: rgba(255, 255, 255, 0.1);
+      color: $action-fill-indigo;
+      background-color: $action-fill-indigo-light;
+      font-weight: 500;
     }
 
-    &:hover {
-      color: $white;
+    &:hover:not(&--active) {
+      color: $text-dark;
     }
   }
 }

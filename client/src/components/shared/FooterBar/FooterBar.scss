@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: $light-black;
+  background-color: $fill-light;
 
   @media (min-width: $tablet) {
     flex-direction: row;
@@ -43,7 +43,6 @@
 
     &-text {
       font-size: 15px;
-      color: $medium-grey;
       text-align: center;
     }
   }

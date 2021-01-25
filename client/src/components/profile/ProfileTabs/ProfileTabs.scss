@@ -1,7 +1,7 @@
 @import "../../../scss/partials/variables";
 
 .ProfileTabs {
-  background-color: $dark-black;
+  background-color: $fill-lightest;
   border-radius: 12px;
 
   &__list {
@@ -34,19 +34,20 @@
 
   &__link {
     display: inline-block;
+    font-weight: 400;
     width: 100%;
     padding: 7px;
     text-align: center;
     border-radius: 8px;
-    color: $medium-grey;
 
     &:hover:not(&--active) {
-      color: $white;
+      color: $text-dark;
     }
 
     &--active {
-      color: $white;
-      background-color: rgba(255, 255, 255, 0.1);
+      font-weight: 500;
+      color: $action-fill-indigo;
+      background-color: $action-fill-indigo-light;
     }
   }
 }

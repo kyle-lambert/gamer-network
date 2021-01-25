@@ -6,7 +6,7 @@
   left: 30px;
   right: 30px;
   padding: 7px;
-  background-color: $light-black;
+  background-color: $fill-lightest;
   border-radius: 12px;
 
   @media (min-width: $mobile) {
@@ -34,23 +34,22 @@
   &__link {
     display: inline-block;
     width: 100%;
+    font-weight: 400;
     padding: 7px;
     border-radius: 8px;
-    color: $medium-grey;
 
     &--active {
-      color: $white;
-      background-color: rgba(255, 255, 255, 0.1);
+      color: $action-fill-indigo;
+      font-weight: 500;
+      background-color: $action-fill-indigo-light;
     }
 
     &:hover:not(&--active) {
-      color: $white;
+      color: $text-dark;
     }
   }
 
   &__auth {
-    padding-top: 7px;
     margin-top: 7px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 }

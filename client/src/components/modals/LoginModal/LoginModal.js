@@ -73,7 +73,7 @@ function LoginModal(props) {
             />
           </div>
           <div className="LoginModal__form-line">
-            <Button secondary full isLoading={authenticationLoading}>
+            <Button full isLoading={authenticationLoading}>
               Login
             </Button>
           </div>

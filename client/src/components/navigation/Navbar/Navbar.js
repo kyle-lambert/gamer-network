@@ -91,9 +91,7 @@ function Navbar(props) {
             </Button>
           </li>
           <li className="Navbar__cta-item">
-            <Button onClick={openSignUpModal} primary>
-              Sign Up
-            </Button>
+            <Button onClick={openSignUpModal}>Sign Up</Button>
           </li>
         </ul>
       )}

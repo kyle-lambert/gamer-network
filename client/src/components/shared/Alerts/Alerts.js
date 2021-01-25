@@ -8,8 +8,8 @@ function Alerts(props) {
   const generateClassNames = ({ type }) => {
     const output = ["Alerts__bar"];
 
-    if (type === "success") output.push("Alerts__bar--success");
-    if (type === "error") output.push("Alerts__bar--error");
+    if (type === "success") output.push("Alerts__bar--green");
+    if (type === "error") output.push("Alerts__bar--red");
 
     return output.join(" ");
   };

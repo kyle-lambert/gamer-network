@@ -17,22 +17,23 @@
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(30, 31, 32, 0.1);
     overflow: hidden;
-    background-color: $grey;
+    background-color: $action-fill-indigo-light;
+    color: $action-fill-indigo;
 
-    &--success {
-      background-color: $success;
+    &--green {
+      background-color: $action-fill-green-light;
+      color: $action-fill-green;
     }
 
-    &--error {
-      background-color: $error;
+    &--red {
+      background-color: $action-fill-red-light;
+      color: $action-fill-red;
     }
   }
 
   &__msg {
     text-align: center;
-    color: $black;
     font-weight: 500;
   }
 }

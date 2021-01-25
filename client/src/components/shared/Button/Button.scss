@@ -8,48 +8,23 @@
   padding: 0 16px;
   font-size: inherit;
   font-weight: 600;
-  color: $white;
-  background-color: transparent;
+  color: $text-white;
+  background-color: $action-fill-indigo;
   border-radius: 8px;
   transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
 
   &:hover {
-    background-color: $white;
-  }
-
-  &--primary {
-    background-color: $purple;
-
-    &:hover,
-    &:disabled {
-      background-color: $purple-dark;
-    }
-  }
-
-  &--secondary {
-    background-color: $orange;
-
-    &:hover,
-    &:disabled {
-      background-color: $orange-dark;
-    }
-  }
-
-  &--error {
-    background-color: $error;
-
-    &:hover,
-    :disabled {
-      background-color: $error-dark;
-    }
+    background-color: $action-fill-indigo-dark;
   }
 
   &--outline {
-    border: 1px solid $white;
+    color: $fill-medium;
+    background-color: transparent;
+    border: 1px solid $fill-medium;
 
     &:hover {
-      background-color: $white;
-      color: $black;
+      background-color: $fill-medium;
+      color: $text-white;
     }
   }
 

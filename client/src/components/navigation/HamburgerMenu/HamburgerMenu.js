@@ -50,7 +50,7 @@ function HamburgerMenu({ closeHamburgerMenu, openSignUpModal }) {
       </ul>
       {!isAuthenticated && (
         <div className="HamburgerMenu__auth">
-          <Button onClick={handleClick} primary full>
+          <Button onClick={handleClick} full>
             Sign up
           </Button>
         </div>

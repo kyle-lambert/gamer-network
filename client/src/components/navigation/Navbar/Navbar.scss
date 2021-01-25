@@ -6,7 +6,7 @@
   justify-content: space-between;
   padding: 0 30px;
   height: 80px;
-  background-color: $dark-black;
+  background-color: $fill-lightest;
 
   &__hamburger {
     display: flex;
@@ -74,7 +74,6 @@
 
     &-link {
       padding: 5px 0;
-      color: $medium-grey;
 
       &:hover:not(&--active) {
         color: $white;

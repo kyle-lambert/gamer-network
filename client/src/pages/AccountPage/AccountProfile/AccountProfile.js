@@ -32,8 +32,8 @@ function AccountProfile(props) {
   return (
     <section>
       <AccountSectionHeader
-        heading="About You"
-        subheading="Information or your profile is public and available to all other users."
+        heading="Edit Profile"
+        subheading="Information on your profile is public and available to all other users."
       />
       <form action="" className="AccountProfile__form">
         <div className="AccountProfile__item AccountProfile__item--description">
@@ -73,7 +73,7 @@ function AccountProfile(props) {
           />
         </div>
         <div className="AccountProfile__item AccountProfile__item--submit">
-          <Button primary>Save changes</Button>
+          <Button>Save changes</Button>
         </div>
       </form>
     </section>
