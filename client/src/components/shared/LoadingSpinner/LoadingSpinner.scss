@@ -7,7 +7,7 @@
   &__outer {
     display: inline-block;
     padding: 7px;
-    background-color: $fill-light;
+    background-color: $fill-lightest;
     border-radius: 50%;
   }
 
@@ -15,9 +15,9 @@
     display: block;
     width: 40px;
     height: 40px;
-    border: 3px solid $fill-dark;
-    border-top-color: $fill-white;
-    border-right-color: $fill-white;
+    border: 2px solid $fill-dark;
+    border-top-color: $fill-lightest;
+    border-right-color: $fill-lightest;
     border-radius: 50%;
     animation-name: infinite-spinning;
     animation-iteration-count: infinite;

@@ -50,7 +50,7 @@ function ProfilePage(props) {
   } else {
     return profile ? (
       <div className="ProfilePage">
-        <ProfileHeader user={user} />
+        <ProfileHeader user={profile.user} />
         <div className="ProfilePage__tabs">
           <ProfileTabs />
         </div>
