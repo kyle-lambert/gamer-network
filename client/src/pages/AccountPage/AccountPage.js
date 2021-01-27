@@ -5,6 +5,7 @@ import "./AccountPage.scss";
 import AccountGeneral from "./AccountGeneral/AccountGeneral";
 import AccountProfile from "./AccountProfile/AccountProfile";
 import AccountDelete from "./AccountDelete/AccountDelete";
+import PrivateRoute from "../../hoc/PrivateRoute";
 
 import PageHeader from "../../components/shared/PageHeader/PageHeader";
 import AccountTabs from "../../components/account/AccountTabs/AccountTabs";
@@ -22,9 +23,9 @@ function AccountPage(props) {
         </div>
         <div className="AccountPage__main">
           <Switch>
-            <Route exact path="/account" component={AccountGeneral} />
-            <Route exact path="/account/profile" component={AccountProfile} />
-            <Route exact path="/account/delete" component={AccountDelete} />
+            <PrivateRoute exact path="/account" component={AccountGeneral} />
+            <PrivateRoute exact path="/account/profile" component={AccountProfile} />
+            <PrivateRoute exact path="/account/delete" component={AccountDelete} />
             <Route>
               <Redirect to="/error" />
             </Route>

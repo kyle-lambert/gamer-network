@@ -17,6 +17,7 @@ import ProfileTabs from "../../components/profile/ProfileTabs/ProfileTabs";
 import ProfileAbout from "./ProfileAbout/ProfileAbout";
 import ProfilePosts from "./ProfilePosts/ProfilePosts";
 import ProfileFriends from "./ProfileFriends/ProfileFriends";
+import PrivateRoute from "../../hoc/PrivateRoute";
 
 import Portrait from "../../assets/avatar.jpg";
 
@@ -56,9 +57,9 @@ function ProfilePage(props) {
         </div>
         <div className="ProfilePage__main">
           <Switch>
-            <Route exact path="/profile/:id" component={ProfileAbout} />
-            <Route exact path="/profile/:id/posts" component={ProfilePosts} />
-            <Route exact path="/profile/:id/friends" component={ProfileFriends} />
+            <PrivateRoute exact path="/profile/:id" component={ProfileAbout} />
+            <PrivateRoute exact path="/profile/:id/posts" component={ProfilePosts} />
+            <PrivateRoute exact path="/profile/:id/friends" component={ProfileFriends} />
             <Route>
               <Redirect to="/error" />
             </Route>
