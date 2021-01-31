@@ -14,7 +14,7 @@ function Avatar({ user }) {
     return (
       <div className="Avatar">
         <span className="Avatar__placeholder" style={{ backgroundColor: user.hexColor }}>
-          {getInitials(user.firstName, user.lastName)}
+          {user && getInitials(user.firstName, user.lastName)}
         </span>
       </div>
     );
