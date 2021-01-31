@@ -13,6 +13,7 @@ import PageLayout from "../components/shared/PageLayout/PageLayout";
 import LandingPage from "../pages/LandingPage/LandingPage";
 import AccountPage from "../pages/AccountPage/AccountPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import PostFeedPage from "../pages/PostFeedPage/PostFeedPage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 import PrivateRoute from "../hoc/PrivateRoute";
@@ -54,6 +55,7 @@ function App(props) {
             <Route exact path="/error" component={ErrorPage} />
             <PrivateRoute path="/account" component={AccountPage} />
             <PrivateRoute path="/profile/:id" component={ProfilePage} />
+            <PrivateRoute path="/posts" component={PostFeedPage} />
             <Route>
               <Redirect to="/error" />
             </Route>
