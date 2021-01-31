@@ -8,18 +8,6 @@
   svg {
     height: 24px;
     width: auto;
-    fill: $fill-dark;
-  }
-
-  &--primary {
-    svg {
-      fill: $purple;
-    }
-  }
-
-  &--secondary {
-    svg {
-      fill: $orange;
-    }
+    fill: $action-fill-indigo;
   }
 }

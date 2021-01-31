@@ -1,11 +1,10 @@
 import React from "react";
 import "./Icon.scss";
 
-function Icon({ children, primary, secondary }) {
+function Icon({ children, secondary }) {
   const getClassNames = () => {
     const output = ["Icon"];
 
-    if (primary) output.push("Icon--primary");
     if (secondary) output.push("Icon--secondary");
 
     return output.join(" ");
