@@ -74,13 +74,15 @@
 
     &-link {
       padding: 5px 0;
+      font-weight: 400;
 
       &:hover:not(&--active) {
-        color: $white;
+        color: $text-dark;
       }
 
       &--active {
-        color: $white;
+        color: $action-fill-indigo;
+        font-weight: 500;
       }
     }
   }

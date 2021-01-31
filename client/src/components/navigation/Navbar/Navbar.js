@@ -20,8 +20,8 @@ import Avatar from "../../shared/Avatar/Avatar";
 export const routes = [
   {
     id: uuidv4(),
-    name: "Games",
-    path: "/games",
+    name: "Posts",
+    path: "/posts",
   },
 ];
 
