@@ -1,0 +1,8 @@
+@import "../../scss/partials/variables";
+
+.PostFeedPage {
+  &__cards {
+    columns: 300px;
+    gap: 20px;
+  }
+}
