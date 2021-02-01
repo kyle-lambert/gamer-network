@@ -1,0 +1,14 @@
+@import "../../../scss/partials/variables";
+
+.PostCardContent {
+  &__text {
+    color: $text-medium;
+  }
+
+  &__image {
+    display: block;
+    margin-top: 15px;
+    border-radius: 8px;
+    max-width: 100%;
+  }
+}
