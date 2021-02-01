@@ -1,11 +1,11 @@
 @import "../../scss/partials/variables";
 
-.cube-icon {
+.CubeIcon {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 40px;
   height: 40px;
-  border-radius: 12px;
-  background-color: $light-black;
+  border-radius: 8px;
+  background-color: $action-fill-indigo-light;
 }
