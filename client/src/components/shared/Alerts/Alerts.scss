@@ -22,12 +22,12 @@
     background-color: $action-fill-indigo-light;
     color: $action-fill-indigo;
 
-    &--green {
+    &--success {
       background-color: $action-fill-green-light;
       color: $action-fill-green;
     }
 
-    &--red {
+    &--error {
       background-color: $action-fill-red-light;
       color: $action-fill-red;
     }

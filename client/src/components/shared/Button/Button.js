@@ -1,22 +1,16 @@
 import React from "react";
 import "./Button.scss";
 
+import { buildClassNamesFromProps } from "../../../utils/helpers";
+
 import ButtonSpinner from "../ButtonSpinner/ButtonSpinner";
 
-function Button(props) {
-  const { children, outline, full, isLoading, ...rest } = props;
-
-  const getClassNames = () => {
-    const output = ["Button"];
-
-    if (outline) output.push("Button--outline");
-    if (full) output.push("Button--full");
-
-    return output.join(" ");
-  };
-
+function Button({ children, outline, full, isLoading, ...rest }) {
   return (
-    <button {...rest} disabled={isLoading} className={getClassNames()}>
+    <button
+      {...rest}
+      disabled={isLoading}
+      className={buildClassNamesFromProps("Button", { outline, full })}>
       {isLoading ? <ButtonSpinner /> : children}
     </button>
   );

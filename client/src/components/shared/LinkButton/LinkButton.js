@@ -2,20 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./LinkButton.scss";
 
-function LinkButton(props) {
-  const { children, outline, full, ...rest } = props;
+import { buildClassNamesFromProps } from "../../../utils/helpers";
 
-  const getClassNames = () => {
-    const output = ["LinkButton"];
-
-    if (outline) output.push("LinkButton--outline");
-    if (full) output.push("LinkButton--full");
-
-    return output.join(" ");
-  };
-
+function LinkButton({ children, outline, full, ...rest }) {
   return (
-    <Link {...rest} className={getClassNames()}>
+    <Link {...rest} className={buildClassNamesFromProps("LinkButton", { outline, full })}>
       {children}
     </Link>
   );

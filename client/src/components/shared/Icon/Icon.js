@@ -1,16 +1,10 @@
 import React from "react";
 import "./Icon.scss";
 
-function Icon({ children, secondary }) {
-  const getClassNames = () => {
-    const output = ["Icon"];
+import { buildClassNamesFromProps } from "../../../utils/helpers";
 
-    if (secondary) output.push("Icon--secondary");
-
-    return output.join(" ");
-  };
-
-  return <div className={getClassNames()}>{children}</div>;
+function Icon({ children, ...rest }) {
+  return <div className={buildClassNamesFromProps("Icon", rest)}>{children}</div>;
 }
 
 export default Icon;

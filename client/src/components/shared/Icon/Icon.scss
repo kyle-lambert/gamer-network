@@ -8,6 +8,12 @@
   svg {
     height: 24px;
     width: auto;
-    fill: $action-fill-indigo;
+    fill: $fill-dark;
+  }
+
+  &--indigo {
+    svg {
+      fill: $action-fill-indigo;
+    }
   }
 }
