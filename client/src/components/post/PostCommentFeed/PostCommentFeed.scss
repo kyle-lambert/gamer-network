@@ -1,0 +1,13 @@
+@import "../../../scss/partials/variables";
+
+.PostCommentFeed {
+  &__form-wrap {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  &__form {
+    flex: 1;
+  }
+}

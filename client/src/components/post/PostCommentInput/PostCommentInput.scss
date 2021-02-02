@@ -1,0 +1,23 @@
+@import "../../../scss/partials/variables";
+
+.PostCommentInput {
+  display: inline-block;
+  width: 100%;
+  background-color: $fill-light;
+  padding: 7px;
+  font-size: 15px;
+  color: $text-dark;
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  &:focus {
+    border-color: $action-fill-indigo;
+  }
+
+  &::placeholder {
+    color: $text-light;
+    font-size: inherit;
+    font-style: italic;
+    font-weight: 300;
+  }
+}
