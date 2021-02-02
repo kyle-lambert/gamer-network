@@ -80,7 +80,7 @@ function Navbar(props) {
       {isAuthenticated && user ? (
         <div className="Navbar__avatar">
           <button onClick={toggleAccountMenu} className="Navbar__avatar-btn">
-            <Avatar user={user} />
+            <Avatar user={user} medium />
           </button>
         </div>
       ) : (

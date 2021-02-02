@@ -8,7 +8,7 @@ function UserInfoGroup({ user }) {
   return (
     <div className="UserInfoGroup">
       <Link to={`/profile/${user._id}`} className="UserInfoGroup__avatar">
-        <Avatar user={user} />
+        <Avatar user={user} medium />
       </Link>
       <div className="UserInfoGroup__info">
         <span className="UserInfoGroup__name">{user ? user.firstName : "No author"}</span>
