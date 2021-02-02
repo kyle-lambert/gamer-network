@@ -14,10 +14,15 @@ export const getInitials = (firstName, lastName) => {
 
 export const buildClassNamesFromProps = (initialClass = "", props) => {
   if (typeof props !== "object") return initialClass;
-  return [
-    initialClass,
-    ...Object.keys(props).map((key) => (props[key] ? `${initialClass}--${key}` : null)),
-  ].join(" ");
+  return Object.keys(props)
+    .reduce(
+      (acc, key) => {
+        if (props[key]) acc.push(`${initialClass}--${key}`);
+        return acc;
+      },
+      [initialClass]
+    )
+    .join(" ");
 };
 
 export const getFullName = (firstName, lastName) => `${firstName} ${lastName}`;
