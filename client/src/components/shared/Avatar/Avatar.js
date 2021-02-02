@@ -1,19 +1,21 @@
 import React from "react";
 import "./Avatar.scss";
 
-import { getInitials } from "../../../utils/helpers";
+import { getInitials, buildClassNamesFromProps } from "../../../utils/helpers";
 
-function Avatar({ user }) {
+function Avatar({ user, ...rest }) {
   if (user.avatar) {
     return (
-      <div className="Avatar">
+      <div className={buildClassNamesFromProps("Avatar", rest)}>
         <img src={user.avatar} alt="User avatar" className="Avatar__img" />
       </div>
     );
   } else {
     return (
-      <div className="Avatar">
-        <span className="Avatar__placeholder" style={{ backgroundColor: user.hexColor }}>
+      <div
+        className={buildClassNamesFromProps("Avatar", rest)}
+        style={{ backgroundColor: user.hexColor }}>
+        <span className="Avatar__placeholder">
           {user && getInitials(user.firstName, user.lastName)}
         </span>
       </div>
