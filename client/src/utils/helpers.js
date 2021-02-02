@@ -14,7 +14,10 @@ export const getInitials = (firstName, lastName) => {
 
 export const buildClassNamesFromProps = (initialClass = "", props) => {
   if (typeof props !== "object") return initialClass;
-  return [initialClass, ...Object.keys(props).map((key) => `${initialClass}--${key}`)].join(" ");
+  return [
+    initialClass,
+    ...Object.keys(props).map((key) => (props[key] ? `${initialClass}--${key}` : null)),
+  ].join(" ");
 };
 
 export const getFullName = (firstName, lastName) => `${firstName} ${lastName}`;
