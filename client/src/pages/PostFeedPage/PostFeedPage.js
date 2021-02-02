@@ -3,7 +3,7 @@ import "./PostFeedPage.scss";
 
 import { posts } from "../../data/placeholders";
 
-import PostCard from "../../components/cards/PostCard/PostCard";
+import PostCard from "../../components/post/PostCard/PostCard";
 
 function PostFeedPage(props) {
   return (
