@@ -16,4 +16,4 @@ function Button({ children, outline, full, isLoading, ...rest }) {
   );
 }
 
-export default Button;
+export default React.memo(Button);
