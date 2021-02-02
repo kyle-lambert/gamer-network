@@ -2,9 +2,15 @@
 
 .UserInfoGroup {
   display: inline-grid;
+  align-self: center;
   align-items: center;
   grid-template-columns: auto auto;
   column-gap: 10px;
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+  }
 
   &__info {
     display: flex;

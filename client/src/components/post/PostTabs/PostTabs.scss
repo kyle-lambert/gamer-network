@@ -17,10 +17,10 @@
     text-align: center;
     padding: 7px;
     border-radius: 8px;
+    background-color: $fill-light;
 
     &:hover:not(&--active) {
       color: $text-dark;
-      background-color: $fill-light;
     }
 
     &--active {

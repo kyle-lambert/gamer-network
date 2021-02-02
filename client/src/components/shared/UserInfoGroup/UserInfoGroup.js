@@ -7,7 +7,7 @@ import Avatar from "../Avatar/Avatar";
 function UserInfoGroup({ user }) {
   return (
     <div className="UserInfoGroup">
-      <Link to={`/profile/${user._id}`} className="UserInfoGroup__avatar">
+      <Link to={`/profile/${user._id}`} className="UserInfoGroup__link">
         <Avatar user={user} medium />
       </Link>
       <div className="UserInfoGroup__info">

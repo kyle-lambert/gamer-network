@@ -2,17 +2,15 @@
 
 .PostComment {
   display: flex;
+  align-items: flex-start;
   margin-bottom: 7px;
 
   &:last-child {
     margin-bottom: unset;
   }
 
-  &__avatar {
+  &__avatar-link {
     flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    font-size: 12px;
     margin-right: 7px;
   }
 
@@ -28,7 +26,6 @@
     color: $text-dark;
     font-size: 14px;
     font-weight: 500;
-    margin-bottom: 2px;
   }
 
   &__text {
