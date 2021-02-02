@@ -1,0 +1,32 @@
+@import "../../../scss/partials/variables";
+
+.PostTabs {
+  display: flex;
+
+  &__item {
+    flex: 1;
+
+    &:first-child {
+      margin-right: 7px;
+    }
+  }
+
+  &__btn {
+    width: 100%;
+    font-weight: 400;
+    text-align: center;
+    padding: 7px;
+    border-radius: 8px;
+
+    &:hover:not(&--active) {
+      color: $text-dark;
+      background-color: $fill-light;
+    }
+
+    &--active {
+      font-weight: 500;
+      color: $action-fill-indigo;
+      background-color: $action-fill-indigo-light;
+    }
+  }
+}

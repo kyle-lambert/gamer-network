@@ -1,0 +1,15 @@
+@import "../../../scss/partials/variables";
+
+.PostCard {
+  margin-bottom: 30px;
+  break-inside: avoid;
+  display: grid;
+  row-gap: 12px;
+  padding: 14px;
+  background-color: $fill-lightest;
+  border-radius: 12px;
+
+  &:last-child {
+    margin-bottom: unset;
+  }
+}
