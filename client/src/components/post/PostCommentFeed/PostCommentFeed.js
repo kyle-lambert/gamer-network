@@ -49,7 +49,7 @@ function PostCommentFeed({ comments }) {
             type="submit"
             disabled={comment ? false : true}
             className="PostCommentFeed__submit">
-            <Icon color="indigo">{true ? <ButtonSpinner color="indigo" /> : <SendComment />}</Icon>
+            <Icon color="indigo">{false ? <ButtonSpinner color="indigo" /> : <SendComment />}</Icon>
           </button>
         </form>
       </div>

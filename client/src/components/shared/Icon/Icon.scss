@@ -17,4 +17,10 @@
       fill: $action-fill-indigo;
     }
   }
+
+  &--grey {
+    svg {
+      fill: $fill-medium;
+    }
+  }
 }

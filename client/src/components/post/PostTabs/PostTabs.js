@@ -5,7 +5,7 @@ function PostTabs({ commentsOpen, handleCommentsToggle }) {
   return (
     <ul className="PostTabs">
       <li className="PostTabs__item">
-        <button className="PostTabs__btn">Like</button>
+        <button className="PostTabs__btn">{true ? "Like" : "Unlike"}</button>
       </li>
       <li className="PostTabs__item">
         <button
