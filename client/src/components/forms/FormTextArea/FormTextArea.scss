@@ -1,0 +1,24 @@
+@import "../../../scss/partials/variables";
+
+.FormTextArea {
+  padding: 12px 14px;
+  width: 100%;
+  resize: none;
+  outline: none;
+  overflow: auto;
+  background-color: $fill-lightest;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 300;
+  color: $text-dark;
+
+  &:focus {
+    border-color: $action-fill-indigo;
+  }
+
+  &::placeholder {
+    color: $text-light;
+    font-style: italic;
+    font-weight: inherit;
+  }
+}
