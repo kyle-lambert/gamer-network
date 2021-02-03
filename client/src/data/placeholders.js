@@ -5,7 +5,7 @@ import mountain from "../assets/mountain.jpg";
 
 export const comments = [
   {
-    _id: 1,
+    _id: 23423,
     author: {
       _id: 10,
       firstName: "Bobby",
@@ -16,7 +16,7 @@ export const comments = [
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis",
   },
   {
-    _id: 2,
+    _id: 2356875678,
     author: {
       _id: 11,
       firstName: "Steven",
@@ -73,7 +73,7 @@ export const posts = [
   {
     _id: 4,
     author: {
-      _id: 10,
+      _id: 13,
       firstName: "Kyle",
       lastName: "Lambert",
       createdAt: "4",
@@ -85,7 +85,7 @@ export const posts = [
   {
     _id: 5,
     author: {
-      _id: 11,
+      _id: 14,
       avatar: avatar,
       firstName: "Troy",
       lastName: "Lambert",
@@ -99,7 +99,7 @@ export const posts = [
   {
     _id: 6,
     author: {
-      _id: 12,
+      _id: 15,
       avatar: avatar,
       firstName: "Bobby",
       lastName: "Stev",
