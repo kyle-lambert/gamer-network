@@ -55,7 +55,7 @@ function PostCommentFeed({ comments }) {
       </div>
       <ul className="PostCommentFeed__list">
         {comments.map((comment) => {
-          return <PostComment comment={comment} />;
+          return <PostComment key={comment._id} comment={comment} />;
         })}
       </ul>
     </div>
