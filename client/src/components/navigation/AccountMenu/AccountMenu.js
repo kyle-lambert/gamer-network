@@ -44,7 +44,7 @@ function AccountMenu({ closeAccountMenu, logoutUser, user }) {
         </li>
       </ul>
       <div className="AccountMenu__auth">
-        <Button onClick={logoutUser} full>
+        <Button onClick={logoutUser} color="indigo" width="full">
           Logout
         </Button>
       </div>

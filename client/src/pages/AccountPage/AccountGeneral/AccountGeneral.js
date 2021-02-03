@@ -62,7 +62,7 @@ function AccountGeneral(props) {
           />
         </div>
         <div className="AccountGeneral__item AccountGeneral__item--submit">
-          <Button>Save changes</Button>
+          <Button color="indigo">Save changes</Button>
         </div>
       </form>
     </section>

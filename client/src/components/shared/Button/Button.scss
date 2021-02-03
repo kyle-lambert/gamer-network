@@ -9,12 +9,12 @@
   font-size: inherit;
   font-weight: 600;
   color: $text-white;
-  background-color: $action-fill-indigo;
+  background-color: $fill-medium;
   border-radius: 8px;
   transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
 
   &:hover {
-    background-color: $action-fill-indigo-dark;
+    background-color: $fill-medium;
   }
 
   &--outline {
@@ -25,6 +25,13 @@
     &:hover {
       background-color: $fill-medium;
       color: $text-white;
+    }
+  }
+
+  &--indigo {
+    background-color: $action-fill-indigo;
+    &:hover {
+      background-color: $action-fill-indigo-dark;
     }
   }
 

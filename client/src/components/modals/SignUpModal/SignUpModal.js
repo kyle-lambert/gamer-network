@@ -94,7 +94,7 @@ function SignUpModal(props) {
             />
           </div>
           <div className="SignUpModal__form-line SignUpModal__form-line--submit">
-            <Button full isLoading={registerLoading}>
+            <Button width="full" color="indigo" isLoading={registerLoading}>
               Create Account
             </Button>
           </div>

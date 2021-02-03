@@ -12,7 +12,9 @@ function ErrorPage(props) {
         subheading="Sorry, the page you are looking for does not exist."
       />
       <div className="ErrorPage__redirect">
-        <LinkButton to="/">Redirect To Home Page</LinkButton>
+        <LinkButton color="indigo" to="/">
+          Redirect To Home Page
+        </LinkButton>
       </div>
     </div>
   );

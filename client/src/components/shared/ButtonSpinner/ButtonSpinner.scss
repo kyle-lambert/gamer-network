@@ -13,6 +13,11 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-duration: 400ms;
+
+    &--indigo {
+      border-top-color: $action-fill-indigo;
+      border-right-color: $action-fill-indigo;
+    }
   }
 }
 

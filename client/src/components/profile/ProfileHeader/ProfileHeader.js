@@ -9,7 +9,7 @@ function ProfileHeader({ user }) {
   return (
     <header className="ProfileHeader">
       <div className="ProfileHeader__avatar">
-        <Avatar user={user} large />
+        <Avatar user={user} size="large" />
       </div>
       <h1 className="ProfileHeader__heading">{getFullName(user.firstName, user.lastName)}</h1>
       <p className="ProfileHeader__copy">

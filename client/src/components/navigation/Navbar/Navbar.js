@@ -80,18 +80,20 @@ function Navbar(props) {
       {isAuthenticated && user ? (
         <div className="Navbar__avatar">
           <button onClick={toggleAccountMenu} className="Navbar__avatar-btn">
-            <Avatar user={user} medium />
+            <Avatar user={user} size="medium" />
           </button>
         </div>
       ) : (
         <ul className="Navbar__cta">
           <li className="Navbar__cta-item">
-            <Button onClick={openLoginModal} outline>
+            <Button onClick={openLoginModal} variant="outline">
               Login
             </Button>
           </li>
           <li className="Navbar__cta-item">
-            <Button onClick={openSignUpModal}>Sign Up</Button>
+            <Button onClick={openSignUpModal} color="indigo">
+              Sign Up
+            </Button>
           </li>
         </ul>
       )}

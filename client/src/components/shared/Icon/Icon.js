@@ -1,10 +1,12 @@
 import React from "react";
+import classNames from "classnames";
 import "./Icon.scss";
 
-import { buildClassNamesFromProps } from "../../../utils/helpers";
+const INITIAL = "Icon";
 
-function Icon({ children, ...rest }) {
-  return <div className={buildClassNamesFromProps("Icon", rest)}>{children}</div>;
+function Icon({ children, color }) {
+  const classes = classNames(INITIAL, color && `${INITIAL}--${color}`);
+  return <div className={classes}>{children}</div>;
 }
 
 export default Icon;

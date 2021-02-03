@@ -1,10 +1,14 @@
 import React from "react";
+import classNames from "classnames";
 import "./ButtonSpinner.scss";
 
-function ButtonSpinner(props) {
+const INITIAL = "ButtonSpinner__circle";
+
+function ButtonSpinner({ color }) {
+  const classes = classNames(INITIAL, color && `${INITIAL}--${color}`);
   return (
     <div className="ButtonSpinner">
-      <span className="ButtonSpinner__circle"></span>
+      <span className={classes}></span>
     </div>
   );
 }

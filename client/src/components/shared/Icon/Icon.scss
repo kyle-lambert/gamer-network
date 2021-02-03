@@ -9,6 +9,7 @@
     height: 24px;
     width: auto;
     fill: $fill-dark;
+    transition: transform 150ms ease, fill 150ms ease;
   }
 
   &--indigo {
