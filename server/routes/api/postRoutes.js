@@ -6,6 +6,7 @@ const { body } = require("express-validator");
 const validator = require("../../middleware/validator");
 const {
   createPost,
+  getPostsByPage,
   getPostById,
   deletePostById,
   addComment,
@@ -15,6 +16,11 @@ const {
 // @desc     Create a new post
 // @access   Private
 router.post("/", [auth, body("text", "Text is required"), validator], createPost);
+
+// @route    GET api/posts
+// @desc     Get posts by page
+// @access   Private
+router.get("/", auth, getPostsByPage);
 
 // @route    GET api/posts/:id
 // @desc     Get post by ID

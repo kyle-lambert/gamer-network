@@ -25,9 +25,32 @@ async function createPost(req, res) {
       })
       .execPopulate();
 
-    res.status(200).json({ post: populatedPost });
+    return res.status(200).json({ post: populatedPost });
   } catch (error) {
-    res.status(500).json({ errors: [{ msg: "Server error" }] });
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
+  }
+}
+
+async function getPostsByPage(req, res) {
+  try {
+    const options = {
+      page: 1,
+      limit: 10,
+      populate: {
+        path: "author",
+        select: ["-email", "-password"],
+      },
+    };
+
+    const results = await Post.paginate({}, options);
+
+    if (!results) {
+      return res.status(404).json({ errors: [{ msg: "No posts exist" }] });
+    }
+
+    return res.status(200).json({ results });
+  } catch (error) {
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
   }
 }
 
@@ -44,7 +67,7 @@ async function addComment(req, res) {
       return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
     }
   } catch (error) {
-    res.status(500).json({ errors: [{ msg: "Server error" }] });
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
   }
 }
 
@@ -56,9 +79,9 @@ async function getPostById(req, res) {
       return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
     }
 
-    res.status(200).json({ post });
+    return res.status(200).json({ post });
   } catch (error) {
-    res.status(500).json({ errors: [{ msg: "Server error" }] });
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
   }
 }
 
@@ -76,14 +99,15 @@ async function deletePostById(req, res) {
 
     const deletedPost = await post.remove();
 
-    res.status(200).json({ deletedPost });
+    return res.status(200).json({ deletedPost });
   } catch (error) {
-    res.status(500).json({ errors: [{ msg: "Server error" }] });
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
   }
 }
 
 module.exports = {
   createPost,
+  getPostsByPage,
   getPostById,
   deletePostById,
   addComment,
