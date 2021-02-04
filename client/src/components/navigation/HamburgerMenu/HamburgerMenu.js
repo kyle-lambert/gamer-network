@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import "./HamburgerMenu.scss";
 
 import Button from "../../shared/Button/Button";
-
 import useOutsideClick from "../../../hooks/useOutsideClick";
 
 function HamburgerMenu({ closeHamburgerMenu, openSignUpModal }) {
@@ -35,16 +34,6 @@ function HamburgerMenu({ closeHamburgerMenu, openSignUpModal }) {
             className="HamburgerMenu__link"
             activeClassName="HamburgerMenu__link--active">
             Home
-          </NavLink>
-        </li>
-        <li className="HamburgerMenu__item">
-          <NavLink
-            to="/games"
-            exact
-            onClick={handleNavClick}
-            className="HamburgerMenu__link"
-            activeClassName="HamburgerMenu__link--active">
-            Games
           </NavLink>
         </li>
       </ul>

@@ -42,6 +42,16 @@ function AccountMenu({ closeAccountMenu, logoutUser, user }) {
             Account
           </NavLink>
         </li>
+        <li className="AccountMenu__item">
+          <NavLink
+            to="/posts"
+            exact
+            onClick={handleNavClick}
+            className="AccountMenu__link"
+            activeClassName="AccountMenu__link--active">
+            Posts Feed
+          </NavLink>
+        </li>
       </ul>
       <div className="AccountMenu__auth">
         <Button onClick={logoutUser} color="indigo" width="full">

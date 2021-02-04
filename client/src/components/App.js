@@ -14,7 +14,6 @@ import LandingPage from "../pages/LandingPage/LandingPage";
 import AccountPage from "../pages/AccountPage/AccountPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import PostFeedPage from "../pages/PostFeedPage/PostFeedPage";
-import IndividualPostPage from "../pages/IndividualPostPage/IndividualPostPage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 import PrivateRoute from "../hoc/PrivateRoute";
@@ -57,7 +56,6 @@ function App(props) {
             <PrivateRoute path="/account" component={AccountPage} />
             <PrivateRoute path="/profile/:id" component={ProfilePage} />
             <PrivateRoute exact path="/posts" component={PostFeedPage} />
-            <PrivateRoute exact path="/posts/:id" component={IndividualPostPage} />
             <Route>
               <Redirect to="/error" />
             </Route>
