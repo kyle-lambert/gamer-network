@@ -7,7 +7,7 @@
 
   svg {
     height: 24px;
-    width: auto;
+    width: 24px;
     fill: $fill-dark;
     transition: transform 150ms ease, fill 150ms ease;
   }
@@ -21,6 +21,13 @@
   &--grey {
     svg {
       fill: $fill-medium;
+    }
+  }
+
+  &--small {
+    svg {
+      height: 20px;
+      width: 20px;
     }
   }
 }
