@@ -20,8 +20,8 @@ import Avatar from "../../shared/Avatar/Avatar";
 export const routes = [
   {
     id: uuidv4(),
-    name: "Posts",
-    path: "/posts",
+    name: "Home",
+    path: "/",
   },
 ];
 
@@ -39,9 +39,15 @@ function Navbar(props) {
   const closeAccountMenu = () => setAccountMenuOpen(false);
 
   const logoutUser = () => {
-    closeAccountMenu();
     dispatch(logoutUserAction());
   };
+
+  React.useEffect(() => {
+    if (!isAuthenticated || !user) {
+      console.log("close account menu");
+      closeAccountMenu();
+    }
+  }, [isAuthenticated, user]);
 
   return (
     <header className="Navbar">
@@ -78,11 +84,16 @@ function Navbar(props) {
       </nav>
 
       {isAuthenticated && user ? (
-        <div className="Navbar__avatar">
-          <button onClick={toggleAccountMenu} className="Navbar__avatar-btn">
-            <Avatar user={user} size="medium" />
-          </button>
-        </div>
+        <>
+          <div className="Navbar__avatar">
+            <button onClick={toggleAccountMenu} className="Navbar__avatar-btn">
+              <Avatar user={user} size="medium" />
+            </button>
+          </div>
+          {accountMenuOpen && (
+            <AccountMenu closeAccountMenu={closeAccountMenu} user={user} logoutUser={logoutUser} />
+          )}
+        </>
       ) : (
         <ul className="Navbar__cta">
           <li className="Navbar__cta-item">
@@ -100,9 +111,6 @@ function Navbar(props) {
 
       {hamburgerMenuOpen && (
         <HamburgerMenu closeHamburgerMenu={closeHamburgerMenu} openSignUpModal={openSignUpModal} />
-      )}
-      {accountMenuOpen && (
-        <AccountMenu closeAccountMenu={closeAccountMenu} user={user} logoutUser={logoutUser} />
       )}
     </header>
   );
