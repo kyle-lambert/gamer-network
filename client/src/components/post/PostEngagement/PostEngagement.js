@@ -4,7 +4,7 @@ import "./PostEngagement.scss";
 import { ReactComponent as ThumbUp } from "../../../assets/icons/thumb_up.svg";
 import { ReactComponent as Comments } from "../../../assets/icons/comments.svg";
 
-import Icon from "../../shared/Icon/Icon";
+import CubeIcon from "../../shared/CubeIcon/CubeIcon";
 
 function PostEngagement({ likeCount, commentCount }) {
   return (
@@ -12,17 +12,17 @@ function PostEngagement({ likeCount, commentCount }) {
       <div className="PostEngagement__group">
         <span className="PostEngagement__count">{likeCount ? likeCount : 0}</span>
         <span className="PostEngagement__icon">
-          <Icon color="grey">
+          <CubeIcon color="indigo" size="small">
             <ThumbUp />
-          </Icon>
+          </CubeIcon>
         </span>
       </div>
       <div className="PostEngagement__group">
         <span className="PostEngagement__count">{commentCount ? commentCount : 0}</span>
         <span className="PostEngagement__icon">
-          <Icon color="grey">
+          <CubeIcon color="indigo" size="small">
             <Comments />
-          </Icon>
+          </CubeIcon>
         </span>
       </div>
     </div>
