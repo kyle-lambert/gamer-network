@@ -4,7 +4,10 @@ import axios from "axios";
 import "./PostFeedPage.scss";
 
 import { resetPostReducerAction } from "../../store/actions/postActions";
-import { showCreatePostModalAction } from "../../store/actions/modalActions";
+import {
+  showCreatePostModalAction,
+  hideCurrentModalAction,
+} from "../../store/actions/modalActions";
 
 import { posts } from "../../data/placeholders";
 
@@ -27,6 +30,14 @@ function PostFeedPage(props) {
       source.cancel("Axios request canceled.");
     };
   });
+
+  React.useEffect(() => {
+    const closeCreatePostModal = () => dispatch(hideCurrentModalAction());
+    return () => {
+      console.log("closed create-post-modal");
+      closeCreatePostModal();
+    };
+  }, [dispatch]);
 
   const openCreatePostModal = () => dispatch(showCreatePostModalAction());
 
