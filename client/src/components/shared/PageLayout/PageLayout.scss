@@ -2,11 +2,15 @@
 
 .PageLayout {
   margin: 0 auto;
-  padding: 80px 30px;
+  padding: 50px 14px;
   max-width: 1440px;
   min-height: calc(100vh - 80px);
 
   @media (min-width: $mobile) {
-    padding: 80px 10%;
+    padding: 60px 21px;
+  }
+
+  @media (min-width: $tablet) {
+    padding: 70px 10%;
   }
 }

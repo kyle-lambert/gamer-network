@@ -4,7 +4,7 @@ import "./ModalHeader.scss";
 function ModalHeader({ heading, subheading }) {
   return (
     <header className="ModalHeader">
-      <h1 className="ModalHeader__heading">{heading}</h1>
+      <h2 className="ModalHeader__heading">{heading}</h2>
       <div className="ModalHeader__subheading">{subheading}</div>
     </header>
   );

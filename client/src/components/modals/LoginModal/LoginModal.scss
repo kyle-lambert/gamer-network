@@ -1,12 +1,6 @@
 .LoginModal {
   &__form {
     display: grid;
-    row-gap: 15px;
-
-    &-line {
-      &:last-child {
-        margin-top: 15px;
-      }
-    }
+    row-gap: 14px;
   }
 }

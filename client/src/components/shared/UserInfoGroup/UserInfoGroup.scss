@@ -5,7 +5,7 @@
   align-self: center;
   align-items: center;
   grid-template-columns: auto auto;
-  column-gap: 10px;
+  column-gap: 7px;
 
   &__link {
     display: inline-flex;
@@ -26,7 +26,7 @@
 
   &__created-at {
     display: block;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 400;
   }
 }

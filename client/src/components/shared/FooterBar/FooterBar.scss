@@ -1,22 +1,26 @@
 @import "../../../scss/partials/variables";
 
 .FooterBar {
-  padding: 20px 30px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: $fill-light;
 
+  @media (min-width: $mobile) {
+    padding: 21px;
+  }
+
   @media (min-width: $tablet) {
     flex-direction: row;
     justify-content: flex-start;
-    padding: 0 30px;
-    height: 80px;
+    padding: 0 28px;
+    height: 75px;
   }
 
   &__brand {
-    margin-bottom: 10px;
+    margin-bottom: 7px;
 
     @media (min-width: $tablet) {
       margin-bottom: unset;
@@ -38,7 +42,7 @@
     align-items: center;
 
     @media (min-width: $tablet) {
-      margin-left: 35px;
+      margin-left: 21px;
     }
 
     &-text {

@@ -29,16 +29,13 @@ function CreatePostModal(props) {
     <Modal>
       <ModalClose closeModal={closeCreatePostModal} />
       <ModalContent>
-        <ModalHeader
-          heading="Create A Post!"
-          subheading="Everyone can see and interact with your posts"
-        />
+        <ModalHeader heading="Create Post!" subheading="Share your thoughts with everyone..." />
         <div className="CreatePostModal">
           <form className="CreatePostModal__form">
             <div className="CreatePostModal__form-line CreatePostModal__form-line--textarea">
               <FormTextArea ref={textAreaRef} placeholder="Tell us all what you're thinking..." />
             </div>
-            <div className="CreatePostModal__form-line CreatePostModal__form-line--upload"></div>
+            {/* <div className="CreatePostModal__form-line CreatePostModal__form-line--upload"></div> */}
             <div className="CreatePostModal__form-line CreatePostModal__form-line--submit">
               <Button color="indigo" width="full">
                 Create Post
@@ -47,6 +44,7 @@ function CreatePostModal(props) {
           </form>
         </div>
       </ModalContent>
+      <ModalFooter displayCopy="Posts are public! Everyone can view and interact with your posts." />
     </Modal>
   );
 }

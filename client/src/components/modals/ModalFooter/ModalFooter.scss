@@ -1,7 +1,7 @@
 @import "../../../scss/partials/variables";
 
 .ModalFooter {
-  padding: 20px 30px;
+  padding: 14px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -10,13 +10,15 @@
 
   &__copy {
     text-align: center;
+    font-size: 15px;
+    max-width: 80%;
   }
 
   &__button {
     display: inline-block;
-    margin-left: 10px;
-    font-size: inherit;
-    font-weight: 600;
+    margin-left: 7px;
+    font-size: 15px;
+    font-weight: 500;
     color: $text-medium;
     text-decoration: underline;
 

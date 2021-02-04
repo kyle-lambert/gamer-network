@@ -5,9 +5,11 @@ function ModalFooter({ displayCopy, buttonLabel, openModal }) {
   return (
     <footer className="ModalFooter">
       <span className="ModalFooter__copy">{displayCopy}</span>
-      <button onClick={openModal} className="ModalFooter__button">
-        {buttonLabel}
-      </button>
+      {buttonLabel && openModal ? (
+        <button onClick={openModal} className="ModalFooter__button">
+          {buttonLabel}
+        </button>
+      ) : null}
     </footer>
   );
 }

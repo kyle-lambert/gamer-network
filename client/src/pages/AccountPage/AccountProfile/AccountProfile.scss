@@ -1,6 +1,6 @@
 .AccountProfile {
   &__form {
-    margin-top: 30px;
+    margin-top: 28px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
@@ -8,8 +8,8 @@
       "location gamertag"
       "platform ."
       "submit submit";
-    row-gap: 15px;
-    column-gap: 15px;
+    row-gap: 14px;
+    column-gap: 14px;
   }
 
   &__item {
@@ -30,7 +30,7 @@
     }
 
     &:last-child {
-      margin-top: 15px;
+      margin-top: 14px;
     }
   }
 }

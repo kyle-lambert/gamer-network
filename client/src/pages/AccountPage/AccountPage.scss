@@ -4,8 +4,8 @@
   &__grid {
     width: 100%;
     display: grid;
-    column-gap: 30px;
-    row-gap: 30px;
+    column-gap: 28px;
+    row-gap: 28px;
     overflow: hidden;
 
     @media (min-width: $laptop) {
@@ -26,7 +26,7 @@
     width: 100%;
 
     @media (min-width: $laptop) {
-      padding: 10px 0;
+      padding: 14px 0;
     }
   }
 }

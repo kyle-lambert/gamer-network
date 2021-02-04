@@ -2,7 +2,14 @@
 
 .ModalClose {
   position: absolute;
-  right: 20px;
-  top: 20px;
-  padding: 5px;
+  right: 14px;
+  top: 14px;
+  padding: 7px;
+
+  &:hover {
+    svg {
+      transform: scale(1.2);
+      fill: $action-fill-indigo;
+    }
+  }
 }

@@ -2,16 +2,26 @@
 
 .Alerts {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 14px;
+  right: 14px;
   display: flex;
   flex-direction: column;
   z-index: 999;
 
+  @media (min-width: $mobile) {
+    bottom: 21px;
+    right: 21px;
+  }
+
+  @media (min-width: $tablet) {
+    bottom: 28px;
+    right: 28px;
+  }
+
   &__bar {
     display: inline-flex;
-    margin-top: 10px;
-    padding: 0 16px;
+    margin-top: 7px;
+    padding: 0 14px;
     height: 50px;
     text-align: center;
     min-width: 200px;
