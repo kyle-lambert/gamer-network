@@ -1,11 +1,10 @@
-@import "../../scss/partials/variables";
+@import "../../../scss/partials/variables";
 
 .CubeIcon {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  padding: 7px;
   border-radius: 8px;
   background-color: $action-fill-indigo-light;
 }

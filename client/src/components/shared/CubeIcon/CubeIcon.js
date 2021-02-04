@@ -3,10 +3,12 @@ import "./CubeIcon.scss";
 
 import Icon from "../Icon/Icon";
 
-function CubeIcon({ children }) {
+function CubeIcon({ children, color, size }) {
   return (
     <div className="CubeIcon">
-      <Icon>{children}</Icon>
+      <Icon color={color} size={size}>
+        {children}
+      </Icon>
     </div>
   );
 }
