@@ -19,15 +19,6 @@ import ProfilePosts from "./ProfilePosts/ProfilePosts";
 import ProfileFriends from "./ProfileFriends/ProfileFriends";
 import PrivateRoute from "../../hoc/PrivateRoute";
 
-import Portrait from "../../assets/avatar.jpg";
-
-const user = {
-  firstName: "Troy",
-  lastName: "Lambert",
-  hexColor: "#F8C471",
-  avatar: Portrait,
-};
-
 function ProfilePage(props) {
   const { profile, profileLoading, profileError } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
