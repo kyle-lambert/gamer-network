@@ -6,7 +6,7 @@ import ButtonSpinner from "../ButtonSpinner/ButtonSpinner";
 
 const INITIAL = "Button";
 
-function Button({ children, color, variant, width, isLoading, ...rest }) {
+function Button({ children, color, variant, width, disabled, isLoading, ...rest }) {
   const classes = classNames(
     INITIAL,
     color && `${INITIAL}--${color}`,
@@ -15,7 +15,7 @@ function Button({ children, color, variant, width, isLoading, ...rest }) {
   );
 
   return (
-    <button {...rest} disabled={isLoading} className={classes}>
+    <button {...rest} disabled={disabled || isLoading} className={classes}>
       {isLoading ? <ButtonSpinner /> : children}
     </button>
   );

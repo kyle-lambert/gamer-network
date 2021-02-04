@@ -17,6 +17,7 @@
     background-color: $fill-lightest;
     border: 1px solid transparent;
     border-radius: 8px;
+    transition: border-color 150ms ease;
 
     &:focus {
       border-color: $action-fill-indigo;
@@ -26,6 +27,14 @@
       color: $text-light;
       font-style: italic;
       font-weight: inherit;
+    }
+
+    &--invalid {
+      border-color: $action-fill-red;
+    }
+
+    &--valid {
+      border-color: $action-fill-green;
     }
   }
 }

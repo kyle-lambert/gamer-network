@@ -44,7 +44,6 @@ function Navbar(props) {
 
   React.useEffect(() => {
     if (!isAuthenticated || !user) {
-      console.log("close account menu");
       closeAccountMenu();
     }
   }, [isAuthenticated, user]);

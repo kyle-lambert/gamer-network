@@ -33,6 +33,11 @@
     &:hover {
       background-color: $action-fill-indigo-dark;
     }
+
+    &:disabled {
+      background-color: $action-fill-indigo-dark;
+      cursor: auto;
+    }
   }
 
   &--full {
