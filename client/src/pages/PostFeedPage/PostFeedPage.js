@@ -8,8 +8,9 @@ import {
   showCreatePostModalAction,
   hideCurrentModalAction,
 } from "../../store/actions/modalActions";
+import { getPostsByPage } from "../../store/actions/postActions";
 
-import { posts } from "../../data/placeholders";
+// import { posts } from "../../data/placeholders";
 
 import PostCard from "../../components/post/PostCard/PostCard";
 import LoadingSpinner from "../../components/shared/LoadingSpinner/LoadingSpinner";
@@ -18,23 +19,24 @@ import CreatePostModal from "../../components/modals/CreatePostModal/CreatePostM
 
 function PostFeedPage(props) {
   const dispatch = useDispatch();
-  const { postsLoading, postsError } = useSelector((state) => state.post);
+  const { posts, postsLoading, postsError, pageNumber } = useSelector((state) => state.post);
   const { currentModal } = useSelector((state) => state.modal);
 
   React.useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
 
+    dispatch(getPostsByPage(source.token, pageNumber));
+
     return () => {
       dispatch(resetPostReducerAction());
-      source.cancel("Axios request canceled.");
+      source.cancel("PostFeedPage: getPostsByPage");
     };
-  });
+  }, [dispatch, pageNumber]);
 
   React.useEffect(() => {
     const closeCreatePostModal = () => dispatch(hideCurrentModalAction());
     return () => {
-      console.log("closed create-post-modal");
       closeCreatePostModal();
     };
   }, [dispatch]);

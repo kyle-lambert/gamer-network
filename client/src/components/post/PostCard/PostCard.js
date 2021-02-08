@@ -22,7 +22,7 @@ function PostCard({ post }) {
       <PostContent post={post} />
       <PostEngagement />
       <PostTabs handleCommentsToggle={handleCommentsToggle} commentsOpen={commentsOpen} />
-      {commentsOpen && <PostCommentFeed comments={comments} />}
+      {commentsOpen && <PostCommentFeed comments={post.comments} />}
     </article>
   );
 }

@@ -53,11 +53,13 @@ function PostCommentFeed({ comments }) {
           </button>
         </form>
       </div>
-      <ul className="PostCommentFeed__list">
-        {comments.map((comment) => {
-          return <PostComment key={comment._id} comment={comment} />;
-        })}
-      </ul>
+      {Array.isArray(comments) && comments.length > 0 && (
+        <ul className="PostCommentFeed__list">
+          {comments.map((comment) => {
+            return <PostComment key={comment._id} comment={comment} />;
+          })}
+        </ul>
+      )}
     </div>
   );
 }
