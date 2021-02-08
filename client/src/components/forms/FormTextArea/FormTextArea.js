@@ -1,9 +1,14 @@
 import React from "react";
 import "./FormTextArea.scss";
 
-function FormTextArea({ rows = 3, placeholder }, ref) {
+function FormTextArea({ rows = 3, placeholder, ...rest }, ref) {
   return (
-    <textarea ref={ref} rows={rows} placeholder={placeholder} className="FormTextArea"></textarea>
+    <textarea
+      {...rest}
+      ref={ref}
+      rows={rows}
+      placeholder={placeholder}
+      className="FormTextArea"></textarea>
   );
 }
 
