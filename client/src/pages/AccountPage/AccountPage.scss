@@ -9,17 +9,12 @@
     overflow: hidden;
 
     @media (min-width: $laptop) {
-      display: flex;
-      grid-template-columns: repeat(2, auto);
+      grid-template-columns: 300px 1fr;
     }
   }
 
   &__tabs {
     width: 100%;
-
-    @media (min-width: $laptop) {
-      max-width: 300px;
-    }
   }
 
   &__main {
