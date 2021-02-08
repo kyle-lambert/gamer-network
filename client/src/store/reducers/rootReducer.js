@@ -5,6 +5,7 @@ import modalReducer from "../reducers/modalReducer";
 import alertReducer from "../reducers/alertReducer";
 import profileReducer from "../reducers/profileReducer";
 import postReducer from "../reducers/postReducer";
+import createPostReducer from "../reducers/createPostReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   alert: alertReducer,
   profile: profileReducer,
   post: postReducer,
+  createPost: createPostReducer,
 });
 
 export default rootReducer;
