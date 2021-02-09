@@ -15,7 +15,7 @@ const {
 // @route    POST api/posts
 // @desc     Create a new post
 // @access   Private
-router.post("/", [auth, body("text", "Text is required"), validator], createPost);
+router.post("/", [auth, body("text", "Text is required").notEmpty(), validator], createPost);
 
 // @route    GET api/posts
 // @desc     Get posts by page
@@ -35,6 +35,10 @@ router.delete("/:id", [auth, checkObjectId], deletePostById);
 // @route    POST api/posts/comment/:id
 // @desc     Comment on post
 // @access   Private
-router.post("/comment/:id", [auth, checkObjectId, body("text", "Text is required")], addComment);
+router.post(
+  "/comment/:id",
+  [auth, checkObjectId, body("text", "Text is required").notEmpty()],
+  addComment
+);
 
 module.exports = router;

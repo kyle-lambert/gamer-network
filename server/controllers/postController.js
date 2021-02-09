@@ -2,7 +2,11 @@ const User = require("../models/userModel");
 const Post = require("../models/postModel");
 
 async function createPost(req, res) {
-  const { text } = req.body;
+  const { text, image } = req.body;
+
+  if (image) {
+    console.log(image);
+  }
 
   try {
     const user = await User.findById(req.userId);
@@ -32,14 +36,17 @@ async function createPost(req, res) {
 }
 
 async function getPostsByPage(req, res) {
+  const page = req.query.page ? Number.parseFloat(req.query.page) : 1;
+
   try {
     const options = {
-      page: 1,
+      page,
       limit: 10,
       populate: {
         path: "author",
         select: ["-email", "-password"],
       },
+      sort: { createdAt: -1 },
     };
 
     const results = await Post.paginate({}, options);
