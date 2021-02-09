@@ -1,0 +1,31 @@
+@import "../../../scss/partials/variables";
+
+.Alert {
+  display: inline-flex;
+  margin-top: 7px;
+  padding: 0 14px;
+  height: 50px;
+  text-align: center;
+  min-width: 200px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: $action-fill-indigo-light;
+  color: $action-fill-indigo;
+
+  &--success {
+    background-color: $action-fill-green-light;
+    color: $action-fill-green;
+  }
+
+  &--error {
+    background-color: $action-fill-red-light;
+    color: $action-fill-red;
+  }
+
+  &__msg {
+    text-align: center;
+    font-weight: 500;
+  }
+}

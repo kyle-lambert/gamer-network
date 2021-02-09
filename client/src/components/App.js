@@ -7,7 +7,7 @@ import Navbar from "../components/navigation/Navbar/Navbar";
 import FooterBar from "../components/shared/FooterBar/FooterBar";
 import LoginModal from "../components/modals/LoginModal/LoginModal";
 import SignUpModal from "../components/modals/SignUpModal/SignUpModal";
-import Alerts from "../components/shared/Alerts/Alerts";
+import AlertsList from "../components/shared/AlertsList/AlertsList";
 import PageLayout from "../components/shared/PageLayout/PageLayout";
 
 import LandingPage from "../pages/LandingPage/LandingPage";
@@ -61,7 +61,7 @@ function App(props) {
             </Route>
           </Switch>
         </PageLayout>
-        <Alerts />
+        <AlertsList />
         {currentModal === "LOGIN_MODAL" && <LoginModal />}
         {currentModal === "SIGN_UP_MODAL" && <SignUpModal />}
       </main>
