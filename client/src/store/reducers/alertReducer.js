@@ -4,10 +4,10 @@ const initState = [];
 
 function alertReducer(state = initState, action) {
   switch (action.type) {
-    case alertTypes.ADD_ALERT: {
+    case alertTypes.ALERT_ADDED: {
       return [...state, action.payload];
     }
-    case alertTypes.REMOVE_ALERT: {
+    case alertTypes.ALERT_REMOVED: {
       return state.filter((alert) => alert.id !== action.payload);
     }
     default: {

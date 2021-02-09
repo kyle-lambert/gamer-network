@@ -2,7 +2,6 @@ import { createPostTypes } from "../types";
 
 const initState = {
   createPostLoading: false,
-  createPostError: false,
 };
 
 function createPostReducer(state = initState, action) {
@@ -23,7 +22,6 @@ function createPostReducer(state = initState, action) {
       return {
         ...state,
         createPostLoading: false,
-        createPostError: true,
       };
     }
     case createPostTypes.RESET_CREATE_POST_REDUCER: {

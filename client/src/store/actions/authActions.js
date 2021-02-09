@@ -1,109 +1,175 @@
 import { batch } from "react-redux";
 import { authTypes } from "../types";
-import { publishAlertAction } from "./alertActions";
-import { hideCurrentModalAction, showLoginModalAction } from "./modalActions";
+import { createAlert } from "./alertActions";
+import { hideCurrentModal, showLoginModal } from "./modalActions";
 import setAuthorisationToken from "../../utils/setAuthorisationToken";
 import api from "../../data/api";
 
-export const logoutUserAction = () => {
+const LOGGED_IN = "User logged in";
+const LOGGED_OUT = "User logged out";
+const REGISTERED = "Account registered";
+const REQUEST_ERROR = "No response from server";
+const REQUEST_FAILED = "Unable to make request";
+
+const logout = () => ({ type: authTypes.USER_LOGGED_OUT });
+
+const registerUserRequest = () => ({ type: authTypes.REGISTER_USER_REQUEST });
+const registerUserSuccess = () => ({ type: authTypes.REGISTER_USER_SUCCESS });
+const registerUserFailure = () => ({ type: authTypes.REGISTER_USER_FAILURE });
+
+const authenticateUserRequest = () => ({ type: authTypes.AUTHENTICATE_USER_REQUEST });
+const authenticateUserSuccess = (payload) => ({
+  type: authTypes.AUTHENTICATE_USER_SUCCESS,
+  payload,
+});
+const authenticateUserFailure = () => ({ type: authTypes.AUTHENTICATE_USER_FAILURE });
+
+const loadUserRequest = () => ({ type: authTypes.LOAD_USER_REQUEST });
+const loadUserSuccess = (payload) => ({ type: authTypes.LOAD_USER_SUCCESS, payload });
+const loadUserFailure = () => ({ type: authTypes.LOAD_USER_FAILURE });
+
+export const logoutUser = () => {
   return (dispatch) => {
     batch(() => {
-      dispatch({ type: authTypes.USER_LOGOUT });
-      dispatch(publishAlertAction("User logged out successfully", "success"));
+      dispatch(logout());
+      dispatch(createAlert(LOGGED_OUT, false));
     });
     setAuthorisationToken(false);
   };
 };
 
-export const registerUserAction = (form) => {
-  return (dispatch) => {
+export const registerUser = (form) => {
+  return async (dispatch) => {
+    if (!form) {
+      return;
+    }
+
     const { firstName, lastName, email, password } = form;
 
-    dispatch({ type: authTypes.REGISTER_USER_REQUEST });
+    try {
+      dispatch(registerUserRequest());
 
-    api
-      .post("/users/register", {
-        firstName,
-        lastName,
-        email,
-        password,
-      })
-      .then((res) => {
-        batch(() => {
-          dispatch({ type: authTypes.REGISTER_USER_SUCCESS });
-          dispatch(showLoginModalAction());
-          dispatch(publishAlertAction("User registered successfully", "success"));
-        });
-      })
-      .catch((err) => {
-        dispatch({ type: authTypes.REGISTER_USER_FAILURE });
+      const config = {
+        method: "post",
+        url: "/users/register",
+        data: {
+          firstName,
+          lastName,
+          email,
+          password,
+        },
+      };
 
-        if (Array.isArray(err?.response?.data?.errors)) {
-          err.response.data.errors.forEach((error) => {
-            return dispatch(publishAlertAction(error.msg, "error"));
-          });
-        } else {
-          dispatch(publishAlertAction("Request error", "error"));
-        }
+      await api(config);
+
+      batch(() => {
+        dispatch(registerUserSuccess());
+        dispatch(showLoginModal());
+        dispatch(createAlert(REGISTERED, false));
       });
+    } catch (err) {
+      dispatch(registerUserFailure());
+      if (err.response) {
+        const errors = err.response?.data?.errors;
+        if (errors) {
+          errors.forEach((error) => {
+            dispatch(createAlert(error.msg, true));
+          });
+        }
+      } else if (err.request) {
+        dispatch(createAlert(REQUEST_ERROR, true));
+      } else {
+        dispatch(createAlert(REQUEST_FAILED, true));
+      }
+    }
   };
 };
 
-export const authenticateUserAction = (form) => {
+export const authenticateUser = (form) => {
   return async (dispatch) => {
+    if (!form) {
+      return;
+    }
+
     const { email, password } = form;
 
-    dispatch({ type: authTypes.AUTHENTICATE_USER_REQUEST });
+    try {
+      dispatch(authenticateUserRequest());
 
-    api
-      .post("/auth", {
-        email,
-        password,
-      })
-      .then((res) => {
-        batch(() => {
-          dispatch({ type: authTypes.AUTHENTICATE_USER_SUCCESS, payload: res.data });
-          dispatch(hideCurrentModalAction());
-          dispatch(publishAlertAction("User logged in successfully", "success"));
-        });
-        setAuthorisationToken(res.data.token);
-      })
-      .catch((err) => {
-        dispatch({ type: authTypes.AUTHENTICATE_USER_FAILURE });
+      const config = {
+        method: "post",
+        url: "/auth",
+        data: {
+          email,
+          password,
+        },
+      };
 
-        if (Array.isArray(err?.response?.data?.errors)) {
-          err.response.data.errors.forEach((error) => {
-            return dispatch(publishAlertAction(error.msg, "error"));
-          });
-        } else {
-          dispatch(publishAlertAction("Request error", "error"));
-        }
+      const res = await api(config);
+      const data = res?.data;
+
+      if (!data) {
+        throw new Error("No data found in response");
+      }
+
+      batch(() => {
+        dispatch(authenticateUserSuccess(data));
+        dispatch(hideCurrentModal());
+        dispatch(createAlert(LOGGED_IN, false));
       });
+      setAuthorisationToken(data.token);
+    } catch (err) {
+      dispatch(authenticateUserFailure());
+      if (err.response) {
+        const errors = err.response?.data?.errors;
+        if (errors) {
+          errors.forEach((error) => {
+            dispatch(createAlert(error.msg, true));
+          });
+        }
+      } else if (err.request) {
+        dispatch(createAlert(REQUEST_ERROR, true));
+      } else {
+        dispatch(createAlert(REQUEST_FAILED, true));
+      }
+    }
   };
 };
 
-export const loadUserAction = () => {
-  return (dispatch) => {
-    dispatch({ type: authTypes.LOAD_USER_REQUEST });
+export const loadUser = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(loadUserRequest());
+      const config = {
+        method: "get",
+        url: "/auth",
+      };
 
-    api
-      .get("/auth")
-      .then((res) => {
-        batch(() => {
-          dispatch({ type: authTypes.LOAD_USER_SUCCESS, payload: res.data.user });
-          dispatch(publishAlertAction("User logged in successfully", "success"));
-        });
-      })
-      .catch((err) => {
-        dispatch({ type: authTypes.LOAD_USER_FAILURE });
+      const res = await api(config);
+      const data = res?.data;
 
-        if (Array.isArray(err?.response?.data?.errors)) {
-          err.response.data.errors.forEach((error) => {
-            return dispatch(publishAlertAction(error.msg, "error"));
-          });
-        } else {
-          dispatch(publishAlertAction("Request error", "error"));
-        }
+      if (!data) {
+        throw new Error("No data found in response");
+      }
+
+      batch(() => {
+        dispatch(loadUserSuccess(data.user));
+        dispatch(createAlert(LOGGED_IN, false));
       });
+    } catch (err) {
+      dispatch(loadUserFailure());
+      if (err.response) {
+        const errors = err.response?.data?.errors;
+        if (errors) {
+          errors.forEach((error) => {
+            dispatch(createAlert(error.msg, true));
+          });
+        }
+      } else if (err.request) {
+        dispatch(createAlert(REQUEST_ERROR, true));
+      } else {
+        dispatch(createAlert(REQUEST_FAILED, true));
+      }
+    }
   };
 };

@@ -1,41 +1,65 @@
 import { profileTypes } from "../types";
-import { publishAlertAction } from "./alertActions";
+import { createAlert } from "./alertActions";
 import axios from "axios";
 import api from "../../data/api";
 
-export const getProfileByIdAction = (id, token) => {
+const PROFILE_ID_ERROR = "No profie ID provided";
+const REQUEST_ERROR = "No response from server";
+const REQUEST_FAILED = "Unable to make request";
+
+const loadProfileRequest = () => ({
+  type: profileTypes.LOAD_PROFILE_REQUEST,
+});
+
+const loadProfileSuccess = (payload) => ({
+  type: profileTypes.LOAD_PROFILE_SUCCESS,
+  payload,
+});
+
+const loadProfileFailure = () => ({
+  type: profileTypes.LOAD_PROFILE_FAILURE,
+});
+
+export const initialiseProfileReducer = () => ({ type: profileTypes.INITIALISE_PROFILE_REDUCER });
+
+export const loadProfile = (id, token) => {
   return async (dispatch) => {
-    if (id) {
-      dispatch({ type: profileTypes.USER_PROFILE_REQUEST });
-      api
-        .get(`/profile/${id}`, { cancelToken: token })
-        .then((res) => {
-          dispatch({ type: profileTypes.USER_PROFILE_SUCCESS, payload: res.data.profile });
-        })
-        .catch((err) => {
-          if (axios.isCancel(err)) {
-            dispatch({ type: profileTypes.RESET_PROFILE_REDUCER });
-            console.log("Request canceled", err.message);
-          } else {
-            dispatch({ type: profileTypes.USER_PROFILE_FAILURE });
-
-            if (Array.isArray(err?.response?.data?.errors)) {
-              err.response.data.errors.forEach((error) => {
-                return dispatch(publishAlertAction(error.msg, "error"));
-              });
-            } else {
-              dispatch(publishAlertAction("Request error", "error"));
-            }
-          }
-        });
-    } else {
-      dispatch(publishAlertAction("Please provide user ID", "error"));
+    if (!id) {
+      return dispatch(createAlert(PROFILE_ID_ERROR, true));
     }
-  };
-};
+    dispatch(loadProfileRequest());
+    try {
+      const config = {
+        method: "get",
+        url: `/profile/${id}`,
+        cancelToken: token,
+      };
+      const res = await api(config);
+      const profile = res?.data?.profile;
 
-export const resetProfileReducerAction = () => {
-  return (dispatch) => {
-    dispatch({ type: profileTypes.RESET_PROFILE_REDUCER });
+      if (!profile) {
+        throw new Error("No profile found");
+      }
+
+      dispatch(loadProfileSuccess(profile));
+    } catch (err) {
+      if (axios.isCancel(err)) {
+        console.log("Axios request cancelled");
+      } else {
+        dispatch(loadProfileFailure());
+        if (err.response) {
+          const errors = err.response?.data?.errors;
+          if (errors) {
+            errors.forEach((error) => {
+              dispatch(createAlert(error.msg, true));
+            });
+          }
+        } else if (err.request) {
+          dispatch(createAlert(REQUEST_ERROR, true));
+        } else {
+          dispatch(createAlert(REQUEST_FAILED, true));
+        }
+      }
+    }
   };
 };

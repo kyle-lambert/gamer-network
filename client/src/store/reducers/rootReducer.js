@@ -10,9 +10,9 @@ import createPostReducer from "../reducers/createPostReducer";
 const rootReducer = combineReducers({
   auth: authReducer,
   modal: modalReducer,
-  alert: alertReducer,
-  profile: profileReducer,
-  post: postReducer,
+  alertReducer,
+  profileReducer,
+  postReducer,
   createPost: createPostReducer,
 });
 

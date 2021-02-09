@@ -8,27 +8,27 @@ const initState = {
 
 function profileReducer(state = initState, action) {
   switch (action.type) {
-    case profileTypes.USER_PROFILE_REQUEST: {
+    case profileTypes.LOAD_PROFILE_REQUEST: {
       return {
         ...state,
         profileLoading: true,
       };
     }
-    case profileTypes.USER_PROFILE_SUCCESS: {
+    case profileTypes.LOAD_PROFILE_SUCCESS: {
       return {
         ...state,
         profile: action.payload,
         profileLoading: false,
       };
     }
-    case profileTypes.USER_PROFILE_FAILURE: {
+    case profileTypes.LOAD_PROFILE_FAILURE: {
       return {
         ...state,
         profileLoading: false,
         profileError: true,
       };
     }
-    case profileTypes.RESET_PROFILE_REDUCER: {
+    case profileTypes.INITIALISE_PROFILE_REDUCER: {
       return initState;
     }
     default: {

@@ -1,45 +1,64 @@
 import axios from "axios";
 import { postTypes } from "../types";
-import { batch } from "react-redux";
-import { publishAlertAction } from "../actions/alertActions";
+import { createAlert } from "./alertActions";
 import api from "../../data/api";
 
-export const getPostsByPage = (token, page) => {
-  return (dispatch) => {
-    dispatch({ type: postTypes.POSTS_BY_PAGE_REQUEST });
-    api
-      .get("/posts", { cancelToken: token })
-      .then((res) => {
-        batch(() => {
-          const posts = res?.data?.results?.docs;
-          if (posts && Array.isArray(posts)) {
-            dispatch({ type: postTypes.POSTS_BY_PAGE_SUCCESS, payload: posts });
-          } else {
-            console.log("Incorrect post shape. Expected type Array.");
-          }
-        });
-      })
-      .catch((err) => {
-        if (axios.isCancel(err)) {
-          dispatch({ type: postTypes.RESET_POST_REDUCER });
-          console.log("Request canceled", err.message);
-        } else {
-          dispatch({ type: postTypes.POSTS_BY_PAGE_FAILURE });
+const REQUEST_ERROR = "No response from server";
+const REQUEST_FAILED = "Unable to make request";
 
-          if (Array.isArray(err?.response?.data?.errors)) {
-            err.response.data.errors.forEach((error) => {
-              return dispatch(publishAlertAction(error.msg, "error"));
+const loadPostsRequest = () => ({
+  type: postTypes.LOAD_POSTS_REQUEST,
+});
+
+const loadPostsSuccess = (payload) => ({
+  type: postTypes.LOAD_POSTS_SUCCESS,
+  payload,
+});
+
+const loadPostsFailure = () => ({
+  type: postTypes.LOAD_POSTS_FAILURE,
+});
+
+export const initialisePostReducer = () => ({ type: postTypes.INITIALISE_POST_REDUCER });
+
+export const loadPosts = (page, token) => {
+  return async (dispatch) => {
+    dispatch(loadPostsRequest());
+    try {
+      const config = {
+        method: "get",
+        url: "/posts",
+        params: {
+          page: page,
+        },
+        cancelToken: token,
+      };
+      const res = await api(config);
+      const results = res?.data?.results;
+
+      if (!results) {
+        throw new Error("No results found in response");
+      }
+
+      dispatch(loadPostsSuccess(results.docs));
+    } catch (err) {
+      if (axios.isCancel(err)) {
+        console.log("Axios request cancelled");
+      } else {
+        dispatch(loadPostsFailure());
+        if (err.response) {
+          const errors = err.response?.data?.errors;
+          if (errors) {
+            errors.forEach((error) => {
+              dispatch(createAlert(error.msg, true));
             });
-          } else {
-            dispatch(publishAlertAction("Request error", "error"));
           }
+        } else if (err.request) {
+          dispatch(createAlert(REQUEST_ERROR, true));
+        } else {
+          dispatch(createAlert(REQUEST_FAILED, true));
         }
-      });
-  };
-};
-
-export const resetPostReducerAction = () => {
-  return (dispatch) => {
-    dispatch({ type: postTypes.RESET_POST_REDUCER });
+      }
+    }
   };
 };

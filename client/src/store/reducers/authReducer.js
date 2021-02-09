@@ -71,7 +71,7 @@ function authReducer(state = initState, action) {
         loadUserLoading: false,
       };
     }
-    case authTypes.USER_LOGOUT: {
+    case authTypes.USER_LOGGED_OUT: {
       return initState;
     }
     default: {
