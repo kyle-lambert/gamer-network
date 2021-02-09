@@ -5,14 +5,10 @@ import "./Alert.scss";
 const INITIAL = "Alert";
 
 function Alert({ alert }) {
-  const classes = classNames(
-    INITIAL,
-    alert.type === "success" && `${INITIAL}--success`,
-    alert.type === "error" && `${INITIAL}--error`
-  );
+  const classes = classNames(INITIAL, alert.isError ? `${INITIAL}--error` : `${INITIAL}--success`);
   return (
     <li className={classes}>
-      <span className="Alert__msg">{alert.msg}</span>
+      <span className="Alert__msg">{alert.message}</span>
     </li>
   );
 }

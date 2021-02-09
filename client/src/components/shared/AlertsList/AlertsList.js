@@ -5,7 +5,7 @@ import "./AlertsList.scss";
 import Alert from "../Alert/Alert";
 
 function AlertsList(props) {
-  const alerts = useSelector((state) => state.alert);
+  const alerts = useSelector((state) => state.alertReducer);
 
   return (
     <ul className="AlertsList">
