@@ -4,10 +4,7 @@ import { Switch, Route, Redirect, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./ProfilePage.scss";
 
-import {
-  getProfileByIdAction,
-  resetProfileReducerAction,
-} from "../../store/actions/profileActions";
+import { loadProfile, initialiseProfileReducer } from "../../store/actions/profileActions";
 
 import LoadingSpinner from "../../components/shared/LoadingSpinner/LoadingSpinner";
 import FetchingError from "../../components/shared/FetchingError/FetchingError";
@@ -20,18 +17,17 @@ import ProfileFriends from "./ProfileFriends/ProfileFriends";
 import PrivateRoute from "../../hoc/PrivateRoute";
 
 function ProfilePage(props) {
-  const { profile, profileLoading, profileError } = useSelector((state) => state.profile);
+  const { profile, profileLoading, profileError } = useSelector((state) => state.profileReducer);
   const dispatch = useDispatch();
   const { id } = useParams();
 
   React.useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-    dispatch(getProfileByIdAction(id, source.token));
+    const source = axios.CancelToken.source();
+    dispatch(loadProfile(id, source.token));
 
     return () => {
-      source.cancel("ProfilePage: getProfileById");
-      dispatch(resetProfileReducerAction());
+      source.cancel();
+      dispatch(initialiseProfileReducer());
     };
   }, [dispatch, id]);
 

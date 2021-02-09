@@ -1,9 +1,8 @@
 import React from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import "./CreatePostModal.scss";
 
-import { hideCurrentModalAction } from "../../../store/actions/modalActions";
+import { hideCurrentModal } from "../../../store/actions/modalActions";
 import { createNewPostAction } from "../../../store/actions/createPostActions";
 
 import FormTextArea from "../../forms/FormTextArea/FormTextArea";
@@ -24,8 +23,8 @@ function CreatePostModal(props) {
   });
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const { createPostLoading, createPostError } = useSelector((state) => state.createPost);
-  const closeCreatePostModal = () => dispatch(hideCurrentModalAction());
+  const { createPostLoading } = useSelector((state) => state.createPost);
+  const closeCreatePostModal = () => dispatch(hideCurrentModal());
 
   React.useEffect(() => {
     if (textAreaRef.current) {

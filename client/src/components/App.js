@@ -18,8 +18,8 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 import PrivateRoute from "../hoc/PrivateRoute";
 
-import { loadUserAction } from "../store/actions/authActions";
-import { logoutUserAction } from "../store/actions/authActions";
+import { loadUser } from "../store/actions/authActions";
+import { logoutUser } from "../store/actions/authActions";
 import setAuthorisationToken from "../utils/setAuthorisationToken";
 
 function App(props) {
@@ -29,12 +29,12 @@ function App(props) {
   React.useEffect(() => {
     if (localStorage.token) {
       setAuthorisationToken(localStorage.token);
-      dispatch(loadUserAction());
+      dispatch(loadUser());
     }
 
     const handleStorageChange = () => {
       if (!localStorage.token) {
-        dispatch(logoutUserAction());
+        dispatch(logoutUser());
       }
     };
 

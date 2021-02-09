@@ -12,8 +12,8 @@ import Button from "../../shared/Button/Button";
 
 // import { validateEmail } from "../../../utils/regex";
 
-import { showSignUpModalAction, hideCurrentModalAction } from "../../../store/actions/modalActions";
-import { authenticateUserAction } from "../../../store/actions/authActions";
+import { showSignUpModal, hideCurrentModal } from "../../../store/actions/modalActions";
+import { authenticateUser } from "../../../store/actions/authActions";
 
 function LoginModal(props) {
   const emailRef = React.useRef(null);
@@ -66,12 +66,12 @@ function LoginModal(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state.email && state.password) {
-      dispatch(authenticateUserAction(state));
+      dispatch(authenticateUser(state));
     }
   };
 
-  const openSignUpModal = () => dispatch(showSignUpModalAction());
-  const closeLoginModal = () => dispatch(hideCurrentModalAction());
+  const openSignUpModal = () => dispatch(showSignUpModal());
+  const closeLoginModal = () => dispatch(hideCurrentModal());
 
   return (
     <Modal>

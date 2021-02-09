@@ -4,8 +4,8 @@ import { NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.scss";
 
-import { showLoginModalAction, showSignUpModalAction } from "../../../store/actions/modalActions";
-import { logoutUserAction } from "../../../store/actions/authActions";
+import { showLoginModal, showSignUpModal } from "../../../store/actions/modalActions";
+import { logoutUser } from "../../../store/actions/authActions";
 
 import { ReactComponent as Hamburger } from "../../../assets/icons/hamburger.svg";
 import { ReactComponent as GlitchLogo } from "../../../assets/icons/glitch-logo.svg";
@@ -31,15 +31,15 @@ function Navbar(props) {
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = React.useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = React.useState(false);
 
-  const openLoginModal = () => dispatch(showLoginModalAction());
-  const openSignUpModal = () => dispatch(showSignUpModalAction());
+  const openLoginModal = () => dispatch(showLoginModal());
+  const openSignUpModal = () => dispatch(showSignUpModal());
   const toggleHamburgerMenu = () => setHamburgerMenuOpen((state) => !state);
   const toggleAccountMenu = () => setAccountMenuOpen((state) => !state);
   const closeHamburgerMenu = () => setHamburgerMenuOpen(false);
   const closeAccountMenu = () => setAccountMenuOpen(false);
 
-  const logoutUser = () => {
-    dispatch(logoutUserAction());
+  const handleLogoutUser = () => {
+    dispatch(logoutUser());
   };
 
   React.useEffect(() => {
@@ -90,7 +90,11 @@ function Navbar(props) {
             </button>
           </div>
           {accountMenuOpen && (
-            <AccountMenu closeAccountMenu={closeAccountMenu} user={user} logoutUser={logoutUser} />
+            <AccountMenu
+              closeAccountMenu={closeAccountMenu}
+              user={user}
+              logoutUser={handleLogoutUser}
+            />
           )}
         </>
       ) : (

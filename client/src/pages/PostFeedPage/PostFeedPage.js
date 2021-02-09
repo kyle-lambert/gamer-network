@@ -1,16 +1,11 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import "./PostFeedPage.scss";
 
-import { resetPostReducerAction } from "../../store/actions/postActions";
-import {
-  showCreatePostModalAction,
-  hideCurrentModalAction,
-} from "../../store/actions/modalActions";
-import { getPostsByPage } from "../../store/actions/postActions";
-
-// import { posts } from "../../data/placeholders";
+import { initialisePostReducer } from "../../store/actions/postActions";
+import { showCreatePostModal, hideCurrentModal } from "../../store/actions/modalActions";
+import { loadPosts } from "../../store/actions/postActions";
 
 import PostCard from "../../components/post/PostCard/PostCard";
 import LoadingSpinner from "../../components/shared/LoadingSpinner/LoadingSpinner";
@@ -19,36 +14,34 @@ import CreatePostModal from "../../components/modals/CreatePostModal/CreatePostM
 
 function PostFeedPage(props) {
   const dispatch = useDispatch();
-  const { posts, postsLoading, postsError, pageNumber } = useSelector((state) => state.post);
+  const { posts, postsLoading, postsError } = useSelector((state) => state.postReducer);
   const { currentModal } = useSelector((state) => state.modal);
 
   React.useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-
-    dispatch(getPostsByPage(source.token, pageNumber));
+    const source = axios.CancelToken.source();
+    dispatch(loadPosts(1, source.token));
 
     return () => {
-      source.cancel("PostFeedPage: getPostsByPage");
-      dispatch(resetPostReducerAction());
+      source.cancel();
+      dispatch(initialisePostReducer());
     };
-  }, [dispatch, pageNumber]);
+  }, [dispatch]);
 
   React.useEffect(() => {
-    const closeCreatePostModal = () => dispatch(hideCurrentModalAction());
+    const closeCreatePostModal = () => dispatch(hideCurrentModal());
     return () => {
       closeCreatePostModal();
     };
   }, [dispatch]);
 
-  const openCreatePostModal = () => dispatch(showCreatePostModalAction());
+  const openCreatePostModal = () => dispatch(showCreatePostModal());
 
   if (postsLoading) {
     return <LoadingSpinner />;
   } else if (postsError) {
     return <FetchingError />;
   } else {
-    return (
+    return posts.length > 0 ? (
       <div className="PostFeedPage">
         <header className="PostFeedPage__header">
           <button onClick={openCreatePostModal} className="PostFeedPage__add-post">
@@ -62,7 +55,7 @@ function PostFeedPage(props) {
         </section>
         {currentModal === "CREATE_POST_MODAL" && <CreatePostModal />}
       </div>
-    );
+    ) : null;
   }
 }
 

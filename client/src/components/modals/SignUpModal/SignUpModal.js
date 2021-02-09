@@ -10,8 +10,8 @@ import ModalFooter from "../ModalFooter/ModalFooter";
 import FormInputGroup from "../../forms/FormInputGroup/FormInputGroup";
 import Button from "../../shared/Button/Button";
 
-import { showLoginModalAction, hideCurrentModalAction } from "../../../store/actions/modalActions";
-import { registerUserAction } from "../../../store/actions/authActions";
+import { showLoginModal, hideCurrentModal } from "../../../store/actions/modalActions";
+import { registerUser } from "../../../store/actions/authActions";
 
 function SignUpModal(props) {
   const firstNameRef = React.useRef(null);
@@ -44,12 +44,12 @@ function SignUpModal(props) {
     e.preventDefault();
 
     if (state.firstName && state.lastName && state.email && state.password) {
-      dispatch(registerUserAction(state));
+      dispatch(registerUser(state));
     }
   };
 
-  const openLoginModal = () => dispatch(showLoginModalAction());
-  const closeSignUpModal = () => dispatch(hideCurrentModalAction());
+  const openLoginModal = () => dispatch(showLoginModal());
+  const closeSignUpModal = () => dispatch(hideCurrentModal());
 
   return (
     <Modal>
