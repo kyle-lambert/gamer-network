@@ -34,7 +34,6 @@ function CreatePostModal(props) {
   }, []);
 
   const handleChange = (e) => {
-    console.log(e.target.name);
     setState((prev) => {
       return {
         ...prev,

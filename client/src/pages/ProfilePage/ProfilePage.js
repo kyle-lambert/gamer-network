@@ -30,8 +30,8 @@ function ProfilePage(props) {
     dispatch(getProfileByIdAction(id, source.token));
 
     return () => {
+      source.cancel("ProfilePage: getProfileById");
       dispatch(resetProfileReducerAction());
-      source.cancel("Axios request canceled.");
     };
   }, [dispatch, id]);
 

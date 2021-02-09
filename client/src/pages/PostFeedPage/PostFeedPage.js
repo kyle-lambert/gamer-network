@@ -29,8 +29,8 @@ function PostFeedPage(props) {
     dispatch(getPostsByPage(source.token, pageNumber));
 
     return () => {
-      dispatch(resetPostReducerAction());
       source.cancel("PostFeedPage: getPostsByPage");
+      dispatch(resetPostReducerAction());
     };
   }, [dispatch, pageNumber]);
 

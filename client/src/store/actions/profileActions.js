@@ -14,16 +14,19 @@ export const getProfileByIdAction = (id, token) => {
         })
         .catch((err) => {
           if (axios.isCancel(err)) {
+            dispatch({ type: profileTypes.RESET_PROFILE_REDUCER });
             console.log("Request canceled", err.message);
-          }
-
-          if (err.response) {
-            console.log(err.response);
           } else {
-            dispatch(publishAlertAction("Unable to make request", "error"));
-          }
+            dispatch({ type: profileTypes.USER_PROFILE_FAILURE });
 
-          dispatch({ type: profileTypes.USER_PROFILE_FAILURE });
+            if (Array.isArray(err?.response?.data?.errors)) {
+              err.response.data.errors.forEach((error) => {
+                return dispatch(publishAlertAction(error.msg, "error"));
+              });
+            } else {
+              dispatch(publishAlertAction("Request error", "error"));
+            }
+          }
         });
     } else {
       dispatch(publishAlertAction("Please provide user ID", "error"));

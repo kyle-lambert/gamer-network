@@ -36,17 +36,15 @@ export const registerUserAction = (form) => {
         });
       })
       .catch((err) => {
-        if (!err.response) {
-          dispatch(publishAlertAction("Unable to make request", "error"));
-        }
+        dispatch({ type: authTypes.REGISTER_USER_FAILURE });
 
         if (Array.isArray(err?.response?.data?.errors)) {
           err.response.data.errors.forEach((error) => {
-            dispatch(publishAlertAction(error.msg, "error"));
+            return dispatch(publishAlertAction(error.msg, "error"));
           });
+        } else {
+          dispatch(publishAlertAction("Request error", "error"));
         }
-
-        dispatch({ type: authTypes.REGISTER_USER_FAILURE });
       });
   };
 };
@@ -71,17 +69,15 @@ export const authenticateUserAction = (form) => {
         setAuthorisationToken(res.data.token);
       })
       .catch((err) => {
-        if (!err.response) {
-          dispatch(publishAlertAction("Unable to make request", "error"));
-        }
+        dispatch({ type: authTypes.AUTHENTICATE_USER_FAILURE });
 
         if (Array.isArray(err?.response?.data?.errors)) {
           err.response.data.errors.forEach((error) => {
-            dispatch(publishAlertAction(error.msg, "error"));
+            return dispatch(publishAlertAction(error.msg, "error"));
           });
+        } else {
+          dispatch(publishAlertAction("Request error", "error"));
         }
-
-        dispatch({ type: authTypes.AUTHENTICATE_USER_FAILURE });
       });
   };
 };
@@ -99,17 +95,15 @@ export const loadUserAction = () => {
         });
       })
       .catch((err) => {
-        if (!err.response) {
-          return dispatch(publishAlertAction("Unable to make request", "error"));
-        }
+        dispatch({ type: authTypes.LOAD_USER_FAILURE });
 
         if (Array.isArray(err?.response?.data?.errors)) {
           err.response.data.errors.forEach((error) => {
-            dispatch(publishAlertAction(error.msg, "error"));
+            return dispatch(publishAlertAction(error.msg, "error"));
           });
+        } else {
+          dispatch(publishAlertAction("Request error", "error"));
         }
-
-        dispatch({ type: authTypes.LOAD_USER_FAILURE });
       });
   };
 };

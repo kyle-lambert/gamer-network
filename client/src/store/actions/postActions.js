@@ -20,21 +20,19 @@ export const getPostsByPage = (token, page) => {
         });
       })
       .catch((err) => {
-        dispatch({ type: postTypes.POSTS_BY_PAGE_FAILURE });
-
         if (axios.isCancel(err)) {
           dispatch({ type: postTypes.RESET_POST_REDUCER });
-          return console.log("Request canceled", err.message);
-        }
+          console.log("Request canceled", err.message);
+        } else {
+          dispatch({ type: postTypes.POSTS_BY_PAGE_FAILURE });
 
-        if (!err.response) {
-          return dispatch(publishAlertAction("Unable to make request", "error"));
-        }
-
-        if (Array.isArray(err?.response?.data?.errors)) {
-          err.response.data.errors.forEach((error) => {
-            return dispatch(publishAlertAction(error.msg, "error"));
-          });
+          if (Array.isArray(err?.response?.data?.errors)) {
+            err.response.data.errors.forEach((error) => {
+              return dispatch(publishAlertAction(error.msg, "error"));
+            });
+          } else {
+            dispatch(publishAlertAction("Request error", "error"));
+          }
         }
       });
   };
