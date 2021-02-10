@@ -22,7 +22,7 @@ function CreatePostModal(props) {
     image: "",
   });
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.authReducer);
   const { createPostLoading } = useSelector((state) => state.createPost);
   const closeCreatePostModal = () => dispatch(hideCurrentModal());
 

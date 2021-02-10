@@ -8,8 +8,8 @@ import postReducer from "../reducers/postReducer";
 import createPostReducer from "../reducers/createPostReducer";
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  modal: modalReducer,
+  authReducer,
+  modalReducer,
   alertReducer,
   profileReducer,
   postReducer,

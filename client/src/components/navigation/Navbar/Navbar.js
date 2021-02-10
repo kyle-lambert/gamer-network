@@ -27,7 +27,7 @@ export const routes = [
 
 function Navbar(props) {
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.authReducer);
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = React.useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = React.useState(false);
 

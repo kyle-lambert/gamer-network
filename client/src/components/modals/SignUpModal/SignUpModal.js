@@ -16,7 +16,7 @@ import { registerUser } from "../../../store/actions/authActions";
 function SignUpModal(props) {
   const firstNameRef = React.useRef(null);
   const dispatch = useDispatch();
-  const { registerLoading } = useSelector((state) => state.auth);
+  const { registerLoading } = useSelector((state) => state.authReducer);
 
   const [state, setState] = React.useState({
     firstName: "",

@@ -23,7 +23,7 @@ import { logoutUser } from "../store/actions/authActions";
 import setAuthorisationToken from "../utils/setAuthorisationToken";
 
 function App(props) {
-  const { currentModal } = useSelector((state) => state.modal);
+  const { currentModal } = useSelector((state) => state.modalReducer);
   const dispatch = useDispatch();
 
   React.useEffect(() => {

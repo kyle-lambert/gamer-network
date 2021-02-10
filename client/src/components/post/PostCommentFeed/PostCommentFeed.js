@@ -13,7 +13,7 @@ import PostCommentInput from "../PostCommentInput/PostCommentInput";
 import PostComment from "../PostComment/PostComment";
 
 function PostCommentFeed({ comments }) {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.authReducer);
   const commentRef = React.useRef(null);
   const [comment, setComment] = React.useState("");
 

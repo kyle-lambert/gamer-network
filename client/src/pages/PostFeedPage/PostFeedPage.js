@@ -15,7 +15,7 @@ import CreatePostModal from "../../components/modals/CreatePostModal/CreatePostM
 function PostFeedPage(props) {
   const dispatch = useDispatch();
   const { posts, postsLoading, postsError } = useSelector((state) => state.postReducer);
-  const { currentModal } = useSelector((state) => state.modal);
+  const { currentModal } = useSelector((state) => state.modalReducer);
 
   React.useEffect(() => {
     const source = axios.CancelToken.source();

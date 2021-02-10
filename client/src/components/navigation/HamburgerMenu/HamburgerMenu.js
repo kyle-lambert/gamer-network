@@ -8,7 +8,7 @@ import useOutsideClick from "../../../hooks/useOutsideClick";
 
 function HamburgerMenu({ closeHamburgerMenu, openSignUpModal }) {
   const hamburgerRef = React.useRef(null);
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.authReducer);
 
   useOutsideClick(hamburgerRef, () => {
     closeHamburgerMenu();

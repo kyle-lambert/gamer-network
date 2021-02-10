@@ -18,7 +18,7 @@ import { authenticateUser } from "../../../store/actions/authActions";
 function LoginModal(props) {
   const emailRef = React.useRef(null);
   const dispatch = useDispatch();
-  const { authenticationLoading } = useSelector((state) => state.auth);
+  const { authenticationLoading } = useSelector((state) => state.authReducer);
 
   const [state, setState] = React.useState({
     email: "",
