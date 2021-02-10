@@ -6,7 +6,10 @@ import { ReactComponent as Comments } from "../../../assets/icons/comments.svg";
 
 import CubeIcon from "../../shared/CubeIcon/CubeIcon";
 
-function PostEngagement({ likeCount, commentCount }) {
+function PostEngagement({ comments, likes }) {
+  const commentCount = Array.isArray(comments) ? comments.length : null;
+  const likeCount = Array.isArray(likes) ? likes.length : null;
+
   return (
     <div className="PostEngagement">
       <div className="PostEngagement__group">

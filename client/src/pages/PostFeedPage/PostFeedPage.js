@@ -41,21 +41,23 @@ function PostFeedPage(props) {
   } else if (postsError) {
     return <FetchingError />;
   } else {
-    return posts.length > 0 ? (
+    return (
       <div className="PostFeedPage">
         <header className="PostFeedPage__header">
           <button onClick={openCreatePostModal} className="PostFeedPage__add-post">
             add post
           </button>
         </header>
-        <section className="PostFeedPage__cards">
-          {posts.map((post) => {
-            return <PostCard key={post._id} post={post} />;
-          })}
-        </section>
+        {posts.length > 0 && (
+          <section className="PostFeedPage__cards">
+            {posts.map((post) => {
+              return <PostCard key={post._id} post={post} />;
+            })}
+          </section>
+        )}
         {currentModal === "CREATE_POST_MODAL" && <CreatePostModal />}
       </div>
-    ) : null;
+    );
   }
 }
 

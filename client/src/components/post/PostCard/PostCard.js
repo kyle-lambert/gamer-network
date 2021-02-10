@@ -1,8 +1,6 @@
 import React from "react";
 import "./PostCard.scss";
 
-import { comments } from "../../../data/placeholders";
-
 import UserInfoGroup from "../../shared/UserInfoGroup/UserInfoGroup";
 import PostContent from "../PostContent/PostContent";
 import PostTabs from "../PostTabs/PostTabs";
@@ -20,9 +18,9 @@ function PostCard({ post }) {
         <UserInfoGroup user={post.author} />
       </div>
       <PostContent post={post} />
-      <PostEngagement />
+      <PostEngagement comments={post.comments} likes={post.likes} />
       <PostTabs handleCommentsToggle={handleCommentsToggle} commentsOpen={commentsOpen} />
-      {commentsOpen && <PostCommentFeed comments={post.comments} />}
+      {commentsOpen && <PostCommentFeed post={post} />}
     </article>
   );
 }

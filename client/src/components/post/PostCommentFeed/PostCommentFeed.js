@@ -1,9 +1,12 @@
 import React from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./PostCommentFeed.scss";
 
 import { ReactComponent as SendComment } from "../../../assets/icons/send_comment.svg";
+
+import { addCommentToPost } from "../../../store/actions/postActions";
 
 import Avatar from "../../shared/Avatar/Avatar";
 import Icon from "../../shared/Icon/Icon";
@@ -12,8 +15,11 @@ import ButtonSpinner from "../../shared/ButtonSpinner/ButtonSpinner";
 import PostCommentInput from "../PostCommentInput/PostCommentInput";
 import PostComment from "../PostComment/PostComment";
 
-function PostCommentFeed({ comments }) {
+function PostCommentFeed({ post }) {
   const { user } = useSelector((state) => state.authReducer);
+  const { commentsLoading } = useSelector((state) => state.postReducer);
+  const dispatch = useDispatch();
+  const sourceRef = React.useRef(null);
   const commentRef = React.useRef(null);
   const [comment, setComment] = React.useState("");
 
@@ -23,13 +29,28 @@ function PostCommentFeed({ comments }) {
     }
   }, []);
 
+  React.useEffect(() => {
+    return () => {
+      if (sourceRef.current !== null) sourceRef.current.cancel();
+    };
+  }, []);
+
   const handleChange = (e) => {
     setComment(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("comment submitted");
+    if (comment) {
+      sourceRef.current = axios.CancelToken.source();
+      const options = {
+        id: post._id,
+        comment,
+        token: sourceRef.current.token,
+      };
+      dispatch(addCommentToPost(options));
+      setComment("");
+    }
   };
 
   return (
@@ -49,13 +70,19 @@ function PostCommentFeed({ comments }) {
             type="submit"
             disabled={comment ? false : true}
             className="PostCommentFeed__submit">
-            <Icon color="indigo">{false ? <ButtonSpinner color="indigo" /> : <SendComment />}</Icon>
+            <Icon color="indigo">
+              {commentsLoading.includes(post._id) ? (
+                <ButtonSpinner color="indigo" />
+              ) : (
+                <SendComment />
+              )}
+            </Icon>
           </button>
         </form>
       </div>
-      {Array.isArray(comments) && comments.length > 0 && (
+      {Array.isArray(post.comments) && post.comments.length > 0 && (
         <ul className="PostCommentFeed__list">
-          {comments.map((comment) => {
+          {post.comments.map((comment) => {
             return <PostComment key={comment._id} comment={comment} />;
           })}
         </ul>
