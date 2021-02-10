@@ -43,7 +43,7 @@ async function getPostsByPage(req, res) {
       page,
       limit: 10,
       populate: {
-        path: "author",
+        path: "author comments.author",
         select: ["-email", "-password"],
       },
       sort: { createdAt: -1 },
@@ -73,7 +73,27 @@ async function addComment(req, res) {
     if (!post) {
       return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
     }
+
+    const comment = post.comments.create({ author: user._id, text });
+
+    post.comments.unshift(comment);
+
+    await post.save();
+
+    const populatedPost = await post
+      .populate({
+        path: "author",
+        select: ["-email", "-password"],
+      })
+      .populate({
+        path: "comments.author",
+        select: ["-email", "-password"],
+      })
+      .execPopulate();
+
+    res.status(200).json({ comments: populatedPost.comments });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ errors: [{ msg: "Server error" }] });
   }
 }
