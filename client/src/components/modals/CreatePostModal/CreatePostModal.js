@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./CreatePostModal.scss";
 
 import { hideCurrentModal } from "../../../store/actions/modalActions";
-import { createNewPostAction } from "../../../store/actions/createPostActions";
+import { createPost } from "../../../store/actions/postActions";
 
 import FormTextArea from "../../forms/FormTextArea/FormTextArea";
 import Button from "../../shared/Button/Button";
@@ -23,7 +23,8 @@ function CreatePostModal(props) {
   });
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer);
-  const { createPostLoading } = useSelector((state) => state.createPost);
+  const { createPostLoading } = useSelector((state) => state.postReducer);
+
   const closeCreatePostModal = () => dispatch(hideCurrentModal());
 
   React.useEffect(() => {
@@ -44,7 +45,7 @@ function CreatePostModal(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state.text) {
-      dispatch(createNewPostAction(state));
+      dispatch(createPost(state));
     }
   };
 

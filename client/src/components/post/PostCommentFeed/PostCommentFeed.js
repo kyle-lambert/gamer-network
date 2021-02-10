@@ -6,7 +6,7 @@ import "./PostCommentFeed.scss";
 
 import { ReactComponent as SendComment } from "../../../assets/icons/send_comment.svg";
 
-import { addCommentToPost } from "../../../store/actions/postActions";
+import { addComment } from "../../../store/actions/postActions";
 
 import Avatar from "../../shared/Avatar/Avatar";
 import Icon from "../../shared/Icon/Icon";
@@ -48,7 +48,7 @@ function PostCommentFeed({ post }) {
         comment,
         token: sourceRef.current.token,
       };
-      dispatch(addCommentToPost(options));
+      dispatch(addComment(options));
       setComment("");
     }
   };

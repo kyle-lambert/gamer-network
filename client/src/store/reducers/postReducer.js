@@ -4,6 +4,7 @@ const initState = {
   posts: [],
   postsLoading: false,
   postsError: false,
+  createPostLoading: false,
   commentsLoading: [],
 };
 
@@ -27,6 +28,25 @@ function postReducer(state = initState, action) {
         ...state,
         postsLoading: false,
         postsError: true,
+      };
+    }
+    case postTypes.CREATE_POST_REQUEST: {
+      return {
+        ...state,
+        createPostLoading: true,
+      };
+    }
+    case postTypes.CREATE_POST_SUCCESS: {
+      return {
+        ...state,
+        posts: [action.payload, ...state.posts],
+        createPostLoading: false,
+      };
+    }
+    case postTypes.CREATE_POST_FAILURE: {
+      return {
+        ...state,
+        createPostLoading: false,
       };
     }
     case postTypes.ADD_COMMENT_REQUEST: {
