@@ -53,6 +53,36 @@ const addCommentFailure = (id) => ({
   payload: id,
 });
 
+const addLikeRequest = (id) => ({
+  type: postTypes.ADD_LIKE_REQUEST,
+  payload: id,
+});
+
+const addLikeSuccess = (id) => ({
+  type: postTypes.ADD_LIKE_SUCCESS,
+  payload: id,
+});
+
+const addLikeFailure = (id) => ({
+  type: postTypes.ADD_LIKE_FAILURE,
+  payload: id,
+});
+
+const removeLikeRequest = (id) => ({
+  type: postTypes.REMOVE_LIKE_REQUEST,
+  payload: id,
+});
+
+const removeLikeSuccess = (id) => ({
+  type: postTypes.REMOVE_LIKE_SUCCESS,
+  payload: id,
+});
+
+const removeLikeFailure = (id) => ({
+  type: postTypes.REMOVE_LIKE_FAILURE,
+  payload: id,
+});
+
 export const initialisePostReducer = () => ({ type: postTypes.INITIALISE_POST_REDUCER });
 
 export const loadPosts = (page, token) => {
@@ -174,21 +204,127 @@ export const addComment = ({ id, comment, token }) => {
       const res = await api(config);
       const data = res?.data;
 
+      if (!data) {
+        throw new Error("No results found in response");
+      }
+
       const payload = {
         id,
         comments: data.comments,
       };
 
       dispatch(addCommentSuccess(payload));
-
-      if (!data) {
-        throw new Error("No results found in response");
-      }
     } catch (err) {
       if (axios.isCancel(err)) {
         console.log("Axios request cancelled");
       } else {
         dispatch(addCommentFailure(id));
+        if (err.response) {
+          const errors = err.response?.data?.errors;
+          if (errors) {
+            errors.forEach((error) => {
+              dispatch(createAlert(error.msg, true));
+            });
+          }
+        } else if (err.request) {
+          dispatch(createAlert(REQUEST_ERROR, true));
+        } else {
+          dispatch(createAlert(REQUEST_FAILED, true));
+        }
+      }
+    }
+  };
+};
+
+export const addLike = (id, token) => {
+  return async (dispatch) => {
+    if (!id) {
+      return dispatch(createAlert(POST_ID_ERROR, true));
+    }
+
+    try {
+      dispatch(addLikeRequest(id));
+
+      const config = {
+        method: "post",
+        url: `/posts/like/${id}`,
+        cancelToken: token,
+      };
+
+      const res = await api(config);
+      const data = res?.data;
+
+      if (!data) {
+        throw new Error("No results found in response");
+      }
+
+      const payload = {
+        id,
+        likes: data.likes,
+      };
+
+      batch(() => {
+        dispatch(addLikeSuccess(payload));
+        dispatch(createAlert("Liked added", false));
+      });
+    } catch (err) {
+      if (axios.isCancel(err)) {
+        console.log("Axios request cancelled");
+      } else {
+        dispatch(addLikeFailure(id));
+        if (err.response) {
+          const errors = err.response?.data?.errors;
+          if (errors) {
+            errors.forEach((error) => {
+              dispatch(createAlert(error.msg, true));
+            });
+          }
+        } else if (err.request) {
+          dispatch(createAlert(REQUEST_ERROR, true));
+        } else {
+          dispatch(createAlert(REQUEST_FAILED, true));
+        }
+      }
+    }
+  };
+};
+
+export const removeLike = (id, token) => {
+  return async (dispatch) => {
+    if (!id) {
+      return dispatch(createAlert(POST_ID_ERROR, true));
+    }
+
+    try {
+      dispatch(removeLikeRequest(id));
+
+      const config = {
+        method: "post",
+        url: `/posts/unlike/${id}`,
+        cancelToken: token,
+      };
+
+      const res = await api(config);
+      const data = res?.data;
+
+      if (!data) {
+        throw new Error("No results found in response");
+      }
+
+      const payload = {
+        id,
+        likes: data.likes,
+      };
+
+      batch(() => {
+        dispatch(removeLikeSuccess(payload));
+        dispatch(createAlert("Like removed", false));
+      });
+    } catch (err) {
+      if (axios.isCancel(err)) {
+        console.log("Axios request cancelled");
+      } else {
+        dispatch(removeLikeFailure(id));
         if (err.response) {
           const errors = err.response?.data?.errors;
           if (errors) {

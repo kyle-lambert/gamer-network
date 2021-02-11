@@ -6,6 +6,7 @@ const initState = {
   postsError: false,
   createPostLoading: false,
   commentsLoading: [],
+  likesLoading: [],
 };
 
 function postReducer(state = initState, action) {
@@ -73,6 +74,56 @@ function postReducer(state = initState, action) {
       return {
         ...state,
         commentsLoading: state.commentsLoading.filter((id) => id !== action.payload),
+      };
+    }
+    case postTypes.ADD_LIKE_REQUEST: {
+      return {
+        ...state,
+        likesLoading: [...state.likesLoading, action.payload],
+      };
+    }
+    case postTypes.ADD_LIKE_SUCCESS: {
+      const updatedPosts = state.posts.reduce((acc, post) => {
+        if (post._id === action.payload.id) {
+          post.likes = action.payload.likes;
+        }
+        return acc.concat(post);
+      }, []);
+      return {
+        ...state,
+        posts: updatedPosts,
+        likesLoading: state.likesLoading.filter((id) => id !== action.payload.id),
+      };
+    }
+    case postTypes.ADD_LIKE_FAILURE: {
+      return {
+        ...state,
+        likesLoading: state.likesLoading.filter((id) => id !== action.payload),
+      };
+    }
+    case postTypes.REMOVE_LIKE_REQUEST: {
+      return {
+        ...state,
+        likesLoading: [...state.likesLoading, action.payload],
+      };
+    }
+    case postTypes.REMOVE_LIKE_SUCCESS: {
+      const updatedPosts = state.posts.reduce((acc, post) => {
+        if (post._id === action.payload.id) {
+          post.likes = action.payload.likes;
+        }
+        return acc.concat(post);
+      }, []);
+      return {
+        ...state,
+        posts: updatedPosts,
+        likesLoading: state.likesLoading.filter((id) => id !== action.payload.id),
+      };
+    }
+    case postTypes.REMOVE_LIKE_FAILURE: {
+      return {
+        ...state,
+        likesLoading: state.likesLoading.filter((id) => id !== action.payload),
       };
     }
     case postTypes.INITIALISE_POST_REDUCER: {
