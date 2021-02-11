@@ -10,6 +10,8 @@ const {
   getPostById,
   deletePostById,
   addComment,
+  addLike,
+  removeLike,
 } = require("../../controllers/postController");
 
 // @route    POST api/posts
@@ -40,5 +42,15 @@ router.post(
   [auth, checkObjectId, body("text", "Text is required").notEmpty()],
   addComment
 );
+
+// @route    POST api/posts/like/:id
+// @desc     Like a post
+// @access   Private
+router.post("/like/:id", [auth, checkObjectId], addLike);
+
+// @route    POST api/posts/unlike/:id
+// @desc     Unlike a post
+// @access   Private
+router.post("/unlike/:id", [auth, checkObjectId], removeLike);
 
 module.exports = router;

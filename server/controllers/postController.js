@@ -61,6 +61,91 @@ async function getPostsByPage(req, res) {
   }
 }
 
+async function getPostById(req, res) {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
+    }
+
+    return res.status(200).json({ post });
+  } catch (error) {
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
+  }
+}
+
+async function deletePostById(req, res) {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
+    }
+
+    if (post.author.toString() !== req.userId) {
+      return res.status(401).json({ errors: [{ msg: "User not authorised" }] });
+    }
+
+    const deletedPost = await post.remove();
+
+    return res.status(200).json({ deletedPost });
+  } catch (error) {
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
+  }
+}
+
+async function addLike(req, res) {
+  try {
+    const user = await User.findById(req.userId).select(["-email, -password"]);
+    const post = await Post.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ errors: [{ msg: "User does not exist" }] });
+    }
+    if (!post) {
+      return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
+    }
+
+    if (post.likes.some((id) => id.toString() === user._id.toString())) {
+      return res.status(400).json({ errors: [{ msg: "Post already liked" }] });
+    }
+
+    post.likes.push(user._id);
+
+    const savedPost = await post.save();
+
+    res.status(200).json({ likes: savedPost.likes });
+  } catch (error) {
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
+  }
+}
+
+async function removeLike(req, res) {
+  try {
+    const user = await User.findById(req.userId).select(["-email, -password"]);
+    const post = await Post.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ errors: [{ msg: "User does not exist" }] });
+    }
+    if (!post) {
+      return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
+    }
+    if (!post.likes.includes(user._id)) {
+      return res.status(400).json({ errors: [{ msg: "Post not liked" }] });
+    }
+
+    post.likes = post.likes.filter((id) => id.toString() !== user._id.toString());
+
+    const savedPost = await post.save();
+
+    res.status(200).json({ likes: savedPost.likes });
+  } catch (error) {
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
+  }
+}
+
 async function addComment(req, res) {
   const { text } = req.body;
   try {
@@ -98,44 +183,12 @@ async function addComment(req, res) {
   }
 }
 
-async function getPostById(req, res) {
-  try {
-    const post = await Post.findById(req.params.id);
-
-    if (!post) {
-      return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
-    }
-
-    return res.status(200).json({ post });
-  } catch (error) {
-    return res.status(500).json({ errors: [{ msg: "Server error" }] });
-  }
-}
-
-async function deletePostById(req, res) {
-  try {
-    const post = await Post.findById(req.params.id);
-
-    if (!post) {
-      return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
-    }
-
-    if (post.author.toString() !== req.userId) {
-      return res.status(401).json({ errors: [{ msg: "User not authorised" }] });
-    }
-
-    const deletedPost = await post.remove();
-
-    return res.status(200).json({ deletedPost });
-  } catch (error) {
-    return res.status(500).json({ errors: [{ msg: "Server error" }] });
-  }
-}
-
 module.exports = {
   createPost,
   getPostsByPage,
   getPostById,
   deletePostById,
   addComment,
+  addLike,
+  removeLike,
 };
