@@ -19,7 +19,11 @@ function PostCard({ post }) {
       </div>
       <PostContent post={post} />
       <PostEngagement comments={post.comments} likes={post.likes} />
-      <PostTabs handleCommentsToggle={handleCommentsToggle} commentsOpen={commentsOpen} />
+      <PostTabs
+        post={post}
+        handleCommentsToggle={handleCommentsToggle}
+        commentsOpen={commentsOpen}
+      />
       {commentsOpen && <PostCommentFeed post={post} />}
     </article>
   );
