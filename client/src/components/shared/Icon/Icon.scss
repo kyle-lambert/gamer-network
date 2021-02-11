@@ -18,6 +18,12 @@
     }
   }
 
+  &--red {
+    svg {
+      fill: $action-fill-red;
+    }
+  }
+
   &--grey {
     svg {
       fill: $fill-medium;

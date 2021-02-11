@@ -18,6 +18,11 @@
       border-top-color: $action-fill-indigo;
       border-right-color: $action-fill-indigo;
     }
+
+    &--red {
+      border-top-color: $action-fill-red;
+      border-right-color: $action-fill-red;
+    }
   }
 }
 
