@@ -15,10 +15,15 @@
   }
 
   &__content {
+    position: relative;
     flex: 1;
     background-color: $fill-light;
     border-radius: 8px;
     padding: 7px;
+
+    &:hover .PostComment__remove {
+      opacity: 1;
+    }
   }
 
   &__author {
@@ -29,6 +34,27 @@
   }
 
   &__text {
+    flex: 1;
     font-size: 15px;
+  }
+
+  &__remove {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    opacity: 0;
+    transition: opacity 150ms ease;
+    z-index: 199;
+
+    &:disabled {
+      cursor: auto;
+    }
+
+    &:hover:not(:disabled) {
+      svg {
+        transform: scale(1.2);
+      }
+    }
   }
 }
