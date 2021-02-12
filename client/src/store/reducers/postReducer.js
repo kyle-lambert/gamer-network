@@ -4,7 +4,8 @@ const initState = {
   posts: [],
   postsLoading: false,
   postsError: false,
-  createPostLoading: false,
+  addPostLoading: false,
+  deletePostLoading: [],
 };
 
 function postReducer(state = initState, action) {
@@ -29,23 +30,42 @@ function postReducer(state = initState, action) {
         postsError: true,
       };
     }
-    case postTypes.CREATE_POST_REQUEST: {
+    case postTypes.ADD_POST_REQUEST: {
       return {
         ...state,
-        createPostLoading: true,
+        addPostLoading: true,
       };
     }
-    case postTypes.CREATE_POST_SUCCESS: {
+    case postTypes.ADD_POST_SUCCESS: {
       return {
         ...state,
         posts: [action.payload, ...state.posts],
-        createPostLoading: false,
+        addPostLoading: false,
       };
     }
-    case postTypes.CREATE_POST_FAILURE: {
+    case postTypes.ADD_POST_FAILURE: {
       return {
         ...state,
-        createPostLoading: false,
+        addPostLoading: false,
+      };
+    }
+    case postTypes.DELETE_POST_REQUEST: {
+      return {
+        ...state,
+        deletePostLoading: [...state.deletePostLoading, action.payload],
+      };
+    }
+    case postTypes.DELETE_POST_SUCCESS: {
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== action.payload.id),
+        deletePostLoading: state.deletePostLoading.filter((id) => id !== action.payload.id),
+      };
+    }
+    case postTypes.DELETE_POST_FAILURE: {
+      return {
+        ...state,
+        deletePostLoading: state.deletePostLoading.filter((id) => id !== action.payload),
       };
     }
     case likeTypes.ADD_LIKE_SUCCESS: {

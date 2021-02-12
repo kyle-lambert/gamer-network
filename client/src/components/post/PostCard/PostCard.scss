@@ -1,6 +1,7 @@
 @import "../../../scss/partials/variables";
 
 .PostCard {
+  position: relative;
   margin-bottom: 28px;
   break-inside: avoid;
   display: grid;
@@ -11,5 +12,28 @@
 
   &:last-child {
     margin-bottom: unset;
+  }
+
+  &:hover &__delete {
+    visibility: visible;
+  }
+
+  &__delete {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(30%, -30%);
+    z-index: 199;
+
+    &:disabled {
+      cursor: auto;
+    }
+
+    &:hover:not(:disabled) {
+      svg {
+        transform: scale(1.2);
+      }
+    }
   }
 }

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./CreatePostModal.scss";
 
 import { hideCurrentModal } from "../../../store/actions/modalActions";
-import { createPost } from "../../../store/actions/postActions";
+import { addPost } from "../../../store/actions/postActions";
 
 import FormTextArea from "../../forms/FormTextArea/FormTextArea";
 import Button from "../../shared/Button/Button";
@@ -23,7 +23,7 @@ function CreatePostModal(props) {
   });
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer);
-  const { createPostLoading } = useSelector((state) => state.postReducer);
+  const { addPostLoading } = useSelector((state) => state.postReducer);
 
   const closeCreatePostModal = () => dispatch(hideCurrentModal());
 
@@ -45,7 +45,7 @@ function CreatePostModal(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state.text) {
-      dispatch(createPost(state));
+      dispatch(addPost(state));
     }
   };
 
@@ -70,7 +70,7 @@ function CreatePostModal(props) {
             </div>
             {/* <div className="CreatePostModal__form-line CreatePostModal__form-line--upload"></div> */}
             <div className="CreatePostModal__form-line">
-              <Button type="submit" color="indigo" isLoading={createPostLoading} width="full">
+              <Button type="submit" color="indigo" isLoading={addPostLoading} width="full">
                 Create Post
               </Button>
             </div>

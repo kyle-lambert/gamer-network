@@ -65,20 +65,20 @@ export const loadPosts = (page, token) => {
   };
 };
 
-const createPostRequest = () => ({
-  type: postTypes.CREATE_POST_REQUEST,
+const addPostRequest = () => ({
+  type: postTypes.ADD_POST_REQUEST,
 });
 
-const createPostSuccess = (payload) => ({
-  type: postTypes.CREATE_POST_SUCCESS,
+const addPostSuccess = (payload) => ({
+  type: postTypes.ADD_POST_SUCCESS,
   payload,
 });
 
-const createPostFailure = () => ({
-  type: postTypes.CREATE_POST_FAILURE,
+const addPostFailure = () => ({
+  type: postTypes.ADD_POST_FAILURE,
 });
 
-export const createPost = (form, token) => {
+export const addPost = (form, token) => {
   return async (dispatch) => {
     if (!form) {
       return dispatch(createAlert("Post text is required", true));
@@ -87,7 +87,7 @@ export const createPost = (form, token) => {
     const { text, image } = form;
 
     try {
-      dispatch(createPostRequest());
+      dispatch(addPostRequest());
       const config = {
         method: "post",
         url: "/posts",
@@ -106,7 +106,7 @@ export const createPost = (form, token) => {
       }
 
       batch(() => {
-        dispatch(createPostSuccess(post));
+        dispatch(addPostSuccess(post));
         dispatch(hideCurrentModal());
         dispatch(createAlert("Post created", false));
       });
@@ -114,7 +114,57 @@ export const createPost = (form, token) => {
       if (axios.isCancel(err)) {
         console.log("Axios request cancelled");
       } else {
-        dispatch(createPostFailure());
+        dispatch(addPostFailure());
+        if (err.response) {
+          const errors = err.response?.data?.errors;
+          if (errors) {
+            errors.forEach((error) => {
+              dispatch(createAlert(error.msg, true));
+            });
+          }
+        } else if (err.request) {
+          dispatch(createAlert(REQUEST_ERROR, true));
+        } else {
+          dispatch(createAlert(REQUEST_FAILED, true));
+        }
+      }
+    }
+  };
+};
+
+const deletePostRequest = (id) => ({
+  type: postTypes.DELETE_POST_REQUEST,
+  payload: id,
+});
+
+const deletePostSuccess = (payload) => ({
+  type: postTypes.DELETE_POST_SUCCESS,
+  payload,
+});
+
+const deletePostFailure = (id) => ({
+  type: postTypes.DELETE_POST_FAILURE,
+  payload: id,
+});
+
+export const deletePost = (id, token) => {
+  return async (dispatch) => {
+    if (!id) {
+      return dispatch(createAlert("Post ID is required"), true);
+    }
+
+    try {
+      dispatch(deletePostRequest(id));
+
+      setTimeout(() => {
+        dispatch(createAlert("Post deleted", false));
+        dispatch(deletePostFailure(id));
+      }, 2000);
+    } catch (err) {
+      if (axios.isCancel(err)) {
+        console.log("Axios request cancelled");
+      } else {
+        dispatch(deletePostFailure());
         if (err.response) {
           const errors = err.response?.data?.errors;
           if (errors) {
