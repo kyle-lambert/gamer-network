@@ -8,6 +8,7 @@
   padding: 7px;
   background-color: $fill-lightest;
   border-radius: 12px;
+  z-index: 499;
 
   @media (min-width: $mobile) {
     width: 275px;
