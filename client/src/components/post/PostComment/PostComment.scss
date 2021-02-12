@@ -20,10 +20,6 @@
     background-color: $fill-light;
     border-radius: 8px;
     padding: 7px;
-
-    &:hover .PostComment__remove {
-      opacity: 1;
-    }
   }
 
   &__author {
@@ -38,13 +34,16 @@
     font-size: 15px;
   }
 
-  &__remove {
+  &__content:hover &__delete {
+    visibility: visible;
+  }
+
+  &__delete {
+    visibility: hidden;
     position: absolute;
-    top: 50%;
+    top: 0;
     right: 0;
-    transform: translate(50%, -50%);
-    opacity: 0;
-    transition: opacity 150ms ease;
+    transform: translate(30%, -30%);
     z-index: 199;
 
     &:disabled {

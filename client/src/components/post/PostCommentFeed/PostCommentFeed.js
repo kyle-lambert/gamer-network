@@ -6,7 +6,7 @@ import "./PostCommentFeed.scss";
 
 import { ReactComponent as SendComment } from "../../../assets/icons/send_comment.svg";
 
-import { addComment } from "../../../store/actions/postActions";
+import { addComment } from "../../../store/actions/commentActions";
 
 import Avatar from "../../shared/Avatar/Avatar";
 import Icon from "../../shared/Icon/Icon";
@@ -17,7 +17,7 @@ import PostComment from "../PostComment/PostComment";
 
 function PostCommentFeed({ post }) {
   const { user } = useSelector((state) => state.authReducer);
-  const { commentsLoading } = useSelector((state) => state.postReducer);
+  const { commentsLoading } = useSelector((state) => state.commentReducer);
   const dispatch = useDispatch();
   const sourceRef = React.useRef(null);
   const commentRef = React.useRef(null);
@@ -83,7 +83,7 @@ function PostCommentFeed({ post }) {
       {Array.isArray(post.comments) && post.comments.length > 0 && (
         <ul className="PostCommentFeed__list">
           {post.comments.map((comment) => {
-            return <PostComment key={comment._id} comment={comment} />;
+            return <PostComment key={comment._id} comment={comment} postId={post._id} />;
           })}
         </ul>
       )}

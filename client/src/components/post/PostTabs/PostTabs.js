@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import "./PostTabs.scss";
 
-import { addLike, removeLike } from "../../../store/actions/postActions";
+import { addLike, deleteLike } from "../../../store/actions/likeActions";
 
 import ButtonSpinner from "../../shared/ButtonSpinner/ButtonSpinner";
 
@@ -11,7 +11,7 @@ function PostTabs({ post, commentsOpen, handleCommentsToggle }) {
   const dispatch = useDispatch();
   const sourceRef = React.useRef(null);
   const { user } = useSelector((state) => state.authReducer);
-  const { likesLoading } = useSelector((state) => state.postReducer);
+  const { likesLoading } = useSelector((state) => state.likeReducer);
 
   React.useEffect(() => {
     return () => {
@@ -32,7 +32,7 @@ function PostTabs({ post, commentsOpen, handleCommentsToggle }) {
   const handleLikeToggle = () => {
     sourceRef.current = axios.CancelToken.source();
     if (userLiked) {
-      dispatch(removeLike(post._id, sourceRef.current.token));
+      dispatch(deleteLike(post._id, sourceRef.current.token));
     } else {
       dispatch(addLike(post._id, sourceRef.current.token));
     }
