@@ -10,6 +10,7 @@ const {
   getPostById,
   deletePostById,
   addComment,
+  deleteComment,
   addLike,
   removeLike,
 } = require("../../controllers/postController");
@@ -42,6 +43,11 @@ router.post(
   [auth, checkObjectId, body("text", "Text is required").notEmpty()],
   addComment
 );
+
+// @route    POST api/posts/comment/:id
+// @desc     Delete a comment
+// @access   Private
+router.delete("/comment/:id/:comment_id", [auth, checkObjectId], deleteComment);
 
 // @route    POST api/posts/like/:id
 // @desc     Like a post

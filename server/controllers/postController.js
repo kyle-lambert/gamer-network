@@ -183,12 +183,42 @@ async function addComment(req, res) {
   }
 }
 
+async function deleteComment(req, res) {
+  try {
+    const user = await User.findById(req.userId).select(["-email, -password"]);
+    const post = await Post.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ errors: [{ msg: "User does not exist" }] });
+    }
+    if (!post) {
+      return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
+    }
+
+    post.comments.id(req.params.comment_id).remove();
+
+    await post.save();
+
+    const populatedPost = await post
+      .populate({
+        path: "comments.author",
+        select: ["-email", "-password"],
+      })
+      .execPopulate();
+
+    res.status(200).json({ comments: populatedPost.comments });
+  } catch (error) {
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
+  }
+}
+
 module.exports = {
   createPost,
   getPostsByPage,
   getPostById,
   deletePostById,
   addComment,
+  deleteComment,
   addLike,
   removeLike,
 };
