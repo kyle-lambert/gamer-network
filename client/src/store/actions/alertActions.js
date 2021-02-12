@@ -11,7 +11,7 @@ const removeAlert = (id) => ({
   payload: id,
 });
 
-export const createAlert = (message, isError, timeout = 3000) => {
+export const createAlert = (message, isError, timeout = 2000) => {
   return (dispatch) => {
     const payload = {
       id: uuidv4(),
