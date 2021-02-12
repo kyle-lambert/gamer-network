@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import "./Avatar.scss";
 
-import { getInitials, buildClassNamesFromProps } from "../../../utils/helpers";
+import { getInitials } from "../../../utils/helpers";
 
 const INITIAL = "Avatar";
 
