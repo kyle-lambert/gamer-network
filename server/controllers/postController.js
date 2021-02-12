@@ -195,7 +195,17 @@ async function deleteComment(req, res) {
       return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
     }
 
-    post.comments.id(req.params.comment_id).remove();
+    const comment = post.comments.id(req.params.comment_id);
+
+    if (!comment) {
+      return res.status(404).json({ errors: [{ msg: "Comment does not exist" }] });
+    }
+
+    if (comment.author._id.toString() !== user._id.toString()) {
+      return res.status(401).json({ errors: [{ msg: "User not authorised" }] });
+    }
+
+    comment.remove();
 
     await post.save();
 
@@ -208,6 +218,7 @@ async function deleteComment(req, res) {
 
     res.status(200).json({ comments: populatedPost.comments });
   } catch (error) {
+    console.log(err);
     return res.status(500).json({ errors: [{ msg: "Server error" }] });
   }
 }
