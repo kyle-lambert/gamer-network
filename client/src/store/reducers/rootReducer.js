@@ -5,6 +5,8 @@ import modalReducer from "../reducers/modalReducer";
 import alertReducer from "../reducers/alertReducer";
 import profileReducer from "../reducers/profileReducer";
 import postReducer from "../reducers/postReducer";
+import commentReducer from "../reducers/commentReducer";
+import likeReducer from "../reducers/likeReducer";
 
 const rootReducer = combineReducers({
   authReducer,
@@ -12,6 +14,8 @@ const rootReducer = combineReducers({
   alertReducer,
   profileReducer,
   postReducer,
+  commentReducer,
+  likeReducer,
 });
 
 export default rootReducer;

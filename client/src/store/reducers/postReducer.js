@@ -1,12 +1,10 @@
-import { postTypes } from "../types";
+import { postTypes, commentTypes, likeTypes } from "../types";
 
 const initState = {
   posts: [],
   postsLoading: false,
   postsError: false,
   createPostLoading: false,
-  commentsLoading: [],
-  likesLoading: [],
 };
 
 function postReducer(state = initState, action) {
@@ -50,13 +48,31 @@ function postReducer(state = initState, action) {
         createPostLoading: false,
       };
     }
-    case postTypes.ADD_COMMENT_REQUEST: {
+    case likeTypes.ADD_LIKE_SUCCESS: {
+      const updatedPosts = state.posts.reduce((acc, post) => {
+        if (post._id === action.payload.id) {
+          post.likes = action.payload.likes;
+        }
+        return acc.concat(post);
+      }, []);
       return {
         ...state,
-        commentsLoading: [...state.commentsLoading, action.payload],
+        posts: updatedPosts,
       };
     }
-    case postTypes.ADD_COMMENT_SUCCESS: {
+    case likeTypes.DELETE_LIKE_SUCCESS: {
+      const updatedPosts = state.posts.reduce((acc, post) => {
+        if (post._id === action.payload.id) {
+          post.likes = action.payload.likes;
+        }
+        return acc.concat(post);
+      }, []);
+      return {
+        ...state,
+        posts: updatedPosts,
+      };
+    }
+    case commentTypes.ADD_COMMENT_SUCCESS: {
       const updatedPosts = state.posts.reduce((acc, post) => {
         if (post._id === action.payload.id) {
           post.comments = action.payload.comments;
@@ -67,68 +83,24 @@ function postReducer(state = initState, action) {
       return {
         ...state,
         posts: updatedPosts,
-        commentsLoading: state.commentsLoading.filter((id) => id !== action.payload.id),
       };
     }
-    case postTypes.ADD_COMMENT_FAILURE: {
-      return {
-        ...state,
-        commentsLoading: state.commentsLoading.filter((id) => id !== action.payload),
-      };
-    }
-    case postTypes.ADD_LIKE_REQUEST: {
-      return {
-        ...state,
-        likesLoading: [...state.likesLoading, action.payload],
-      };
-    }
-    case postTypes.ADD_LIKE_SUCCESS: {
+    case commentTypes.DELETE_COMMENT_SUCCESS: {
       const updatedPosts = state.posts.reduce((acc, post) => {
-        if (post._id === action.payload.id) {
-          post.likes = action.payload.likes;
+        if (post._id === action.payload.postId) {
+          post.comments = action.payload.comments;
         }
         return acc.concat(post);
       }, []);
       return {
         ...state,
         posts: updatedPosts,
-        likesLoading: state.likesLoading.filter((id) => id !== action.payload.id),
-      };
-    }
-    case postTypes.ADD_LIKE_FAILURE: {
-      return {
-        ...state,
-        likesLoading: state.likesLoading.filter((id) => id !== action.payload),
-      };
-    }
-    case postTypes.REMOVE_LIKE_REQUEST: {
-      return {
-        ...state,
-        likesLoading: [...state.likesLoading, action.payload],
-      };
-    }
-    case postTypes.REMOVE_LIKE_SUCCESS: {
-      const updatedPosts = state.posts.reduce((acc, post) => {
-        if (post._id === action.payload.id) {
-          post.likes = action.payload.likes;
-        }
-        return acc.concat(post);
-      }, []);
-      return {
-        ...state,
-        posts: updatedPosts,
-        likesLoading: state.likesLoading.filter((id) => id !== action.payload.id),
-      };
-    }
-    case postTypes.REMOVE_LIKE_FAILURE: {
-      return {
-        ...state,
-        likesLoading: state.likesLoading.filter((id) => id !== action.payload),
       };
     }
     case postTypes.INITIALISE_POST_REDUCER: {
       return initState;
     }
+
     default: {
       return state;
     }
