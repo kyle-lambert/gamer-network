@@ -14,17 +14,13 @@
     margin-bottom: unset;
   }
 
-  &:hover &__delete {
-    visibility: visible;
-  }
-
   &__delete {
-    visibility: hidden;
     position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(30%, -30%);
-    z-index: 199;
+    top: 7px;
+    right: 7px;
+    z-index: 599;
+    opacity: 0;
+    transition: opacity 150ms ease;
 
     &:disabled {
       cursor: auto;
@@ -32,8 +28,13 @@
 
     &:hover:not(:disabled) {
       svg {
+        transition: transform 150ms ease, fill 150ms ease;
         transform: scale(1.2);
       }
     }
+  }
+
+  &:hover &__delete {
+    opacity: 1;
   }
 }

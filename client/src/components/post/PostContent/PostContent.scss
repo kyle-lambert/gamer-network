@@ -3,6 +3,9 @@
 .PostContent {
   &__text {
     color: $text-medium;
+    word-break: break-word;
+    hyphens: auto;
+    -ms-hyphens: auto;
   }
 
   &__image {
