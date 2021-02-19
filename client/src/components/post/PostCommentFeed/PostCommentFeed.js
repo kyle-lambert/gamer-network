@@ -39,6 +39,8 @@ function PostCommentFeed({ post }) {
     setComment(e.target.value);
   };
 
+  const commentLoading = commentsLoading.includes(post._id);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (comment) {
@@ -68,14 +70,10 @@ function PostCommentFeed({ post }) {
           />
           <button
             type="submit"
-            disabled={comment ? false : true}
+            disabled={!comment || commentLoading ? true : false}
             className="PostCommentFeed__submit">
             <Icon color="indigo">
-              {commentsLoading.includes(post._id) ? (
-                <ButtonSpinner color="indigo" />
-              ) : (
-                <SendComment />
-              )}
+              {commentLoading ? <ButtonSpinner color="indigo" /> : <SendComment />}
             </Icon>
           </button>
         </form>

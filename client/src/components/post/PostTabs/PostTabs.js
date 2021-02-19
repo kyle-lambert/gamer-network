@@ -21,7 +21,7 @@ function PostTabs({ post, commentsOpen, handleCommentsToggle }) {
     };
   }, []);
 
-  const isLoading = React.useMemo(() => {
+  const likeLoading = React.useMemo(() => {
     return likesLoading.includes(post._id);
   }, [likesLoading, post._id]);
 
@@ -41,8 +41,11 @@ function PostTabs({ post, commentsOpen, handleCommentsToggle }) {
   return (
     <ul className="PostTabs">
       <li className="PostTabs__item">
-        <button onClick={handleLikeToggle} disabled={isLoading} className="PostTabs__btn">
-          {isLoading ? <ButtonSpinner color="indigo" /> : userLiked ? "Unlike" : "Like"}
+        <button
+          onClick={handleLikeToggle}
+          disabled={likeLoading}
+          className={userLiked ? "PostTabs__btn PostTabs__btn--active" : "PostTabs__btn"}>
+          {likeLoading ? <ButtonSpinner color="indigo" /> : userLiked ? "Unlike" : "Like"}
         </button>
       </li>
       <li className="PostTabs__item">
