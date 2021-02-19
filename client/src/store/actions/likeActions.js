@@ -54,10 +54,10 @@ export const addLike = (id, token) => {
         dispatch(createAlert("Liked added", false));
       });
     } catch (err) {
+      dispatch(addLikeFailure(id));
       if (axios.isCancel(err)) {
         console.log("Axios request cancelled");
       } else {
-        dispatch(addLikeFailure(id));
         if (err.response) {
           const errors = err.response?.data?.errors;
           if (errors) {
@@ -122,10 +122,10 @@ export const deleteLike = (id, token) => {
         dispatch(createAlert("Like deleted", false));
       });
     } catch (err) {
+      dispatch(deleteLikeFailure(id));
       if (axios.isCancel(err)) {
         console.log("Axios request cancelled");
       } else {
-        dispatch(deleteLikeFailure(id));
         if (err.response) {
           const errors = err.response?.data?.errors;
           if (errors) {

@@ -48,10 +48,10 @@ export const addComment = ({ id, comment, token }) => {
         dispatch(createAlert("Comment added", false));
       });
     } catch (err) {
+      dispatch(addCommentFailure(id));
       if (axios.isCancel(err)) {
         console.log("Axios request cancelled");
       } else {
-        dispatch(addCommentFailure(id));
         if (err.response) {
           const errors = err.response?.data?.errors;
           if (errors) {
@@ -107,12 +107,10 @@ export const deleteComment = (postId, commentId, token) => {
         dispatch(createAlert("Comment deleted", false));
       });
     } catch (err) {
-      console.log(err);
+      dispatch(deleteCommentFailure(commentId));
       if (axios.isCancel(err)) {
-        console.log(err);
         console.log("Axios request cancelled");
       } else {
-        dispatch(deleteCommentFailure(commentId));
         if (err.response) {
           const errors = err.response?.data?.errors;
           if (errors) {
