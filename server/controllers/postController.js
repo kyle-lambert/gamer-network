@@ -1,7 +1,7 @@
 const User = require("../models/userModel");
 const Post = require("../models/postModel");
 
-async function createPost(req, res) {
+async function addPost(req, res) {
   const { text, image } = req.body;
 
   if (image) {
@@ -35,6 +35,22 @@ async function createPost(req, res) {
   }
 }
 
+async function deletePostById(req, res) {
+  try {
+    const deletedPost = await Post.findOneAndDelete({ _id: req.params.id, author: req.userId });
+
+    if (!deletedPost) {
+      return res
+        .status(401)
+        .json({ errors: [{ msg: "User not authorised or post does not exist" }] });
+    }
+
+    return res.sendStatus(204);
+  } catch (error) {
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
+  }
+}
+
 async function getPostsByPage(req, res) {
   const page = req.query.page ? Number.parseFloat(req.query.page) : 1;
 
@@ -56,40 +72,6 @@ async function getPostsByPage(req, res) {
     }
 
     return res.status(200).json({ results });
-  } catch (error) {
-    return res.status(500).json({ errors: [{ msg: "Server error" }] });
-  }
-}
-
-async function getPostById(req, res) {
-  try {
-    const post = await Post.findById(req.params.id);
-
-    if (!post) {
-      return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
-    }
-
-    return res.status(200).json({ post });
-  } catch (error) {
-    return res.status(500).json({ errors: [{ msg: "Server error" }] });
-  }
-}
-
-async function deletePostById(req, res) {
-  try {
-    const post = await Post.findById(req.params.id);
-
-    if (!post) {
-      return res.status(404).json({ errors: [{ msg: "Post does not exist" }] });
-    }
-
-    if (post.author.toString() !== req.userId) {
-      return res.status(401).json({ errors: [{ msg: "User not authorised" }] });
-    }
-
-    const deletedPost = await post.remove();
-
-    return res.status(200).json({ deletedPost });
   } catch (error) {
     return res.status(500).json({ errors: [{ msg: "Server error" }] });
   }
@@ -224,9 +206,8 @@ async function deleteComment(req, res) {
 }
 
 module.exports = {
-  createPost,
+  addPost,
   getPostsByPage,
-  getPostById,
   deletePostById,
   addComment,
   deleteComment,
