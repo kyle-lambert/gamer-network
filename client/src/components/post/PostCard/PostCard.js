@@ -40,7 +40,6 @@ function PostCard({ post }) {
   }, [user._id, post.author._id]);
 
   const handleClick = () => {
-    console.log("delete post");
     sourceRef.current = axios.CancelToken.source();
     dispatch(deletePost(post._id, sourceRef.current.token));
   };

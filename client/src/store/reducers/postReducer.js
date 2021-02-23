@@ -58,8 +58,8 @@ function postReducer(state = initState, action) {
     case postTypes.DELETE_POST_SUCCESS: {
       return {
         ...state,
-        posts: state.posts.filter((post) => post._id !== action.payload.id),
-        deletePostLoading: state.deletePostLoading.filter((id) => id !== action.payload.id),
+        posts: state.posts.filter((post) => post._id !== action.payload),
+        deletePostLoading: state.deletePostLoading.filter((id) => id !== action.payload),
       };
     }
     case postTypes.DELETE_POST_FAILURE: {

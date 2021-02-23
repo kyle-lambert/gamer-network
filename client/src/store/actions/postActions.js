@@ -137,9 +137,9 @@ const deletePostRequest = (id) => ({
   payload: id,
 });
 
-const deletePostSuccess = (payload) => ({
+const deletePostSuccess = (id) => ({
   type: postTypes.DELETE_POST_SUCCESS,
-  payload,
+  payload: id,
 });
 
 const deletePostFailure = (id) => ({
@@ -156,15 +156,27 @@ export const deletePost = (id, token) => {
     try {
       dispatch(deletePostRequest(id));
 
-      setTimeout(() => {
+      const config = {
+        method: "delete",
+        url: `/posts/${id}`,
+        cancelToken: token,
+      };
+
+      const res = await api(config);
+
+      if (res.status !== 204) {
+        throw new Error("Error found in response");
+      }
+
+      batch(() => {
         dispatch(createAlert("Post deleted", false));
-        dispatch(deletePostFailure(id));
-      }, 2000);
+        dispatch(deletePostSuccess(id));
+      });
     } catch (err) {
+      dispatch(deletePostFailure());
       if (axios.isCancel(err)) {
         console.log("Axios request cancelled");
       } else {
-        dispatch(deletePostFailure());
         if (err.response) {
           const errors = err.response?.data?.errors;
           if (errors) {
