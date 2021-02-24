@@ -3,9 +3,7 @@ import { batch } from "react-redux";
 import { commentTypes } from "../types";
 import { createAlert } from "../actions/alertActions";
 import api from "../../data/api";
-
-const REQUEST_ERROR = "No response from server";
-const REQUEST_FAILED = "Unable to make request";
+import { REQUEST_ERROR, REQUEST_FAILED } from "../../data/errors";
 
 const addCommentRequest = (id) => ({ type: commentTypes.ADD_COMMENT_REQUEST, payload: id });
 const addCommentSuccess = (payload) => ({ type: commentTypes.ADD_COMMENT_SUCCESS, payload });

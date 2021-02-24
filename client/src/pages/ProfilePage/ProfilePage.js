@@ -38,7 +38,7 @@ function ProfilePage(props) {
   } else {
     return profile ? (
       <div className="ProfilePage">
-        <ProfileHeader user={profile.user} />
+        <ProfileHeader profile={profile} />
         <div className="ProfilePage__tabs">
           <ProfileTabs />
         </div>

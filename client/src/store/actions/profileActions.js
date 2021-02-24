@@ -2,10 +2,9 @@ import { profileTypes } from "../types";
 import { createAlert } from "./alertActions";
 import axios from "axios";
 import api from "../../data/api";
+import { REQUEST_ERROR, REQUEST_FAILED } from "../../data/errors";
 
 const PROFILE_ID_ERROR = "No profie ID provided";
-const REQUEST_ERROR = "No response from server";
-const REQUEST_FAILED = "Unable to make request";
 
 const loadProfileRequest = () => ({
   type: profileTypes.LOAD_PROFILE_REQUEST,

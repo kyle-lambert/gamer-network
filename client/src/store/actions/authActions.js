@@ -3,13 +3,12 @@ import { authTypes } from "../types";
 import { createAlert } from "./alertActions";
 import { hideCurrentModal, showLoginModal } from "./modalActions";
 import setAuthorisationToken from "../../utils/setAuthorisationToken";
+import { REQUEST_ERROR, REQUEST_FAILED } from "../../data/errors";
 import api from "../../data/api";
 
 const LOGGED_IN = "User logged in";
 const LOGGED_OUT = "User logged out";
 const REGISTERED = "Account registered";
-const REQUEST_ERROR = "No response from server";
-const REQUEST_FAILED = "Unable to make request";
 
 const logout = () => ({ type: authTypes.USER_LOGGED_OUT });
 

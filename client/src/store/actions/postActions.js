@@ -4,9 +4,7 @@ import { createAlert } from "./alertActions";
 import api from "../../data/api";
 import { batch } from "react-redux";
 import { hideCurrentModal } from "./modalActions";
-
-const REQUEST_ERROR = "No response from server";
-const REQUEST_FAILED = "Unable to make request";
+import { REQUEST_ERROR, REQUEST_FAILED } from "../../data/errors";
 
 export const initialisePostReducer = () => ({ type: postTypes.INITIALISE_POST_REDUCER });
 
@@ -111,10 +109,10 @@ export const addPost = (form, token) => {
         dispatch(createAlert("Post created", false));
       });
     } catch (err) {
+      dispatch(addPostFailure());
       if (axios.isCancel(err)) {
         console.log("Axios request cancelled");
       } else {
-        dispatch(addPostFailure());
         if (err.response) {
           const errors = err.response?.data?.errors;
           if (errors) {

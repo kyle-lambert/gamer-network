@@ -3,9 +3,7 @@ import { batch } from "react-redux";
 import { likeTypes } from "../types";
 import { createAlert } from "../actions/alertActions";
 import api from "../../data/api";
-
-const REQUEST_ERROR = "No response from server";
-const REQUEST_FAILED = "Unable to make request";
+import { REQUEST_ERROR, REQUEST_FAILED } from "../../data/errors";
 
 const addLikeRequest = (id) => ({
   type: likeTypes.ADD_LIKE_REQUEST,
