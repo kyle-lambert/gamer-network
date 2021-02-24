@@ -25,11 +25,6 @@ function LoginModal(props) {
     password: "",
   });
 
-  // const [valid, setValid] = React.useState({
-  //   email: 0,
-  //   password: 0,
-  // });
-
   React.useEffect(() => {
     if (emailRef.current) {
       emailRef.current.focus();
@@ -44,24 +39,6 @@ function LoginModal(props) {
       };
     });
   };
-
-  // const handleValidateEmail = (e) => {
-  //   setValid((prev) => {
-  //     return {
-  //       ...prev,
-  //       email: validateEmail(state.email.trim()) ? 1 : -1,
-  //     };
-  //   });
-  // };
-
-  // const handleValidatePassword = (e) => {
-  //   setValid((prev) => {
-  //     return {
-  //       ...prev,
-  //       password: state.password.trim().length > 0 ? 1 : -1,
-  //     };
-  //   });
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -85,8 +62,6 @@ function LoginModal(props) {
               label="Email address"
               name="email"
               value={state.email}
-              // onBlur={handleValidateEmail}
-              // valid={valid.email}
               onChange={handleChange}
               placeholder="stevejobs@gmail.com"
             />
@@ -100,12 +75,7 @@ function LoginModal(props) {
             />
           </div>
           <div className="LoginModal__form-line">
-            <Button
-              type="submit"
-              // disabled={valid.email === 1 && valid.password === 1 ? false : true}
-              width="full"
-              color="indigo"
-              isLoading={authenticationLoading}>
+            <Button type="submit" width="full" color="indigo" isLoading={authenticationLoading}>
               Login
             </Button>
           </div>

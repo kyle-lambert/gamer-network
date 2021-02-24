@@ -68,7 +68,6 @@ function CreatePostModal(props) {
                 placeholder="Tell us all what you're thinking..."
               />
             </div>
-            {/* <div className="CreatePostModal__form-line CreatePostModal__form-line--upload"></div> */}
             <div className="CreatePostModal__form-line">
               <Button type="submit" color="indigo" isLoading={addPostLoading} width="full">
                 Create Post
