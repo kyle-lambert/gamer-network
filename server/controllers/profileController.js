@@ -17,6 +17,48 @@ async function getProfileById(req, res) {
   }
 }
 
+async function getCurrentUsersProfile(req, res) {
+  try {
+    const profile = await Profile.findById({ user: req.userId }).populate({
+      path: "user",
+      select: ["-email", "-password"],
+    });
+
+    if (!profile) {
+      return res.status(404).json({ errors: [{ msg: "Profile not found" }] });
+    }
+
+    res.status(200).json({ profile });
+  } catch (error) {
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
+  }
+}
+
+async function updateProfile(req, res) {
+  const { description, location, gamertag, platform } = req.body;
+
+  try {
+    const query = { _id: req.userId };
+    const update = { description, location, gamertag, platform };
+    const options = { new: true };
+
+    const updatedProfile = await Profile.findOneAndUpdate(query, update, options).populate({
+      path: "user",
+      select: ["-email", "-password"],
+    });
+
+    if (!updatedProfile) {
+      return res.status(404).json({ errors: [{ msg: "Profile does not exist" }] });
+    }
+
+    return res.status(200).json({ profile: updatedProfile });
+  } catch (error) {
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
+  }
+}
+
 module.exports = {
   getProfileById,
+  getCurrentUsersProfile,
+  updateProfile,
 };

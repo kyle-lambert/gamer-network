@@ -24,9 +24,11 @@ function PostCard({ post }) {
   const { deletePostLoading } = useSelector((state) => state.postReducer);
 
   React.useEffect(() => {
-    if (sourceRef.current !== null) {
-      sourceRef.current.cancel();
-    }
+    return () => {
+      if (sourceRef.current !== null) {
+        sourceRef.current.cancel();
+      }
+    };
   }, []);
 
   const handleCommentsToggle = () => setCommentsOpen((prev) => !prev);
