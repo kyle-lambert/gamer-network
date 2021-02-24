@@ -7,6 +7,7 @@ import profileReducer from "../reducers/profileReducer";
 import postReducer from "../reducers/postReducer";
 import commentReducer from "../reducers/commentReducer";
 import likeReducer from "../reducers/likeReducer";
+import accountReducer from "../reducers/accountReducer";
 
 const rootReducer = combineReducers({
   authReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   postReducer,
   commentReducer,
   likeReducer,
+  accountReducer,
 });
 
 export default rootReducer;

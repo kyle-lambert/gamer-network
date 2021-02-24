@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./AccountGeneral.scss";
 
 import Button from "../../../components/shared/Button/Button";
@@ -6,7 +7,7 @@ import AccountSectionHeader from "../../../components/account/AccountSectionHead
 import FormInputGroup from "../../../components/forms/FormInputGroup/FormInputGroup";
 
 function AccountGeneral(props) {
-  const emailRef = React.useRef(null);
+  const profile = useSelector((state) => state.accountReducer.profile);
   const [state, setState] = React.useState({
     email: "",
     currentPassword: "",
@@ -14,10 +15,13 @@ function AccountGeneral(props) {
   });
 
   React.useEffect(() => {
-    if (emailRef.current) {
-      emailRef.current.focus();
-    }
-  }, []);
+    setState((prev) => {
+      return {
+        ...prev,
+        email: profile?.user?.email || "",
+      };
+    });
+  }, [profile]);
 
   const handleChange = (e) => {
     setState((prev) => {
@@ -28,16 +32,20 @@ function AccountGeneral(props) {
     });
   };
 
+  const handleUpdateCredentials = (e) => {
+    e.preventDefault();
+    console.log("credentials updated");
+  };
+
   return (
     <section>
       <AccountSectionHeader
         heading="Credentials"
         subheading="Changing these settings will effect how you log into your account"
       />
-      <form action="" className="AccountGeneral__form">
+      <form onSubmit={handleUpdateCredentials} className="AccountGeneral__form">
         <div className="AccountGeneral__item AccountGeneral__item--email">
           <FormInputGroup
-            ref={emailRef}
             label="Email address"
             name="email"
             value={state.email}
@@ -62,7 +70,9 @@ function AccountGeneral(props) {
           />
         </div>
         <div className="AccountGeneral__item AccountGeneral__item--submit">
-          <Button color="indigo">Save changes</Button>
+          <Button type="submit" width="set" color="indigo">
+            Save changes
+          </Button>
         </div>
       </form>
     </section>

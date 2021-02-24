@@ -6,17 +6,10 @@ import AccountSectionHeader from "../../../components/account/AccountSectionHead
 import FormInputGroup from "../../../components/forms/FormInputGroup/FormInputGroup";
 
 function AccountDelete(props) {
-  const passwordRef = React.useRef(null);
   const [state, setState] = React.useState({
     password: "",
     confirmPassword: "",
   });
-
-  React.useEffect(() => {
-    if (passwordRef.current) {
-      passwordRef.current.focus();
-    }
-  }, []);
 
   const handleChange = (e) => {
     setState((prev) => {
@@ -27,16 +20,20 @@ function AccountDelete(props) {
     });
   };
 
+  const handleDeleteAccount = (e) => {
+    e.preventDefault();
+    console.log("account deleted");
+  };
+
   return (
     <section>
       <AccountSectionHeader
         heading="Delete"
         subheading="This action is irreversible and will permanently delete your account"
       />
-      <form action="" className="AccountDelete__form">
+      <form onSubmit={handleDeleteAccount} className="AccountDelete__form">
         <div className="AccountDelete__item AccountDelete__item--password">
           <FormInputGroup
-            ref={passwordRef}
             label="Password"
             name="password"
             value={state.password}
@@ -52,7 +49,9 @@ function AccountDelete(props) {
           />
         </div>
         <div className="AccountDelete__item AccountDelete__item--submit">
-          <Button color="indigo">Delete account</Button>
+          <Button type="submit" width="set" color="indigo">
+            Delete account
+          </Button>
         </div>
       </form>
     </section>

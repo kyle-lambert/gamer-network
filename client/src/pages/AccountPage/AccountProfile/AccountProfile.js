@@ -1,5 +1,9 @@
 import React from "react";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import "./AccountProfile.scss";
+
+import { updateAccountProfile } from "../../../store/actions/accountActions";
 
 import Button from "../../../components/shared/Button/Button";
 import AccountSectionHeader from "../../../components/account/AccountSectionHeader/AccountSectionHeader";
@@ -8,7 +12,10 @@ import FormInputGroup from "../../../components/forms/FormInputGroup/FormInputGr
 import FormTextAreaGroup from "../../../components/forms/FormTextAreaGroup/FormTextAreaGroup";
 
 function AccountProfile(props) {
-  const descriptionRef = React.useRef(null);
+  const sourceRef = React.useRef(null);
+  const dispatch = useDispatch();
+  const profile = useSelector((state) => state.accountReducer.profile);
+  const updateProfileLoading = useSelector((state) => state.accountReducer.updateProfileLoading);
   const [state, setState] = React.useState({
     description: "",
     location: "",
@@ -17,10 +24,23 @@ function AccountProfile(props) {
   });
 
   React.useEffect(() => {
-    if (descriptionRef.current) {
-      descriptionRef.current.focus();
-    }
+    return () => {
+      if (sourceRef.current !== null) {
+        sourceRef.current.cancel();
+      }
+    };
   }, []);
+
+  React.useEffect(() => {
+    setState((prev) => {
+      return {
+        description: profile?.description || "",
+        location: profile?.location || "",
+        gamertag: profile?.gamertag || "",
+        platform: profile?.platform || "",
+      };
+    });
+  }, [profile]);
 
   const handleChange = (e) => {
     setState((prev) => {
@@ -31,16 +51,21 @@ function AccountProfile(props) {
     });
   };
 
+  const handleUpdateProfile = (e) => {
+    e.preventDefault();
+    sourceRef.current = axios.CancelToken.source();
+    dispatch(updateAccountProfile(sourceRef.current.token, state));
+  };
+
   return (
     <section>
       <AccountSectionHeader
         heading="Edit Profile"
         subheading="Information on your profile is public and available to all other users."
       />
-      <form className="AccountProfile__form">
+      <form onSubmit={handleUpdateProfile} className="AccountProfile__form">
         <div className="AccountProfile__item AccountProfile__item--description">
           <FormTextAreaGroup
-            ref={descriptionRef}
             label="Description"
             name="description"
             value={state.description}
@@ -75,7 +100,14 @@ function AccountProfile(props) {
           />
         </div>
         <div className="AccountProfile__item AccountProfile__item--submit">
-          <Button color="indigo">Save changes</Button>
+          <Button
+            type="submit"
+            width="set"
+            isLoading={updateProfileLoading}
+            disabled={updateProfileLoading}
+            color="indigo">
+            Save changes
+          </Button>
         </div>
       </form>
     </section>

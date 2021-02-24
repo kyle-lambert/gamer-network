@@ -1,6 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
+import axios from "axios";
 import "./AccountPage.scss";
+
+import { loadAccountProfile, initialiseAccountReducer } from "../../store/actions/accountActions";
 
 import AccountGeneral from "./AccountGeneral/AccountGeneral";
 import AccountProfile from "./AccountProfile/AccountProfile";
@@ -11,6 +15,18 @@ import PageHeader from "../../components/shared/PageHeader/PageHeader";
 import AccountTabs from "../../components/account/AccountTabs/AccountTabs";
 
 function AccountPage(props) {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    const source = axios.CancelToken.source();
+    dispatch(loadAccountProfile(source.token));
+
+    return () => {
+      source.cancel();
+      dispatch(initialiseAccountReducer());
+    };
+  }, [dispatch]);
+
   return (
     <div className="AccountPage">
       <PageHeader
