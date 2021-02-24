@@ -18,6 +18,8 @@ mongoose
     console.log(err);
   });
 
+mongoose.set("useFindAndModify", false);
+
 // Initial middleware
 app.use(cors());
 app.use(express.json());

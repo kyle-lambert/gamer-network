@@ -19,9 +19,9 @@ async function getProfileById(req, res) {
 
 async function getCurrentUsersProfile(req, res) {
   try {
-    const profile = await Profile.findById({ user: req.userId }).populate({
+    const profile = await Profile.findOne({ user: req.userId }).populate({
       path: "user",
-      select: ["-email", "-password"],
+      select: ["-password"],
     });
 
     if (!profile) {
@@ -30,6 +30,7 @@ async function getCurrentUsersProfile(req, res) {
 
     res.status(200).json({ profile });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ errors: [{ msg: "Server error" }] });
   }
 }
@@ -38,13 +39,13 @@ async function updateProfile(req, res) {
   const { description, location, gamertag, platform } = req.body;
 
   try {
-    const query = { _id: req.userId };
+    const query = { user: req.userId };
     const update = { description, location, gamertag, platform };
     const options = { new: true };
 
     const updatedProfile = await Profile.findOneAndUpdate(query, update, options).populate({
       path: "user",
-      select: ["-email", "-password"],
+      select: "-password",
     });
 
     if (!updatedProfile) {
