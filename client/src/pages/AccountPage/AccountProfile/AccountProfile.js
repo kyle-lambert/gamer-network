@@ -3,7 +3,9 @@ import "./AccountProfile.scss";
 
 import Button from "../../../components/shared/Button/Button";
 import AccountSectionHeader from "../../../components/account/AccountSectionHeader/AccountSectionHeader";
+
 import FormInputGroup from "../../../components/forms/FormInputGroup/FormInputGroup";
+import FormTextAreaGroup from "../../../components/forms/FormTextAreaGroup/FormTextAreaGroup";
 
 function AccountProfile(props) {
   const descriptionRef = React.useRef(null);
@@ -35,9 +37,9 @@ function AccountProfile(props) {
         heading="Edit Profile"
         subheading="Information on your profile is public and available to all other users."
       />
-      <form action="" className="AccountProfile__form">
+      <form className="AccountProfile__form">
         <div className="AccountProfile__item AccountProfile__item--description">
-          <FormInputGroup
+          <FormTextAreaGroup
             ref={descriptionRef}
             label="Description"
             name="description"

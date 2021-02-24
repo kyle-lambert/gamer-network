@@ -1,20 +1,13 @@
 import React from "react";
-import classNames from "classnames";
 import "./FormInputGroup.scss";
 
-const INITIAL = "FormInputGroup__input";
+import FormInput from "../FormInput/FormInput";
 
-function FormInputGroup({ label, valid, ...rest }, ref) {
-  const classes = classNames(
-    INITIAL,
-    valid && valid === -1 && `${INITIAL}--invalid`,
-    valid && valid === 1 && `${INITIAL}--valid`
-  );
-
+function FormInputGroup({ label, ...rest }, ref) {
   return (
     <>
       {label && <label className="FormInputGroup__label">{label}</label>}
-      <input {...rest} ref={ref} autoComplete="nope" className={classes} />
+      <FormInput ref={ref} {...rest} autoComplete="nope" />
     </>
   );
 }
