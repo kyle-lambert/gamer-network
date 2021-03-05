@@ -63,6 +63,61 @@ export const loadPosts = (page, token) => {
   };
 };
 
+const loadPostsByIdRequest = () => ({
+  type: postTypes.LOAD_POSTS_REQUEST,
+});
+
+const loadPostsByIdSuccess = (payload) => ({
+  type: postTypes.LOAD_POSTS_SUCCESS,
+  payload,
+});
+
+const loadPostsByIdFailure = () => ({
+  type: postTypes.LOAD_POSTS_FAILURE,
+});
+
+export const loadPostsById = ({ page, id, token }) => {
+  return async (dispatch) => {
+    dispatch(loadPostsByIdRequest());
+    try {
+      const config = {
+        method: "get",
+        url: `/posts/${id}`,
+        params: {
+          page: page,
+        },
+        cancelToken: token,
+      };
+      const res = await api(config);
+      const results = res?.data?.results;
+
+      if (!results) {
+        throw new Error("No results found in response");
+      }
+
+      dispatch(loadPostsByIdSuccess(results.docs));
+    } catch (err) {
+      if (axios.isCancel(err)) {
+        console.log("Axios request cancelled");
+      } else {
+        dispatch(loadPostsByIdFailure());
+        if (err.response) {
+          const errors = err.response?.data?.errors;
+          if (errors) {
+            errors.forEach((error) => {
+              dispatch(createAlert(error.msg, true));
+            });
+          }
+        } else if (err.request) {
+          dispatch(createAlert(REQUEST_ERROR, true));
+        } else {
+          dispatch(createAlert(REQUEST_FAILED, true));
+        }
+      }
+    }
+  };
+};
+
 const addPostRequest = () => ({
   type: postTypes.ADD_POST_REQUEST,
 });

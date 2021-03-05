@@ -84,7 +84,7 @@ export const registerUser = (form) => {
   };
 };
 
-export const authenticateUser = (form) => {
+export const authenticateUser = (form, history) => {
   return async (dispatch) => {
     if (!form) {
       return;
@@ -117,6 +117,7 @@ export const authenticateUser = (form) => {
         dispatch(createAlert(LOGGED_IN, false));
       });
       setAuthorisationToken(data.token);
+      history.push("/posts");
     } catch (err) {
       dispatch(authenticateUserFailure());
       if (err.response) {
@@ -135,7 +136,7 @@ export const authenticateUser = (form) => {
   };
 };
 
-export const loadUser = () => {
+export const loadUser = (history) => {
   return async (dispatch) => {
     try {
       dispatch(loadUserRequest());
@@ -155,6 +156,7 @@ export const loadUser = () => {
         dispatch(loadUserSuccess(data.user));
         dispatch(createAlert(LOGGED_IN, false));
       });
+      history.push("/posts");
     } catch (err) {
       dispatch(loadUserFailure());
       if (err.response) {
