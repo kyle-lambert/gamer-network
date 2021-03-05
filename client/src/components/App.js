@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./App.scss";
 
@@ -25,11 +25,12 @@ import setAuthorisationToken from "../utils/setAuthorisationToken";
 function App(props) {
   const { currentModal } = useSelector((state) => state.modalReducer);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   React.useEffect(() => {
     if (localStorage.token) {
       setAuthorisationToken(localStorage.token);
-      dispatch(loadUser());
+      dispatch(loadUser(history));
     }
 
     const handleStorageChange = () => {
@@ -43,7 +44,7 @@ function App(props) {
     return () => {
       window.removeEventListener("storage", handleStorageChange);
     };
-  }, [dispatch]);
+  }, [dispatch, history]);
 
   return (
     <div className="App">

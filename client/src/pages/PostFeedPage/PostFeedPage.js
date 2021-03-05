@@ -7,10 +7,13 @@ import { initialisePostReducer } from "../../store/actions/postActions";
 import { showCreatePostModal, hideCurrentModal } from "../../store/actions/modalActions";
 import { loadPosts } from "../../store/actions/postActions";
 
+import Button from "../../components/shared/Button/Button";
 import PostCard from "../../components/post/PostCard/PostCard";
 import LoadingSpinner from "../../components/shared/LoadingSpinner/LoadingSpinner";
 import FetchingError from "../../components/shared/FetchingError/FetchingError";
 import CreatePostModal from "../../components/modals/CreatePostModal/CreatePostModal";
+import PageHeaderAction from "../../components/shared/PageHeaderAction/PageHeaderAction";
+import Message from "../../components/shared/Message/Message";
 
 function PostFeedPage(props) {
   const dispatch = useDispatch();
@@ -36,29 +39,35 @@ function PostFeedPage(props) {
 
   const openCreatePostModal = () => dispatch(showCreatePostModal());
 
-  if (postsLoading) {
-    return <LoadingSpinner />;
-  } else if (postsError) {
-    return <FetchingError />;
-  } else {
-    return (
-      <div className="PostFeedPage">
-        <header className="PostFeedPage__header">
-          <button onClick={openCreatePostModal} className="PostFeedPage__add-post">
-            add post
-          </button>
-        </header>
-        {posts.length > 0 && (
-          <section className="PostFeedPage__cards">
-            {posts.map((post) => {
-              return <PostCard key={post._id} post={post} />;
-            })}
-          </section>
-        )}
-        {currentModal === "CREATE_POST_MODAL" && <CreatePostModal />}
-      </div>
-    );
-  }
+  const renderCardJSX = () => {
+    if (postsLoading) {
+      return <LoadingSpinner />;
+    } else if (postsError) {
+      return <FetchingError />;
+    } else {
+      return posts.length > 0 ? (
+        <div className="PostFeedPage__cards">
+          {posts.map((post) => {
+            return <PostCard key={post._id} post={post} />;
+          })}
+        </div>
+      ) : (
+        <Message message="Sorry, there are currently no posts." />
+      );
+    }
+  };
+
+  return (
+    <div className="PostFeedPage">
+      <PageHeaderAction heading="Post Feed" subheading="Create a post and share it with the world.">
+        <Button type="button" color="indigo" onClick={openCreatePostModal}>
+          Create Post
+        </Button>
+      </PageHeaderAction>
+      <section>{renderCardJSX()}</section>
+      {currentModal === "CREATE_POST_MODAL" && <CreatePostModal />}
+    </div>
+  );
 }
 
 export default PostFeedPage;

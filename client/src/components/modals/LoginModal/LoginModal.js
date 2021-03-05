@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./LoginModal.scss";
 
@@ -18,6 +19,7 @@ import { authenticateUser } from "../../../store/actions/authActions";
 function LoginModal(props) {
   const emailRef = React.useRef(null);
   const dispatch = useDispatch();
+  const history = useHistory();
   const { authenticationLoading } = useSelector((state) => state.authReducer);
 
   const [state, setState] = React.useState({
@@ -43,7 +45,7 @@ function LoginModal(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state.email && state.password) {
-      dispatch(authenticateUser(state));
+      dispatch(authenticateUser(state, history));
     }
   };
 

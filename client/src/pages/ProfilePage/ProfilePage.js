@@ -13,23 +13,22 @@ import ProfileHeader from "../../components/profile/ProfileHeader/ProfileHeader"
 import ProfileTabs from "../../components/profile/ProfileTabs/ProfileTabs";
 import ProfileAbout from "./ProfileAbout/ProfileAbout";
 import ProfilePosts from "./ProfilePosts/ProfilePosts";
-import ProfileFriends from "./ProfileFriends/ProfileFriends";
 import PrivateRoute from "../../hoc/PrivateRoute";
 
 function ProfilePage(props) {
   const { profile, profileLoading, profileError } = useSelector((state) => state.profileReducer);
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const params = useParams();
 
   React.useEffect(() => {
     const source = axios.CancelToken.source();
-    dispatch(loadProfile(id, source.token));
+    dispatch(loadProfile(params.id, source.token));
 
     return () => {
       source.cancel();
       dispatch(initialiseProfileReducer());
     };
-  }, [dispatch, id]);
+  }, [dispatch, params.id]);
 
   if (profileLoading) {
     return <LoadingSpinner />;
@@ -38,7 +37,7 @@ function ProfilePage(props) {
   } else {
     return profile ? (
       <div className="ProfilePage">
-        <ProfileHeader profile={profile} />
+        <ProfileHeader user={profile.user} />
         <div className="ProfilePage__tabs">
           <ProfileTabs />
         </div>
@@ -46,7 +45,6 @@ function ProfilePage(props) {
           <Switch>
             <PrivateRoute exact path="/profile/:id" component={ProfileAbout} />
             <PrivateRoute exact path="/profile/:id/posts" component={ProfilePosts} />
-            <PrivateRoute exact path="/profile/:id/friends" component={ProfileFriends} />
             <Route>
               <Redirect to="/error" />
             </Route>

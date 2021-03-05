@@ -6,14 +6,4 @@
   &__avatar {
     margin-bottom: 28px;
   }
-
-  &__copy {
-    margin-top: 14px;
-    margin-left: auto;
-    margin-right: auto;
-
-    @media (min-width: $laptop) {
-      width: 80%;
-    }
-  }
 }

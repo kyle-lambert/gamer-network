@@ -1,0 +1,8 @@
+@import "../../../scss/partials/variables";
+
+.ProfilePosts {
+  &__cards {
+    columns: 500px;
+    gap: 21px;
+  }
+}

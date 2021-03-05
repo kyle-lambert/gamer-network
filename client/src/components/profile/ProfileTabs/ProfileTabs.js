@@ -26,15 +26,6 @@ function ProfileTabs(props) {
             Posts
           </NavLink>
         </li>
-        <li className="ProfileTabs__item">
-          <NavLink
-            exact
-            to={`/profile/${params.id}/friends`}
-            className="ProfileTabs__link"
-            activeClassName="ProfileTabs__link--active">
-            Friends
-          </NavLink>
-        </li>
       </ul>
     </nav>
   );
