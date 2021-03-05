@@ -6,6 +6,7 @@ const { body } = require("express-validator");
 const validator = require("../../middleware/validator");
 const {
   getPostsByPage,
+  getPostsByUserId,
   addPost,
   deletePostById,
   addComment,
@@ -13,6 +14,16 @@ const {
   addLike,
   removeLike,
 } = require("../../controllers/postController");
+
+// @route    GET api/posts
+// @desc     Get posts by page
+// @access   Private
+router.get("/", auth, getPostsByPage);
+
+// @route    GET api/posts/:id
+// @desc     Get posts by user ID
+// @access   Private
+router.get("/:id", [auth, checkObjectId], getPostsByUserId);
 
 // @route    POST api/posts
 // @desc     Add a post
@@ -23,11 +34,6 @@ router.post("/", [auth, body("text", "Text is required").notEmpty(), validator],
 // @desc     Delete post by post ID
 // @access   Private
 router.delete("/:id", [auth, checkObjectId], deletePostById);
-
-// @route    GET api/posts
-// @desc     Get posts by page
-// @access   Private
-router.get("/", auth, getPostsByPage);
 
 // @route    POST api/posts/comment/:id
 // @desc     Add a comment

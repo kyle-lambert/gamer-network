@@ -1,6 +1,52 @@
 const User = require("../models/userModel");
 const Post = require("../models/postModel");
 
+async function getPostsByUserId(req, res) {
+  try {
+    const options = {
+      limit: 10,
+      populate: {
+        path: "author comments.author",
+        select: ["-email", "-password"],
+      },
+      sort: { createdAt: -1 },
+    };
+
+    const results = await Post.paginate({ author: req.params.id }, options);
+
+    return res.status(200).json({ results });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
+  }
+}
+
+async function getPostsByPage(req, res) {
+  const page = req.query.page ? Number.parseFloat(req.query.page) : 1;
+
+  try {
+    const options = {
+      page,
+      limit: 10,
+      populate: {
+        path: "author comments.author",
+        select: ["-email", "-password"],
+      },
+      sort: { createdAt: -1 },
+    };
+
+    const results = await Post.paginate({}, options);
+
+    if (!results) {
+      return res.status(404).json({ errors: [{ msg: "No posts exist" }] });
+    }
+
+    return res.status(200).json({ results });
+  } catch (error) {
+    return res.status(500).json({ errors: [{ msg: "Server error" }] });
+  }
+}
+
 async function addPost(req, res) {
   const { text, image } = req.body;
 
@@ -46,32 +92,6 @@ async function deletePostById(req, res) {
     }
 
     return res.sendStatus(204);
-  } catch (error) {
-    return res.status(500).json({ errors: [{ msg: "Server error" }] });
-  }
-}
-
-async function getPostsByPage(req, res) {
-  const page = req.query.page ? Number.parseFloat(req.query.page) : 1;
-
-  try {
-    const options = {
-      page,
-      limit: 10,
-      populate: {
-        path: "author comments.author",
-        select: ["-email", "-password"],
-      },
-      sort: { createdAt: -1 },
-    };
-
-    const results = await Post.paginate({}, options);
-
-    if (!results) {
-      return res.status(404).json({ errors: [{ msg: "No posts exist" }] });
-    }
-
-    return res.status(200).json({ results });
   } catch (error) {
     return res.status(500).json({ errors: [{ msg: "Server error" }] });
   }
@@ -206,8 +226,9 @@ async function deleteComment(req, res) {
 }
 
 module.exports = {
-  addPost,
   getPostsByPage,
+  getPostsByUserId,
+  addPost,
   deletePostById,
   addComment,
   deleteComment,
