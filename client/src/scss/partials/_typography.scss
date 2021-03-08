@@ -3,10 +3,9 @@
 body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
     sans-serif, sans-serif;
-  font-size: 16px;
-  font-weight: 300;
+  font-size: 15px;
   line-height: 1.5;
-  color: $text-medium;
+  color: $text-4;
 }
 
 button,
@@ -20,25 +19,25 @@ select {
 }
 
 h1 {
-  color: $text-dark;
+  color: $text-1;
   font-weight: 800;
   font-size: 36px;
 }
 
 h2 {
-  color: $text-dark;
+  color: $text-1;
   font-weight: 800;
   font-size: 30px;
 }
 
 h3 {
-  color: $text-dark;
+  color: $text-1;
   font-weight: 700;
   font-size: 24px;
 }
 
 h4 {
-  color: $text-dark;
+  color: $text-1;
   font-weight: 600;
   font-size: 18px;
 }
@@ -52,10 +51,9 @@ p {
 }
 
 label {
-  font-size: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 13px;
+  color: $text-4;
+  font-weight: 400;
 }
 
 a {

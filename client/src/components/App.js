@@ -35,7 +35,7 @@ function App(props) {
 
     const handleStorageChange = () => {
       if (!localStorage.token) {
-        dispatch(logoutUser());
+        dispatch(logoutUser(history));
       }
     };
 
@@ -48,7 +48,10 @@ function App(props) {
 
   return (
     <div className="App">
-      <Navbar />
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+      </Switch>
+      {/* <Navbar />
       <main>
         <PageLayout>
           <Switch>
@@ -66,7 +69,7 @@ function App(props) {
         {currentModal === "LOGIN_MODAL" && <LoginModal />}
         {currentModal === "SIGN_UP_MODAL" && <SignUpModal />}
       </main>
-      <FooterBar />
+      <FooterBar /> */}
     </div>
   );
 }

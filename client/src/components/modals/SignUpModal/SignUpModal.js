@@ -13,7 +13,7 @@ import Button from "../../shared/Button/Button";
 import { showLoginModal, hideCurrentModal } from "../../../store/actions/modalActions";
 import { registerUser } from "../../../store/actions/authActions";
 
-function SignUpModal(props) {
+function SignUpModal({ toggleModal }) {
   const firstNameRef = React.useRef(null);
   const dispatch = useDispatch();
   const { registerLoading } = useSelector((state) => state.authReducer);
@@ -53,57 +53,56 @@ function SignUpModal(props) {
 
   return (
     <Modal>
-      <ModalClose closeModal={closeSignUpModal} />
       <ModalContent>
-        <ModalHeader heading="Join Glitch!" subheading="Create an account here" />
-        <form onSubmit={handleSubmit} className="SignUpModal__form">
-          <div className="SignUpModal__form-line SignUpModal__form-line--first">
-            <FormInputGroup
-              ref={firstNameRef}
-              label="First name"
-              name="firstName"
-              value={state.firstName}
-              onChange={handleChange}
-              placeholder="Steve"
-            />
+        <ModalHeader heading="Join Unity!" subheading="Create a free account here" />
+        <form onSubmit={handleSubmit}>
+          <div className="SignUpModal__form">
+            <div className="SignUpModal__form-line SignUpModal__form-line--first">
+              <FormInputGroup
+                ref={firstNameRef}
+                label="First Name"
+                name="firstName"
+                value={state.firstName}
+                onChange={handleChange}
+                placeholder="Steve"
+              />
+            </div>
+            <div className="SignUpModal__form-line SignUpModal__form-line--last">
+              <FormInputGroup
+                label="Last Name"
+                name="lastName"
+                value={state.lastName}
+                onChange={handleChange}
+                placeholder="Jobs"
+              />
+            </div>
+            <div className="SignUpModal__form-line SignUpModal__form-line--email">
+              <FormInputGroup
+                label="Email Address"
+                name="email"
+                value={state.email}
+                onChange={handleChange}
+                placeholder="stevejobs@gmail.com"
+              />
+            </div>
+            <div className="SignUpModal__form-line SignUpModal__form-line--password">
+              <FormInputGroup
+                label="Password"
+                name="password"
+                value={state.password}
+                onChange={handleChange}
+              />
+            </div>
           </div>
-          <div className="SignUpModal__form-line SignUpModal__form-line--last">
-            <FormInputGroup
-              label="Last name"
-              name="lastName"
-              value={state.lastName}
-              onChange={handleChange}
-              placeholder="Jobs"
-            />
-          </div>
-          <div className="SignUpModal__form-line SignUpModal__form-line--email">
-            <FormInputGroup
-              label="Email address"
-              name="email"
-              value={state.email}
-              onChange={handleChange}
-              placeholder="stevejobs@gmail.com"
-            />
-          </div>
-          <div className="SignUpModal__form-line SignUpModal__form-line--password">
-            <FormInputGroup
-              label="Password"
-              name="password"
-              value={state.password}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="SignUpModal__form-line SignUpModal__form-line--submit">
-            <Button width="full" color="indigo" isLoading={registerLoading}>
-              Create Account
-            </Button>
-          </div>
+          <Button width="full" color="indigo" isLoading={registerLoading}>
+            Create Account
+          </Button>
         </form>
       </ModalContent>
       <ModalFooter
         displayCopy="Already have an account?"
         buttonLabel="Login"
-        openModal={openLoginModal}
+        openModal={toggleModal}
       />
     </Modal>
   );

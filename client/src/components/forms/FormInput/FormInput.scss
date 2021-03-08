@@ -1,22 +1,22 @@
 @import "../../../scss/partials/variables";
 
 .FormInput {
-  padding: 14px;
-  height: 45px;
+  padding: 16px;
+  height: 56px;
   width: 100%;
-  background-color: $fill-lightest;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  font-weight: 300;
-  color: $text-dark;
+  background-color: $grey-7;
+  border: 2px solid transparent;
+  border-radius: $radius-m;
+  font-weight: 600;
+  color: $text-1;
 
   &:focus {
-    border-color: $action-fill-indigo;
+    border-color: $primary-1;
+    background-color: $white;
   }
 
   &::placeholder {
-    color: $text-light;
-    font-style: italic;
+    color: $text-8;
     font-weight: inherit;
   }
 }

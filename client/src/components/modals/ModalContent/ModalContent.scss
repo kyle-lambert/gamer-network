@@ -1,11 +1,11 @@
 @import "../../../scss/partials/variables";
 
 .ModalContent {
-  padding: 14px;
+  padding: 16px;
   max-height: 600px;
   overflow-x: scroll;
 
   @media (min-width: $tablet) {
-    padding: 21px;
+    padding: 32px;
   }
 }

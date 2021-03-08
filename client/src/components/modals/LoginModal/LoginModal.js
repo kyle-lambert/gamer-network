@@ -1,30 +1,36 @@
 import React from "react";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./LoginModal.scss";
 
 import Modal from "../Modal/Modal";
-import ModalClose from "../ModalClose/ModalClose";
 import ModalHeader from "../ModalHeader/ModalHeader";
 import ModalContent from "../ModalContent/ModalContent";
 import ModalFooter from "../ModalFooter/ModalFooter";
 import FormInputGroup from "../../forms/FormInputGroup/FormInputGroup";
 import Button from "../../shared/Button/Button";
 
-// import { validateEmail } from "../../../utils/regex";
-
-import { showSignUpModal, hideCurrentModal } from "../../../store/actions/modalActions";
 import { authenticateUser } from "../../../store/actions/authActions";
 
-function LoginModal(props) {
+function LoginModal({ toggleModal }) {
   const emailRef = React.useRef(null);
   const dispatch = useDispatch();
+  const sourceRef = React.useRef(null);
   const history = useHistory();
   const { authenticationLoading } = useSelector((state) => state.authReducer);
 
   const [state, setState] = React.useState({
     email: "",
     password: "",
+  });
+
+  React.useEffect(() => {
+    return () => {
+      if (sourceRef.current !== null) {
+        sourceRef.current.cancel();
+      }
+    };
   });
 
   React.useEffect(() => {
@@ -45,48 +51,45 @@ function LoginModal(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state.email && state.password) {
+      sourceRef.current = axios.CancelToken.source();
       dispatch(authenticateUser(state, history));
     }
   };
 
-  const openSignUpModal = () => dispatch(showSignUpModal());
-  const closeLoginModal = () => dispatch(hideCurrentModal());
-
   return (
     <Modal>
-      <ModalClose closeModal={closeLoginModal} />
       <ModalContent>
-        <ModalHeader heading="Hello!" subheading="Sign into your account here" />
-        <form onSubmit={handleSubmit} className="LoginModal__form">
-          <div className="LoginModal__form-line">
-            <FormInputGroup
-              ref={emailRef}
-              label="Email address"
-              name="email"
-              value={state.email}
-              onChange={handleChange}
-              placeholder="stevejobs@gmail.com"
-            />
+        <ModalHeader heading="Login" subheading="Sign into a your account here" />
+        <form onSubmit={handleSubmit}>
+          <div className="LoginModal__form">
+            <div className="LoginModal__form-line">
+              <FormInputGroup
+                ref={emailRef}
+                label="Email Address"
+                name="email"
+                value={state.email}
+                onChange={handleChange}
+                placeholder="stevejobs@gmail.com"
+              />
+            </div>
+            <div className="LoginModal__form-line">
+              <FormInputGroup
+                label="Password"
+                name="password"
+                value={state.password}
+                onChange={handleChange}
+              />
+            </div>
           </div>
-          <div className="LoginModal__form-line">
-            <FormInputGroup
-              label="Password"
-              name="password"
-              value={state.password}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="LoginModal__form-line">
-            <Button type="submit" width="full" color="indigo" isLoading={authenticationLoading}>
-              Login
-            </Button>
-          </div>
+          <Button type="submit" width="full" isLoading={authenticationLoading}>
+            Login
+          </Button>
         </form>
       </ModalContent>
       <ModalFooter
         displayCopy="Don't have an account?"
         buttonLabel="Sign Up"
-        openModal={openSignUpModal}
+        openModal={toggleModal}
       />
     </Modal>
   );

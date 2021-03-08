@@ -4,18 +4,13 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: 45px;
-  padding: 0 14px;
+  height: 56px;
+  padding: 0 16px;
   font-size: inherit;
   font-weight: 600;
-  color: $text-white;
-  background-color: $fill-medium;
-  border-radius: 8px;
+  border-radius: $radius-m;
+  box-shadow: 1px 4px 15px rgb(27, 29, 33, 0.1);
   transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
-
-  &:hover {
-    background-color: $fill-medium;
-  }
 
   &--outline {
     color: $fill-medium;
@@ -28,14 +23,54 @@
     }
   }
 
-  &--indigo {
-    background-color: $action-fill-indigo;
+  &--primary {
+    color: $white;
+    background-color: $primary-1;
     &:hover {
-      background-color: $action-fill-indigo-dark;
+      background-color: $primary-2;
     }
 
     &:disabled {
-      background-color: $action-fill-indigo-dark;
+      background-color: $primary-2;
+      cursor: auto;
+    }
+  }
+
+  &--secondary {
+    background-color: $dark-1;
+    color: $white;
+    &:hover {
+      background-color: $dark-2;
+    }
+
+    &:disabled {
+      background-color: $dark-2;
+      cursor: auto;
+    }
+  }
+
+  &--warning {
+    background-color: $orange-1;
+    color: $white;
+    &:hover {
+      background-color: $orange-2;
+    }
+
+    &:disabled {
+      background-color: $orange-2;
+      cursor: auto;
+    }
+  }
+
+  &--successful {
+    background-color: $green-1;
+    color: $white;
+    &:hover {
+      background-color: $green-2;
+    }
+
+    &:disabled {
+      background-color: $green-2;
       cursor: auto;
     }
   }

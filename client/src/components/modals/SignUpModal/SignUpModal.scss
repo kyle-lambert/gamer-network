@@ -1,14 +1,14 @@
 .SignUpModal {
   &__form {
     display: grid;
-    row-gap: 14px;
-    column-gap: 14px;
+    row-gap: 16px;
+    column-gap: 8px;
+    margin-bottom: 32px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
       "first last"
       "email email"
-      "password password"
-      "submit submit";
+      "password password";
 
     &-line {
       &--first {
@@ -22,9 +22,6 @@
       }
       &--password {
         grid-area: password;
-      }
-      &--submit {
-        grid-area: submit;
       }
     }
   }

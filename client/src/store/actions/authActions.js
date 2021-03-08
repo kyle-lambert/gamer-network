@@ -1,3 +1,4 @@
+import axios from "axios";
 import { batch } from "react-redux";
 import { authTypes } from "../types";
 import { createAlert } from "./alertActions";
@@ -27,13 +28,14 @@ const loadUserRequest = () => ({ type: authTypes.LOAD_USER_REQUEST });
 const loadUserSuccess = (payload) => ({ type: authTypes.LOAD_USER_SUCCESS, payload });
 const loadUserFailure = () => ({ type: authTypes.LOAD_USER_FAILURE });
 
-export const logoutUser = () => {
+export const logoutUser = (history) => {
   return (dispatch) => {
     batch(() => {
       dispatch(logout());
       dispatch(createAlert(LOGGED_OUT, false));
     });
     setAuthorisationToken(false);
+    history.push("/");
   };
 };
 
@@ -84,7 +86,7 @@ export const registerUser = (form) => {
   };
 };
 
-export const authenticateUser = (form, history) => {
+export const authenticateUser = (form, history, token) => {
   return async (dispatch) => {
     if (!form) {
       return;
@@ -98,6 +100,7 @@ export const authenticateUser = (form, history) => {
       const config = {
         method: "post",
         url: "/auth",
+        token,
         data: {
           email,
           password,
@@ -120,6 +123,10 @@ export const authenticateUser = (form, history) => {
       history.push("/posts");
     } catch (err) {
       dispatch(authenticateUserFailure());
+      if (axios.isCancel(err)) {
+        console.log("Axios request cancelled");
+      }
+
       if (err.response) {
         const errors = err.response?.data?.errors;
         if (errors) {

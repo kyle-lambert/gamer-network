@@ -6,10 +6,9 @@ import ButtonSpinner from "../ButtonSpinner/ButtonSpinner";
 
 const INITIAL = "Button";
 
-function Button({ children, color, variant, width, disabled, isLoading, ...rest }) {
+function Button({ children, variant, width, disabled, isLoading, ...rest }) {
   const classes = classNames(
     INITIAL,
-    color && `${INITIAL}--${color}`,
     variant && `${INITIAL}--${variant}`,
     width && `${INITIAL}--${width}`
   );
@@ -20,5 +19,9 @@ function Button({ children, color, variant, width, disabled, isLoading, ...rest 
     </button>
   );
 }
+
+Button.defaultProps = {
+  variant: "primary",
+};
 
 export default React.memo(Button);
