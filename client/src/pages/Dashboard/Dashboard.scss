@@ -1,0 +1,27 @@
+@import "../../scss/partials/variables";
+
+.Dashboard {
+  min-height: 100vh;
+
+  @media (min-width: $mobile) {
+    display: grid;
+    grid-template-rows: 80px auto;
+    grid-template-columns: 80px auto;
+    grid-template-areas:
+      "sidebar topbar"
+      "sidebar main";
+  }
+
+  @media (min-width: $tablet) {
+    grid-template-rows: 96px auto;
+    grid-template-columns: 96px auto;
+  }
+
+  @media (min-width: $desktop) {
+    grid-template-columns: 256px auto;
+  }
+
+  &__main {
+    background-color: $grey-8;
+  }
+}

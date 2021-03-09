@@ -3,6 +3,8 @@ import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./App.scss";
 
+import Dashboard from "../pages/Dashboard/Dashboard";
+
 import Navbar from "../components/navigation/Navbar/Navbar";
 import FooterBar from "../components/shared/FooterBar/FooterBar";
 import LoginModal from "../components/modals/LoginModal/LoginModal";
@@ -50,6 +52,7 @@ function App(props) {
     <div className="App">
       <Switch>
         <Route exact path="/" component={LandingPage} />
+        <Route path="/dashboard" component={Dashboard} />
       </Switch>
       {/* <Navbar />
       <main>

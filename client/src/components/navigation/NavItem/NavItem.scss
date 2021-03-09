@@ -1,0 +1,45 @@
+@import "../../../scss/partials/variables";
+
+.NavItem {
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: 4px;
+  }
+
+  &__icon {
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg path {
+      fill: $dark-4;
+    }
+  }
+
+  &__name {
+    align-self: center;
+    flex: 1;
+  }
+
+  &__link {
+    padding: 0 16px;
+    width: 100%;
+    height: 56px;
+    display: flex;
+    border-radius: $radius-m;
+
+    &--active {
+      background-color: $primary-1;
+      box-shadow: 0 2px 15px rgb(27, 29, 33, 0.2);
+
+      .NavItem__name {
+        color: $white;
+      }
+
+      svg path {
+        fill: $white;
+      }
+    }
+  }
+}

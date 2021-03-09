@@ -1,0 +1,75 @@
+@import "../../../scss/partials/variables";
+
+.SidebarNav {
+  width: 100%;
+  border-bottom: 1px solid $dark-8;
+  padding-bottom: 32px;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title {
+    display: none;
+
+    @media (min-width: $desktop) {
+      display: block;
+      padding: 0 16px;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (min-width: $desktop) {
+      margin-right: 16px;
+    }
+
+    svg path {
+      fill: $dark-4;
+    }
+  }
+
+  &__name {
+    display: none;
+
+    @media (min-width: $desktop) {
+      display: initial;
+      align-self: center;
+      flex: 1;
+    }
+  }
+
+  &__link {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $radius-m;
+
+    @media (min-width: $desktop) {
+      padding: 0 16px;
+      width: 100%;
+      height: 56px;
+    }
+
+    &--active {
+      background-color: $primary-1;
+
+      .SidebarNav__name {
+        color: $white;
+      }
+
+      svg path {
+        fill: $white;
+      }
+    }
+  }
+}

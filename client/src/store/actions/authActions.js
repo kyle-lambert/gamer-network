@@ -163,7 +163,7 @@ export const loadUser = (history) => {
         dispatch(loadUserSuccess(data.user));
         dispatch(createAlert(LOGGED_IN, false));
       });
-      history.push("/posts");
+      history.push("/dashboard");
     } catch (err) {
       dispatch(loadUserFailure());
       if (err.response) {

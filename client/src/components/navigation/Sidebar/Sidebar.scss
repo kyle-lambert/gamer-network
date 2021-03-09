@@ -1,0 +1,23 @@
+@import "../../../scss/partials/variables";
+
+.Sidebar {
+  display: none;
+
+  @media (min-width: $mobile) {
+    grid-area: sidebar;
+    display: block;
+    border-right: 1px solid $dark-8;
+    padding: 0 8px;
+  }
+
+  @media (min-width: $tablet) {
+    padding: 0 16px;
+  }
+
+  &__brand {
+    padding: 0 16px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+  }
+}

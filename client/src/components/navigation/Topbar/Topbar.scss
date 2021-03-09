@@ -1,0 +1,6 @@
+@import "../../../scss/partials/variables";
+
+.Topbar {
+  grid-area: topbar;
+  border-bottom: 1px solid $dark-8;
+}
