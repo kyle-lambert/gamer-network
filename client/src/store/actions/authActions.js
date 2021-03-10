@@ -1,7 +1,7 @@
 import { batch } from "react-redux";
 import { authTypes } from "../types";
 import { createAlert } from "./alertActions";
-import { hideCurrentModal, showLoginModal } from "./modalActions";
+import { toggleLandingModal } from "./modalActions";
 import setAuthorisationToken from "../../utils/setAuthorisationToken";
 import { REQUEST_ERROR, REQUEST_FAILED } from "../../data/errors";
 import api from "../../data/api";
@@ -63,7 +63,7 @@ export const registerUser = (form) => {
 
       batch(() => {
         dispatch(registerUserSuccess());
-        dispatch(showLoginModal());
+        dispatch(toggleLandingModal());
         dispatch(createAlert(REGISTERED, false));
       });
     } catch (err) {
@@ -113,7 +113,6 @@ export const authenticateUser = (form, history) => {
 
       batch(() => {
         dispatch(authenticateUserSuccess(data));
-        dispatch(hideCurrentModal());
         dispatch(createAlert(LOGGED_IN, false));
       });
       setAuthorisationToken(data.token);

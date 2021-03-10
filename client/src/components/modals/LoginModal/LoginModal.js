@@ -4,16 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import "./LoginModal.scss";
 
 import Modal from "../Modal/Modal";
-import ModalClose from "../ModalClose/ModalClose";
 import ModalHeader from "../ModalHeader/ModalHeader";
 import ModalContent from "../ModalContent/ModalContent";
 import ModalFooter from "../ModalFooter/ModalFooter";
 import FormInputGroup from "../../forms/FormInputGroup/FormInputGroup";
 import Button from "../../shared/Button/Button";
 
-// import { validateEmail } from "../../../utils/regex";
-
-import { showSignUpModal, hideCurrentModal } from "../../../store/actions/modalActions";
+import { toggleLandingModal } from "../../../store/actions/modalActions";
 import { authenticateUser } from "../../../store/actions/authActions";
 
 function LoginModal(props) {
@@ -49,12 +46,10 @@ function LoginModal(props) {
     }
   };
 
-  const openSignUpModal = () => dispatch(showSignUpModal());
-  const closeLoginModal = () => dispatch(hideCurrentModal());
+  const toggleModal = () => dispatch(toggleLandingModal());
 
   return (
     <Modal>
-      <ModalClose closeModal={closeLoginModal} />
       <ModalContent>
         <ModalHeader heading="Hello!" subheading="Sign into your account here" />
         <form onSubmit={handleSubmit} className="LoginModal__form">
@@ -86,7 +81,7 @@ function LoginModal(props) {
       <ModalFooter
         displayCopy="Don't have an account?"
         buttonLabel="Sign Up"
-        openModal={openSignUpModal}
+        openModal={toggleModal}
       />
     </Modal>
   );

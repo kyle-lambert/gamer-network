@@ -1,11 +1,7 @@
 import { modalTypes } from "../types";
 
-export const showLoginModal = () => {
-  return { type: modalTypes.SHOW_MODAL, payload: "LOGIN_MODAL" };
-};
-
-export const showSignUpModal = () => {
-  return { type: modalTypes.SHOW_MODAL, payload: "SIGN_UP_MODAL" };
+export const toggleLandingModal = () => {
+  return { type: modalTypes.TOGGLE_LANDING_MODAL };
 };
 
 export const showCreatePostModal = () => {
@@ -14,4 +10,8 @@ export const showCreatePostModal = () => {
 
 export const hideCurrentModal = () => {
   return { type: modalTypes.HIDE_MODAL };
+};
+
+export const initialiseModalReducer = () => {
+  return { type: modalTypes.INITIALISE_MODAL_REDUCER };
 };

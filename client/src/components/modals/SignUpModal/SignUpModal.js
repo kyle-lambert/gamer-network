@@ -3,14 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import "./SignUpModal.scss";
 
 import Modal from "../Modal/Modal";
-import ModalClose from "../ModalClose/ModalClose";
 import ModalHeader from "../ModalHeader/ModalHeader";
 import ModalContent from "../ModalContent/ModalContent";
 import ModalFooter from "../ModalFooter/ModalFooter";
 import FormInputGroup from "../../forms/FormInputGroup/FormInputGroup";
 import Button from "../../shared/Button/Button";
 
-import { showLoginModal, hideCurrentModal } from "../../../store/actions/modalActions";
+import { toggleLandingModal } from "../../../store/actions/modalActions";
 import { registerUser } from "../../../store/actions/authActions";
 
 function SignUpModal(props) {
@@ -48,12 +47,10 @@ function SignUpModal(props) {
     }
   };
 
-  const openLoginModal = () => dispatch(showLoginModal());
-  const closeSignUpModal = () => dispatch(hideCurrentModal());
+  const toggleModal = () => dispatch(toggleLandingModal());
 
   return (
     <Modal>
-      <ModalClose closeModal={closeSignUpModal} />
       <ModalContent>
         <ModalHeader heading="Join Glitch!" subheading="Create an account here" />
         <form onSubmit={handleSubmit} className="SignUpModal__form">
@@ -103,7 +100,7 @@ function SignUpModal(props) {
       <ModalFooter
         displayCopy="Already have an account?"
         buttonLabel="Login"
-        openModal={openLoginModal}
+        openModal={toggleModal}
       />
     </Modal>
   );

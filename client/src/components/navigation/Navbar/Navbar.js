@@ -4,14 +4,12 @@ import { NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.scss";
 
-import { showLoginModal, showSignUpModal } from "../../../store/actions/modalActions";
 import { logoutUser } from "../../../store/actions/authActions";
 
 import { ReactComponent as Hamburger } from "../../../assets/icons/hamburger.svg";
 import { ReactComponent as GlitchLogo } from "../../../assets/icons/glitch-logo.svg";
 
 import Icon from "../../shared/Icon/Icon";
-import Button from "../../shared/Button/Button";
 
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import AccountMenu from "../AccountMenu/AccountMenu";
@@ -31,8 +29,6 @@ function Navbar(props) {
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = React.useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = React.useState(false);
 
-  const openLoginModal = () => dispatch(showLoginModal());
-  const openSignUpModal = () => dispatch(showSignUpModal());
   const toggleHamburgerMenu = () => setHamburgerMenuOpen((state) => !state);
   const toggleAccountMenu = () => setAccountMenuOpen((state) => !state);
   const closeHamburgerMenu = () => setHamburgerMenuOpen(false);
@@ -82,7 +78,7 @@ function Navbar(props) {
         </ul>
       </nav>
 
-      {isAuthenticated && user ? (
+      {isAuthenticated && user && (
         <>
           <div className="Navbar__avatar">
             <button onClick={toggleAccountMenu} className="Navbar__avatar-btn">
@@ -97,24 +93,9 @@ function Navbar(props) {
             />
           )}
         </>
-      ) : (
-        <ul className="Navbar__cta">
-          <li className="Navbar__cta-item">
-            <Button onClick={openLoginModal} variant="outline">
-              Login
-            </Button>
-          </li>
-          <li className="Navbar__cta-item">
-            <Button onClick={openSignUpModal} color="indigo">
-              Sign Up
-            </Button>
-          </li>
-        </ul>
       )}
 
-      {hamburgerMenuOpen && (
-        <HamburgerMenu closeHamburgerMenu={closeHamburgerMenu} openSignUpModal={openSignUpModal} />
-      )}
+      {hamburgerMenuOpen && <HamburgerMenu closeHamburgerMenu={closeHamburgerMenu} />}
     </header>
   );
 }

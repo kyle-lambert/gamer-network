@@ -2,6 +2,7 @@ import { modalTypes } from "../types";
 
 const initState = {
   currentModal: null,
+  isLogin: true,
 };
 
 function modalReducer(state = initState, action) {
@@ -12,6 +13,15 @@ function modalReducer(state = initState, action) {
       };
     }
     case modalTypes.HIDE_MODAL: {
+      return initState;
+    }
+    case modalTypes.TOGGLE_LANDING_MODAL: {
+      return {
+        ...state,
+        isLogin: !state.isLogin,
+      };
+    }
+    case modalTypes.INITIALISE_MODAL_REDUCER: {
       return initState;
     }
     default: {

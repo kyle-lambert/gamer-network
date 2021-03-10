@@ -1,19 +1,12 @@
 import React from "react";
 import { Switch, Route, Redirect, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./App.scss";
 
-import Navbar from "../components/navigation/Navbar/Navbar";
-import FooterBar from "../components/shared/FooterBar/FooterBar";
-import LoginModal from "../components/modals/LoginModal/LoginModal";
-import SignUpModal from "../components/modals/SignUpModal/SignUpModal";
-import AlertsList from "../components/shared/AlertsList/AlertsList";
-import PageLayout from "../components/shared/PageLayout/PageLayout";
+import AlertList from "../components/shared/AlertsList/AlertsList";
 
+import DashboardPage from "../pages/DashboardPage/DashboardPage";
 import LandingPage from "../pages/LandingPage/LandingPage";
-import AccountPage from "../pages/AccountPage/AccountPage";
-import ProfilePage from "../pages/ProfilePage/ProfilePage";
-import PostFeedPage from "../pages/PostFeedPage/PostFeedPage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 import PrivateRoute from "../hoc/PrivateRoute";
@@ -23,7 +16,6 @@ import { logoutUser } from "../store/actions/authActions";
 import setAuthorisationToken from "../utils/setAuthorisationToken";
 
 function App(props) {
-  const { currentModal } = useSelector((state) => state.modalReducer);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -48,7 +40,16 @@ function App(props) {
 
   return (
     <div className="App">
-      <Navbar />
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+        <PrivateRoute path="/" component={DashboardPage} />
+        <Route exact path="/error" component={ErrorPage} />
+        <Route>
+          <Redirect to="/error" />
+        </Route>
+      </Switch>
+      <AlertList />
+      {/* <Navbar />
       <main>
         <PageLayout>
           <Switch>
@@ -66,7 +67,7 @@ function App(props) {
         {currentModal === "LOGIN_MODAL" && <LoginModal />}
         {currentModal === "SIGN_UP_MODAL" && <SignUpModal />}
       </main>
-      <FooterBar />
+      <FooterBar /> */}
     </div>
   );
 }
