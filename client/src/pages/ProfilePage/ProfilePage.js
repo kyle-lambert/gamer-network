@@ -43,8 +43,8 @@ function ProfilePage(props) {
         </div>
         <div className="ProfilePage__main">
           <Switch>
-            <PrivateRoute exact path="/profile/:id" component={ProfileAbout} />
-            <PrivateRoute exact path="/profile/:id/posts" component={ProfilePosts} />
+            <PrivateRoute exact path="/dashboard/profile/:id" component={ProfileAbout} />
+            <PrivateRoute exact path="/dashboard/profile/:id/posts" component={ProfilePosts} />
             <Route>
               <Redirect to="/error" />
             </Route>

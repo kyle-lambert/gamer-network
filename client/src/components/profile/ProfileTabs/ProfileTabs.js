@@ -11,7 +11,7 @@ function ProfileTabs(props) {
         <li className="ProfileTabs__item">
           <NavLink
             exact
-            to={`/profile/${params.id}`}
+            to={`/dashboard/profile/${params.id}`}
             className="ProfileTabs__link"
             activeClassName="ProfileTabs__link--active">
             About
@@ -20,7 +20,7 @@ function ProfileTabs(props) {
         <li className="ProfileTabs__item">
           <NavLink
             exact
-            to={`/profile/${params.id}/posts`}
+            to={`/dashboard/profile/${params.id}/posts`}
             className="ProfileTabs__link"
             activeClassName="ProfileTabs__link--active">
             Posts

@@ -39,9 +39,9 @@ function AccountPage(props) {
         </div>
         <div className="AccountPage__main">
           <Switch>
-            <PrivateRoute exact path="/account" component={AccountGeneral} />
-            <PrivateRoute exact path="/account/profile" component={AccountProfile} />
-            <PrivateRoute exact path="/account/delete" component={AccountDelete} />
+            <PrivateRoute exact path="/dashboard/account" component={AccountGeneral} />
+            <PrivateRoute exact path="/dashboard/account/profile" component={AccountProfile} />
+            <PrivateRoute exact path="/dashboard/account/delete" component={AccountDelete} />
             <Route>
               <Redirect to="/error" />
             </Route>

@@ -116,7 +116,7 @@ export const authenticateUser = (form, history) => {
         dispatch(createAlert(LOGGED_IN, false));
       });
       setAuthorisationToken(data.token);
-      history.push("/posts");
+      history.push("/dashboard");
     } catch (err) {
       dispatch(authenticateUserFailure());
       if (err.response) {
@@ -155,7 +155,7 @@ export const loadUser = (history) => {
         dispatch(loadUserSuccess(data.user));
         dispatch(createAlert(LOGGED_IN, false));
       });
-      history.push("/posts");
+      history.push("/dashboard");
     } catch (err) {
       dispatch(loadUserFailure());
       if (err.response) {

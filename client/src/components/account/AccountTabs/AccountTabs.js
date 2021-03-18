@@ -9,7 +9,7 @@ function AccountTabs(props) {
         <li className="AccountTabs__item">
           <NavLink
             exact
-            to="/account"
+            to="/dashboard/account"
             className="AccountTabs__link"
             activeClassName="AccountTabs__link--active">
             General
@@ -18,7 +18,7 @@ function AccountTabs(props) {
         <li className="AccountTabs__item">
           <NavLink
             exact
-            to="/account/profile"
+            to="/dashboard/account/profile"
             className="AccountTabs__link"
             activeClassName="AccountTabs__link--active">
             Profile
@@ -27,7 +27,7 @@ function AccountTabs(props) {
         <li className="AccountTabs__item">
           <NavLink
             exact
-            to="/account/delete"
+            to="/dashboard/account/delete"
             className="AccountTabs__link"
             activeClassName="AccountTabs__link--active">
             Delete

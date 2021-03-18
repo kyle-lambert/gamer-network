@@ -24,7 +24,7 @@ function AccountMenu({ closeAccountMenu, logoutUser, user }) {
       <ul className="AccountMenu__list">
         <li className="AccountMenu__item">
           <NavLink
-            to={`/profile/${user._id}`}
+            to={`/dashboard/profile/${user._id}`}
             onClick={handleNavClick}
             className="AccountMenu__link"
             activeClassName="AccountMenu__link--active">
@@ -33,14 +33,14 @@ function AccountMenu({ closeAccountMenu, logoutUser, user }) {
         </li>
         <li className="AccountMenu__item">
           <NavLink
-            to="/account"
+            to="/dashboard/account"
             onClick={handleNavClick}
             className="AccountMenu__link"
             activeClassName="AccountMenu__link--active">
             Account
           </NavLink>
         </li>
-        <li className="AccountMenu__item">
+        {/* <li className="AccountMenu__item">
           <NavLink
             to="/posts"
             exact
@@ -49,7 +49,7 @@ function AccountMenu({ closeAccountMenu, logoutUser, user }) {
             activeClassName="AccountMenu__link--active">
             Posts Feed
           </NavLink>
-        </li>
+        </li> */}
       </ul>
       <div className="AccountMenu__auth">
         <Button onClick={logoutUser} color="indigo" width="full">

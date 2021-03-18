@@ -6,6 +6,7 @@ import Navbar from "../../components/navigation/Navbar/Navbar";
 import FooterBar from "../../components/shared/FooterBar/FooterBar";
 import PostFeedPage from "../PostFeedPage/PostFeedPage";
 import AccountPage from "../AccountPage/AccountPage";
+import ProfilePage from "../ProfilePage/ProfilePage";
 
 import PageLayout from "../../components/shared/PageLayout/PageLayout";
 
@@ -16,11 +17,12 @@ function DashboardPage(props) {
       <main>
         <PageLayout>
           <Switch>
-            <Route exact to="/dashboard" component={PostFeedPage} />
-            <Route exact to="/dashboard/account" component={AccountPage} />
-            <Route>
+            <Route exact path="/dashboard" component={PostFeedPage} />
+            <Route path="/dashboard/account" component={AccountPage} />
+            <Route path="/dashboard/profile/:id" component={ProfilePage} />
+            {/* <Route>
               <Redirect to="/error" />
-            </Route>
+            </Route> */}
           </Switch>
         </PageLayout>
       </main>
