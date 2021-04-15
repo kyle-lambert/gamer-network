@@ -66,6 +66,7 @@ function AccountProfile(props) {
       <form onSubmit={handleUpdateProfile} className="AccountProfile__form">
         <div className="AccountProfile__item AccountProfile__item--description">
           <FormTextAreaGroup
+            rows="6"
             label="Description"
             name="description"
             value={state.description}
